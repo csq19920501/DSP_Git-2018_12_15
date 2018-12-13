@@ -1,0 +1,30 @@
+PODS:
+  - Bugly (2.5.0)
+  - IQKeyboardManager (6.0.3)
+  - Masonry (1.1.0)
+  - YYKit (1.0.9):
+    - YYKit/no-arc (= 1.0.9)
+  - YYKit/no-arc (1.0.9)
+
+DEPENDENCIES:
+  - Bugly
+  - IQKeyboardManager (~> 6.0.3)
+  - Masonry
+  - YYKit
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Bugly
+    - IQKeyboardManager
+    - Masonry
+    - YYKit
+
+SPEC CHECKSUMS:
+  Bugly: 3ca9f255c01025582df26f9222893b383c7e4b4e
+  IQKeyboardManager: c390e612f4b98c8fd748016470138537dc163ead
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
+
+PODFILE CHECKSUM: 36eea06670650973d6f45ed8c1e364bf2e55214b
+
+COCOAPODS: 1.5.3
