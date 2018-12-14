@@ -146,5 +146,13 @@ static DeviceTool *_deviceTool;
     //子 转换结束***
     return model;
 }
-
+-(BOOL)isBH_A180A{
+    return self.deviceType == BH_A180A;
+}
+-(void)setDspMode:(DspModeType )modeType{
+    _DspMode = modeType;
+    if(modeType == BH_A180A){
+        self.SpdifOutBool = YES;
+    }
+}
 @end

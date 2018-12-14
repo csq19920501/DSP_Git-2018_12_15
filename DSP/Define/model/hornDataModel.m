@@ -202,7 +202,7 @@
 
 +(CGFloat)freqFromBand:(CGFloat)band{
     CGFloat freq;
-    /*初级算法
+    ///*初级算法
     if (band <= BandAllWidth* 1/4.5) {
         freq = 20 + band * (100 - 20)/(BandAllWidth/4.5);
     }else if(band <= BandAllWidth* 2.5/4.5){
@@ -210,33 +210,36 @@
     }else if(band <= BandAllWidth* 4/4.5){
         freq = 1000 + (band - BandAllWidth* 2.5/4.5) * (10000 - 1000)/(BandAllWidth* 1.5/4.5);
     }else {
-        //这里同上 暂不做特殊处理
+//        这里同上 暂不做特殊处理
         freq = 10000 + (band - BandAllWidth* 4/4.5) * (20000 - 10000)/(BandAllWidth* 0.5/4.5);
     }
-     */
+     //*/
     
     /*高级算法*/
-    double F = pow(20000/20.0, 1.0/(BandAllWidth - 5));
-    freq = 20 * pow(F, band);
+//    double F = pow(20000/20.0, 1.0/(BandAllWidth - 5));
+//    freq = 20 * pow(F, band);
+//    if (freq > 20000) {
+//        freq = 20000;
+//    }
     
     return freq;
 }
 +(CGFloat)bandFromFreq:(CGFloat)freq{
     CGFloat band = 0.0;
     
-//    if (freq <= 100.0) {
-//        band = (freq - 20)/((100 - 20)/(BandAllWidth/4.5));
-//    }else if(freq <= 1000.0){
-//        band = (freq - 100)/((1000 - 100)/(BandAllWidth* 1.5/4.5)) + BandAllWidth* 1/4.5;
-//    }else if(freq <= 10000.0){
-//        band = (freq - 1000)/((10000 - 1000)/(BandAllWidth* 1.5/4.5)) + BandAllWidth* 2.5/4.5;
-//    }else{
-//        //这里同上 暂不做特殊处理
-//        band = (freq - 10000)/((20000 - 10000)/(BandAllWidth* 0.5/4.5)) + BandAllWidth* 4/4.5;
-//    }
+    if (freq <= 100.0) {
+        band = (freq - 20)/((100 - 20)/(BandAllWidth/4.5));
+    }else if(freq <= 1000.0){
+        band = (freq - 100)/((1000 - 100)/(BandAllWidth* 1.5/4.5)) + BandAllWidth* 1/4.5;
+    }else if(freq <= 10000.0){
+        band = (freq - 1000)/((10000 - 1000)/(BandAllWidth* 1.5/4.5)) + BandAllWidth* 2.5/4.5;
+    }else{
+        //这里同上 暂不做特殊处理
+        band = (freq - 10000)/((20000 - 10000)/(BandAllWidth* 0.5/4.5)) + BandAllWidth* 4/4.5;
+    }
     
-    double F = pow(20000/20.0, 1.0/(BandAllWidth - 5));
-    band = log(freq/20)/log(F);
+//    double F = pow(20000/20.0, 1.0/(BandAllWidth - 5));
+//    band = log(freq/20)/log(F);
     
     return band;
 }

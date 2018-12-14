@@ -12,6 +12,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *naviBarHeight;
 @property (weak, nonatomic) IBOutlet UILabel *appVersion;
 @property (weak, nonatomic) IBOutlet UILabel *mcuVersion;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *spdifOutHeight;
 
 @end
 
@@ -96,12 +97,25 @@
             extrnalButton2.selected = YES;
             DeviceToolShare.MaxOutputLevelAdd6 = YES;
             if (self.clickButton) {
-                
                 self.clickButton(MaxOutput,  YES);
             }
             [SocketManagerShare sendTipWithType:MaxOutputLevel withCount:0];
         }
             break;
+        case 104:{
+            UIButton *extrnalButton = (UIButton *)[self.view viewWithTag:104];
+            extrnalButton.selected =  YES;
+            UIButton *extrnalButton2 = (UIButton *)[self.view viewWithTag:204];
+            extrnalButton2.selected = NO;
+            DeviceToolShare.SpdifOutBool = YES;
+        }break;
+        case 204:{
+            UIButton *extrnalButton = (UIButton *)[self.view viewWithTag:104];
+            extrnalButton.selected =  NO;
+            UIButton *extrnalButton2 = (UIButton *)[self.view viewWithTag:204];
+            extrnalButton2.selected = YES;
+            DeviceToolShare.SpdifOutBool = NO;
+        }break;
         default:
             break;
     }
@@ -113,6 +127,9 @@
     // Do any additional setup after loading the view from its nib.
     if (isIphoneX) {
         self.naviBarHeight.constant = kTopHeight;
+    }
+    if (DeviceToolShare.deviceType == BH_A180) {
+        _spdifOutHeight.constant = 0;
     }
     if (DeviceToolShare.ExternalRemodeControl) {
         UIButton *extrnalButton = (UIButton *)[self.view viewWithTag:101];

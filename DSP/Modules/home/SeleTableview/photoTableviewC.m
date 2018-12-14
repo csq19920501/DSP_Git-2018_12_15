@@ -91,10 +91,18 @@
             break;
         case SETUP:
         {
-            titleArray = @[@"Manager Preset",@"Preferences",@"Setup Wizard"];
-            imageArray = @[@"manager_normat",@"preferences_normat",@"setup wizard_normat"];
-            imageArrayHigth = @[@"manager_selected",@"preferences_selected",@"setup wizard_selected"];
-            selectImageArray = @[@"manager_selected",@"preferences_selected",@"setup wizard_selected"];
+            if ([DeviceToolShare isBH_A180A] && DeviceToolShare.SpdifOutBool) {
+                titleArray = @[@"Manager Preset",@"Preferences",@"Spdif Out",@"Setup Wizard"];
+                imageArray = @[@"manager_normat",@"preferences_normat",@"streaming_normat",@"setup wizard_normat"];
+                imageArrayHigth = @[@"manager_selected",@"preferences_selected",@"streaming_selected",@"setup wizard_selected"];
+                selectImageArray = @[@"manager_selected",@"preferences_selected",@"streaming_selected",@"setup wizard_selected"];
+            }else{
+                titleArray = @[@"Manager Preset",@"Preferences",@"Setup Wizard"];
+                imageArray = @[@"manager_normat",@"preferences_normat",@"setup wizard_normat"];
+                imageArrayHigth = @[@"manager_selected",@"preferences_selected",@"setup wizard_selected"];
+                selectImageArray = @[@"manager_selected",@"preferences_selected",@"setup wizard_selected"];
+            }
+           
         }
             break;
         case CONNECT:

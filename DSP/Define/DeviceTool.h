@@ -57,9 +57,11 @@ typedef NS_ENUM(NSInteger, DeviceType){
 
 @property(nonatomic,assign)NSInteger mcuVersion;
 @property(nonatomic , assign)DeviceType deviceType;
+-(BOOL)isBH_A180A;
 @property(nonatomic,assign)DspModeType DspMode;
 @property(nonatomic,assign)BOOL MaxInputLevelAdd6;
 @property(nonatomic,assign)BOOL MaxOutputLevelAdd6;
+@property(nonatomic,assign)BOOL SpdifOutBool;
 @property(nonatomic,assign,getter = isExternalRemodeControl)BOOL ExternalRemodeControl;
 @property(nonatomic,assign)BOOL mune;
 @property(nonatomic,assign)CGFloat MainLevel;

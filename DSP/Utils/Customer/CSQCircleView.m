@@ -228,14 +228,13 @@
             [self setProgress:progressValue];
             
             if (self.valueChange) {
-                self.valueChange((NSInteger)level);
+                self.valueChange(level);
             }
         }
     }
 }
 
 -(void)setLevel:(CGFloat)level {
-    
         if (level < 1) {
             level = 0.0;
             _bgImage.image =  [UIImage imageNamed:@"volume_show_1.png"];
@@ -268,10 +267,50 @@
         [_rotateImage setTransform:CGAffineTransformRotate([_rotateImage transform],(MainStopAngle * level/_MainLevel - MainCurrentAngle) * (M_PI/180.0))];
         MainCurrentAngle = MainStopAngle * level/_MainLevel;
     if (self.valueChange) {
-        self.valueChange((NSInteger)level);
+        self.valueChange(level);
     }
 
 }
+//因为设置频率时，最大值时不能调整频率所以特意增加一个方法
+-(void)setCrossLevel:(CGFloat)level {
+    if (level < 1) {
+        level = 0.0;
+        _bgImage.image =  [UIImage imageNamed:@"volume_show_1.png"];
+        _rotateImage.image = [UIImage imageNamed:@"volume_normat.png"];
+        _currentLevel = level;
+    }else if (level > (_MainLevel - 1 + 0.5)) {
+//        level = _MainLevel;
+        _currentLevel = level;
+        
+        _bgImage.image =  [UIImage imageNamed:@"volume_show_3.png"];
+        //            _rotateImage.image = [UIImage imageNamed:@"volume_selected.png"];
+    }else{
+        _currentLevel = level;
+        
+        _bgImage.image =  [UIImage imageNamed:@"volume_show_2.png"];
+        //            _rotateImage.image = [UIImage imageNamed:@"volume_selected.png"];
+    }
+    //        self.MainLevelLabel.text = [NSString stringWithFormat:@"%d",(int)level];
+    
+    CGFloat progressValue = level/_MainLevel;
+    
+    if (progressValue < 0.02) {
+        progressValue = 0.0;
+    }
+    if (progressValue > 0.99) {
+    
+        progressValue = 1.0;
+    }
+    [self setProgress:progressValue];
+    
+    [_rotateImage setTransform:CGAffineTransformRotate([_rotateImage transform],(MainStopAngle * level/_MainLevel - MainCurrentAngle) * (M_PI/180.0))];
+    MainCurrentAngle = MainStopAngle * level/_MainLevel;
+    if (self.valueChange) {
+        self.valueChange(level);
+    }
+    
+}
+
 -(void)setConnectLevel:(CGFloat)level {
     
     if (level < 1) {

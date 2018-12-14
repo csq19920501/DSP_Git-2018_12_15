@@ -12,6 +12,7 @@
 #import "CHCrossover_VC.h"
 #import "CHDelay_VC.h"
 #import "inputLevelVC.h"
+#import "InputSettingSpdifVC.h"
 #import "ChLevel_VC.h"
 
 #import "HomeViewController.h"
@@ -227,6 +228,9 @@
                                         
                                         if (indexRow == 0) {
                                             ManagerPresetVC *VC = [[ManagerPresetVC alloc]init];
+                                            [self.navigationController pushViewController:VC animated:YES];
+                                        }if (indexRow == 2) {
+                                            InputSettingSpdifVC *VC = [[InputSettingSpdifVC alloc]init];
                                             [self.navigationController pushViewController:VC animated:YES];
                                         }
                                         if (indexRow == 1) {

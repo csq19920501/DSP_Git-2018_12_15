@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A711F9321C358D500E6E242 /* InputSettingSpdifVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A711F9021C358D400E6E242 /* InputSettingSpdifVC.xib */; };
+		3A711F9421C358D500E6E242 /* InputSettingSpdifVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A711F9221C358D500E6E242 /* InputSettingSpdifVC.m */; };
 		461DAE812121633200561F81 /* CusSeleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 461DAE7C2121632400561F81 /* CusSeleView.m */; };
 		461DAE892121892200561F81 /* CusSeleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 461DAE882121892100561F81 /* CusSeleView.xib */; };
 		4620002E20DDF53200B26129 /* CustomerCar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4620002C20DDF53100B26129 /* CustomerCar.m */; };
@@ -138,6 +140,9 @@
 
 /* Begin PBXFileReference section */
 		3A711F8F21C2488700E6E242 /* DSP.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DSP.entitlements; sourceTree = "<group>"; };
+		3A711F9021C358D400E6E242 /* InputSettingSpdifVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputSettingSpdifVC.xib; sourceTree = "<group>"; };
+		3A711F9121C358D400E6E242 /* InputSettingSpdifVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputSettingSpdifVC.h; sourceTree = "<group>"; };
+		3A711F9221C358D500E6E242 /* InputSettingSpdifVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputSettingSpdifVC.m; sourceTree = "<group>"; };
 		461DAE7C2121632400561F81 /* CusSeleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CusSeleView.m; sourceTree = "<group>"; };
 		461DAE7E2121632F00561F81 /* CusSeleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CusSeleView.h; sourceTree = "<group>"; };
 		461DAE882121892100561F81 /* CusSeleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CusSeleView.xib; sourceTree = "<group>"; };
@@ -646,6 +651,9 @@
 				46A5A9FD20EB67A100E58875 /* InputSettingVC.h */,
 				46A5A9FE20EB67A100E58875 /* InputSettingVC.m */,
 				46A5A9FF20EB67A100E58875 /* InputSettingVC.xib */,
+				3A711F9121C358D400E6E242 /* InputSettingSpdifVC.h */,
+				3A711F9221C358D500E6E242 /* InputSettingSpdifVC.m */,
+				3A711F9021C358D400E6E242 /* InputSettingSpdifVC.xib */,
 			);
 			path = "Input seting";
 			sourceTree = "<group>";
@@ -1029,6 +1037,7 @@
 				461DAE892121892200561F81 /* CusSeleView.xib in Resources */,
 				46288B54212AD44000E2DF98 /* README.mdown in Resources */,
 				46A8C56D20CFB8ED001017D4 /* HomeViewController.xib in Resources */,
+				3A711F9321C358D500E6E242 /* InputSettingSpdifVC.xib in Resources */,
 				4677958F20DA323200404AEC /* ChLevel_VC.xib in Resources */,
 				4677959420DA324700404AEC /* CHDelay_VC.xib in Resources */,
 				467795A320DA328F00404AEC /* RTA_VC.xib in Resources */,
@@ -1114,6 +1123,7 @@
 				46A8C58420D0CF0D001017D4 /* moduleRightCell.m in Sources */,
 				46A5AA0020EB67A100E58875 /* InputSettingVC.m in Sources */,
 				46A5AA0520ECC80300E58875 /* AdvancedTuning.m in Sources */,
+				3A711F9421C358D500E6E242 /* InputSettingSpdifVC.m in Sources */,
 				4651B8D1210AF68C0081C1C3 /* GCDAsyncSocket.m in Sources */,
 				46A8C58020CFE88A001017D4 /* AppData.m in Sources */,
 				46C7133F2145FFFA00669CCE /* CSQ_rtaCollectionView.m in Sources */,

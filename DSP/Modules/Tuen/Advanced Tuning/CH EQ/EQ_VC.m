@@ -344,21 +344,12 @@ typedef NS_ENUM(NSInteger,CHEQSelectType) {
 - (IBAction)deleClick:(id)sender {
     if (self.selectType == FREQ) {
         CGFloat freq = [hornDataModel freqFromBand:self.progressV.currentLevel];
-        
         CGFloat band;
-//        if (freq <= 100) {
             band = [hornDataModel bandFromFreq:freq - self.freqStep];
-//        }else if (freq <= 1000){
-//            band = [hornDataModel bandFromFreq:freq - 10];
-//        }else if (freq <= 10000){
-//            band = [hornDataModel bandFromFreq:freq - 1000];
-//        }else{
-//            band = [hornDataModel bandFromFreq:freq - 1000];
-//        }
-        if (band >=  self.progressV.zeroLevel) {
-            [self.progressV setLevel:band];
+        if (band >= self.progressV.zeroLevel) {
+            [self.progressV setCrossLevel:band];
         }else{
-            [self.progressV setLevel:self.progressV.zeroLevel];
+            [self.progressV setCrossLevel:self.progressV.zeroLevel];
         }
     }else if (self.selectType == Type_band) {
         CGFloat nowLevel = self.progressV.currentLevel - 1;
@@ -366,7 +357,6 @@ typedef NS_ENUM(NSInteger,CHEQSelectType) {
             [self.progressV setLevel:nowLevel];
         }
     }
-    
     else{
         CGFloat nowLevel = self.progressV.currentLevel - 1;
         if (nowLevel >=  self.progressV.zeroLevel) {
@@ -638,7 +628,7 @@ typedef NS_ENUM(NSInteger,CHEQSelectType) {
 //                    suiJiFaSong([self senTipWithCount:maxCount];)
                     self.stepLabel.isTapAction = NO;
                 }];
-                [self.progressV setLevel:self.seleHornModel.nowSelectBand.bandX];
+                [self.progressV setCrossLevel:self.seleHornModel.nowSelectBand.bandX];
             }
                 break;
             case Gain:{

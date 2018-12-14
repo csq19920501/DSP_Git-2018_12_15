@@ -185,7 +185,7 @@
     else{
         CGFloat nowLevel = self.csqCircleV.currentLevel + 1;
         if (nowLevel <=  self.csqCircleV.MainLevel) {
-            [self.csqCircleV setLevel:(int)nowLevel];
+            [self.csqCircleV setLevel:nowLevel];
         }else{
             [self.csqCircleV setLevel:self.csqCircleV.MainLevel];
         }
@@ -198,9 +198,10 @@
     if (loFreqBut.selected ) {
         CGFloat loEq = [hornDataModel freqFromBand:self.seleHornModel.CrossoverLoFreq];
         CGFloat band = [hornDataModel bandFromFreq:loEq - 1];
-        
+       
 //        if (loEq <= 100) {
             band = [hornDataModel bandFromFreq:loEq - self.freqStep];
+         SDLog(@"levelChangedele band = %f  ",band);
 //        }else if (loEq <= 1000){
 //            band = [hornDataModel bandFromFreq:loEq - 10];
 //        }else if (loEq <= 10000){
@@ -210,9 +211,9 @@
 //        }
         
         if (band >= self.csqCircleV.zeroLevel) {
-            [self.csqCircleV setLevel:band];
+            [self.csqCircleV setCrossLevel:band];
         }else{
-            [self.csqCircleV setLevel:self.csqCircleV.zeroLevel];
+            [self.csqCircleV setCrossLevel:self.csqCircleV.zeroLevel];
         }
     }else if (hiFreqBut.selected){
         CGFloat loEq = [hornDataModel freqFromBand:self.seleHornModel.CrossoverHifreq];
@@ -228,15 +229,15 @@
 //            band = [hornDataModel bandFromFreq:loEq - 1000];
 //        }
         if (band >= self.csqCircleV.zeroLevel) {
-            [self.csqCircleV setLevel:band];
+            [self.csqCircleV setCrossLevel:band];
         }else{
-            [self.csqCircleV setLevel:self.csqCircleV.zeroLevel];
+            [self.csqCircleV setCrossLevel:self.csqCircleV.zeroLevel];
         }
     }
     else{
         CGFloat nowLevel = self.csqCircleV.currentLevel - 1;
         if (nowLevel >=  self.csqCircleV.zeroLevel) {
-            [self.csqCircleV setLevel:(int)nowLevel];
+            [self.csqCircleV setLevel:nowLevel];
         }else{
             [self.csqCircleV setLevel:self.csqCircleV.zeroLevel];
         }
@@ -343,7 +344,7 @@
     }))
 }
 -(void)sendTipWithCount:(int)count{
-    NSLog(@"crossoverType Send= %@",[SocketManager stringWithHexNumber:(int)self.seleHornModel.CrossoverFilterType]);
+    
     switch (self.seleType) {
         case FLiterType:
             {
@@ -356,7 +357,7 @@
                 [tipStr appendString:[NSString stringWithFormat:@"00%@",fliterAdr]];
                 [tipStr appendString:[SocketManager stringWithHexNumber:data0]];
                 [tipStr appendFormat:@"%@%@",@"00",[SocketManager stringWithHexNumber:(int)self.seleHornModel.CrossoverFilterType]];
-                
+                NSLog(@"crossoverType Send= %@",[SocketManager stringWithHexNumber:(int)self.seleHornModel.CrossoverFilterType]);
                 [SocketManagerShare seneTipWithType:CrossoverType WithStr:tipStr Count:count];
             }
             break;
@@ -816,22 +817,22 @@
             [self.csqCircleV drawProgress];
             [self.csqCircleV setValueChange:^(CGFloat level){
                 SDLog(@"levelChange = %f",level);
-                self.seleHornModel.CrossoverHifreq = (NSInteger)level;
+                self.seleHornModel.CrossoverHifreq = level;
                 
                 
-                CGFloat freq = [hornDataModel freqFromBand:(NSInteger)level];
+                CGFloat freq = [hornDataModel freqFromBand:level];
                 NSString *str ;
 //                if (freq >= 1000) {
 //                    str = [NSString stringWithFormat:@"%.1fkHz",freq/1000];
 //                }else{
-                    str = [NSString stringWithFormat:@"%ldHz",(NSInteger)freq];
+                    str = [NSString stringWithFormat:@"%.0fHz",freq];
 //                }
                 [self changeLabel:hiFreqLabel withStr:str];
                 self.aaChartView.hornDataModel = self.seleHornModel;
-//                suiJiFaSong([self sendTipWithCount:maxCount];)
+                suiJiFaSong([self sendTipWithCount:maxCount];)
                 self.stepLabel.isTapAction = NO;
             }];
-            [self.csqCircleV setLevel:self.seleHornModel.CrossoverHifreq];
+            [self.csqCircleV setCrossLevel:self.seleHornModel.CrossoverHifreq];
         }
             break;
         case LoFreq:
@@ -841,21 +842,21 @@
             [self.csqCircleV drawProgress];
             [self.csqCircleV setValueChange:^(CGFloat level){
                 SDLog(@"levelChange = %f",level);
-                self.seleHornModel.CrossoverLoFreq = (NSInteger)level;
+                self.seleHornModel.CrossoverLoFreq = level;
                 NSString *str ;
-                CGFloat freq = [hornDataModel freqFromBand:(NSInteger)level];
+                CGFloat freq = [hornDataModel freqFromBand:level];
 //                if (level >= 1000) {
 //                    str = [NSString stringWithFormat:@"%.1fkHz",freq/1000];
 //                }else{
-                    str = [NSString stringWithFormat:@"%ldHz",(NSInteger)freq];
+                    str = [NSString stringWithFormat:@"%.0fHz",freq];
 //                }
                 [self changeLabel:loFreqLabel withStr:str];
                 self.aaChartView.hornDataModel = self.seleHornModel;
-//                suiJiFaSong([self sendTipWithCount:maxCount];)
+                suiJiFaSong([self sendTipWithCount:maxCount];)
                 
                 self.stepLabel.isTapAction = NO;
             }];
-            [self.csqCircleV setLevel:self.seleHornModel.CrossoverLoFreq];
+            [self.csqCircleV setCrossLevel:self.seleHornModel.CrossoverLoFreq];
         }
             break;
         case Gain_Crossover:

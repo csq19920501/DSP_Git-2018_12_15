@@ -74,6 +74,8 @@ static NSTimeInterval _changeTimeInterval = 0;
 - (void)initData;
 //设置全局level
 -(void)setLevel:(CGFloat)level;
+//因为设置频率时，最大值时不能调整频率所以特意增加一个方法
+-(void)setCrossLevel:(CGFloat)level;
 //设置关联的level
 -(void)setConnectLevel:(CGFloat)level;
 ///设置进度
