@@ -39,6 +39,7 @@ static DeviceTool *_deviceTool;
             _deviceTool.eqR_isConnect = YES;
             _deviceTool.crossoverF_isConnect = YES;
             _deviceTool.crossoverR_isConnect = YES;
+//            _deviceTool.deviceType = BH_A180A;
             
         }
             SDLog(@"_deviceTool = %@",[_deviceTool modelDescription]);
@@ -149,9 +150,10 @@ static DeviceTool *_deviceTool;
 -(BOOL)isBH_A180A{
     return self.deviceType == BH_A180A;
 }
--(void)setDspMode:(DspModeType )modeType{
-    _DspMode = modeType;
+-(void)setDeviceType:(DeviceType )modeType{
+    _deviceType = modeType;
     if(modeType == BH_A180A){
+        
         self.SpdifOutBool = YES;
     }
 }

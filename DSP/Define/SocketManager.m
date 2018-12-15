@@ -77,6 +77,7 @@
 @property(nonatomic,assign)BOOL ResetSelectEQNeedSecond;
 @property(nonatomic,assign)BOOL ResetSelectCrossoverNeedSecond;
 @property(nonatomic,assign)BOOL McuVersionNeedSecond;
+@property(nonatomic,assign)BOOL SpdifInputNeedSecond;
 //@property(nonatomic,assign)BOOL CrossoverHiQNeedSecond;
 //@property(nonatomic,assign)BOOL CrossoverHiGainNeedSecond;
 //@property(nonatomic,assign)BOOL CrossoverLoQNeedSecond;
@@ -255,6 +256,12 @@ static SocketManager *_sharedInstance;
             [SocketManagerShare sendDataWithStr:str];
             SenTipWithStr(self.InputDigitalPercenNeedSecond)
             
+        }
+            break;
+        case spdifInputType:
+        {
+            [SocketManagerShare sendDataWithStr:str];
+            SenTipWithStr(self.SpdifInputNeedSecond)
         }
             break;
         case CheqBand:
@@ -618,8 +625,17 @@ static SocketManager *_sharedInstance;
     }
     int CMD = ((const char *)[data bytes])[3];
     int DataAdr = ((const char *)[data bytes])[4];
-    int data0 = ((const char *)[data bytes])[5];
-    int data1 = ((const char *)[data bytes])[6];
+    
+    
+    
+    NSString *dataStrAll = [self hexadecimalString:data];
+    NSString *byte5Str = [dataStrAll substringWithRange:NSMakeRange(10, 2)];
+    NSString *byte6Str = [dataStrAll substringWithRange:NSMakeRange(12, 2)];
+    NSInteger data0 = [self numberWithHexString:byte5Str];
+    NSInteger data1 = [self numberWithHexString:byte6Str];
+   
+    
+    
     switch (CMD) {
         case 0x00:
         {
@@ -1257,6 +1273,470 @@ static SocketManager *_sharedInstance;
                 SDLog(@"mcuVersion = %d",data1);
                 DeviceToolShare.mcuVersion = data1;
             }
+            else if (DataAdr == 0x30) {
+                [DeviceToolShare.crossoverSeleHornDataArray removeAllObjects];
+                switch (data0) {
+                    case 0x01:
+                        {
+                            for (hornDataModel *model in DeviceToolShare.hornDataArray) {
+                                if (model.outCh == CH1) {
+                                    [DeviceToolShare.crossoverSeleHornDataArray addObject:model];
+                                }
+                            }
+                        }
+                        break;
+                    case 0x02:
+                    {
+                        for (hornDataModel *model in DeviceToolShare.hornDataArray) {
+                            if (model.outCh == CH2) {
+                                [DeviceToolShare.crossoverSeleHornDataArray addObject:model];
+                            }
+                        }
+                    }
+                        break;
+                    case 0x03:
+                    {
+                        for (hornDataModel *model in DeviceToolShare.hornDataArray) {
+                            if (model.outCh == CH1 || model.outCh == CH2) {
+                                [DeviceToolShare.crossoverSeleHornDataArray addObject:model];
+                            }
+                        }
+                    }
+                        break;
+                    case 0x04:
+                    {
+                        for (hornDataModel *model in DeviceToolShare.hornDataArray) {
+                            if (model.outCh == CH3) {
+                                [DeviceToolShare.crossoverSeleHornDataArray addObject:model];
+                            }
+                        }
+                    }
+                        break;
+                    case 0x08:
+                    {
+                        for (hornDataModel *model in DeviceToolShare.hornDataArray) {
+                            if (model.outCh == CH4) {
+                                [DeviceToolShare.crossoverSeleHornDataArray addObject:model];
+                            }
+                        }
+                    }
+                        break;
+                    case 0x0C:
+                    {
+                        for (hornDataModel *model in DeviceToolShare.hornDataArray) {
+                            if (model.outCh == CH3 || model.outCh == CH4) {
+                                [DeviceToolShare.crossoverSeleHornDataArray addObject:model];
+                            }
+                        }
+                    }
+                        break;
+                    case 0x10:
+                    {
+                        for (hornDataModel *model in DeviceToolShare.hornDataArray) {
+                            if (model.outCh == CH5) {
+                                [DeviceToolShare.crossoverSeleHornDataArray addObject:model];
+                            }
+                        }
+                    }
+                        break;
+                    case 0x20:
+                    {
+                        for (hornDataModel *model in DeviceToolShare.hornDataArray) {
+                            if (model.outCh == CH6) {
+                                [DeviceToolShare.crossoverSeleHornDataArray addObject:model];
+                            }
+                        }
+                    }
+                        break;
+                    case 0x30:
+                    {
+                        for (hornDataModel *model in DeviceToolShare.hornDataArray) {
+                            if (model.outCh == CH5 || model.outCh == CH6) {
+                                [DeviceToolShare.crossoverSeleHornDataArray addObject:model];
+                            }
+                        }
+                    }
+                        break;
+                    case 0x40:
+                    {
+                        for (hornDataModel *model in DeviceToolShare.hornDataArray) {
+                            if (model.outCh == CH7) {
+                                [DeviceToolShare.crossoverSeleHornDataArray addObject:model];
+                            }
+                        }
+                    }
+                        break;
+                    case 0x80:
+                    {
+                        for (hornDataModel *model in DeviceToolShare.hornDataArray) {
+                            if (model.outCh == CH8) {
+                                [DeviceToolShare.crossoverSeleHornDataArray addObject:model];
+                            }
+                        }
+                    }
+                        break;
+                    case 0xC0:
+                    {
+                        for (hornDataModel *model in DeviceToolShare.hornDataArray) {
+                            if (model.outCh == CH7 || model.outCh == CH8) {
+                                [DeviceToolShare.crossoverSeleHornDataArray addObject:model];
+                            }
+                        }
+                    }
+                        break;
+                        
+                    default:
+                        break;
+                }
+
+            }else if (DataAdr == 0x31) {
+                
+                switch (data0) {
+                    case 0x01:
+                    {
+                        for (hornDataModel *model in DeviceToolShare.ineqDataArray) {
+                            if (model.outCh == CH1) {
+                                SDLog(@"记忆 通道 = %ld",(long)model.outCh);
+                                [self changeIneqSeleBand:model bandNumber:data1];
+                                [DeviceToolShare.ineqSeleDataArray  removeAllObjects];
+                                [DeviceToolShare.ineqSeleDataArray   addObject:model];
+                            }
+                        }
+                    }
+                        break;
+                    case 0x02:
+                    {
+                        for (hornDataModel *model in DeviceToolShare.ineqDataArray) {
+                            if (model.outCh == CH2) {
+                                SDLog(@"记忆 通道 = %ld",(long)model.outCh);
+                                [self changeIneqSeleBand:model bandNumber:data1];
+                                [DeviceToolShare.ineqSeleDataArray  removeAllObjects];
+                                [DeviceToolShare.ineqSeleDataArray addObject:model];
+                            }
+                        }
+                    }
+                        break;
+                    case 0x03:
+                    {
+                      
+                        [DeviceToolShare.ineqSeleDataArray  removeAllObjects];
+                        for (hornDataModel *model in DeviceToolShare.ineqDataArray) {
+                            if (model.outCh == CH1 || model.outCh == CH2) {
+                                SDLog(@"记忆 通道 = %ld",(long)model.outCh);
+                                [self changeIneqSeleBand:model bandNumber:data1];
+                                
+                                [DeviceToolShare.ineqSeleDataArray addObject:model];
+                            }
+                        }
+                    }
+                        break;
+                    case 0x04:
+                    {
+                        for (hornDataModel *model in DeviceToolShare.ineqDataArray) {
+                            if (model.outCh == CH3) {
+                                SDLog(@"记忆 通道 = %ld",(long)model.outCh);
+                                [self changeIneqSeleBand:model bandNumber:data1];
+                                [DeviceToolShare.ineqSeleDataArray  removeAllObjects];
+                                [DeviceToolShare.ineqSeleDataArray addObject:model];
+                            }
+                        }
+                    }
+                        break;
+                    case 0x08:
+                    {
+                        for (hornDataModel *model in DeviceToolShare.ineqDataArray) {
+                            if (model.outCh == CH4) {
+                                SDLog(@"记忆 通道 = %ld",(long)model.outCh);
+                                [self changeIneqSeleBand:model bandNumber:data1];
+                                [DeviceToolShare.ineqSeleDataArray  removeAllObjects];
+                                [DeviceToolShare.ineqSeleDataArray addObject:model];
+                            }
+                        }
+                    }
+                        break;
+                    case 0x0C:
+                    {
+                        [DeviceToolShare.ineqSeleDataArray  removeAllObjects];
+                        for (hornDataModel *model in DeviceToolShare.ineqDataArray) {
+                            if (model.outCh == CH3 || model.outCh == CH4) {
+                                SDLog(@"记忆 通道 = %ld",(long)model.outCh);
+                                [self changeIneqSeleBand:model bandNumber:data1];
+//                                for (hornDataModel *removeModel in DeviceToolShare.ineqSeleDataArray) {
+//                                    if (removeModel.outCh != CH3 && removeModel.outCh != CH4) {
+//                                        [DeviceToolShare.ineqSeleDataArray removeObject:removeModel];
+//                                    }
+//                                }
+                                [DeviceToolShare.ineqSeleDataArray addObject:model];
+                            }
+                        }
+                    }
+                        break;
+                    case 0x10:
+                    {
+                        for (hornDataModel *model in DeviceToolShare.ineqDataArray) {
+                            if (model.outCh == CH5) {
+                                SDLog(@"记忆 通道 = %ld",(long)model.outCh);
+                                [self changeIneqSeleBand:model bandNumber:data1];
+                                [DeviceToolShare.ineqSeleDataArray  removeAllObjects];
+                                [DeviceToolShare.ineqSeleDataArray addObject:model];
+                            }
+                        }
+                    }
+                        break;
+                    case 0x20:
+                    {
+                        for (hornDataModel *model in DeviceToolShare.ineqDataArray) {
+                            if (model.outCh == CH6) {
+                                SDLog(@"记忆 通道 = %ld",(long)model.outCh);
+                                [self changeIneqSeleBand:model bandNumber:data1];
+                                [DeviceToolShare.ineqSeleDataArray  removeAllObjects];
+                                [DeviceToolShare.ineqSeleDataArray addObject:model];
+                            }
+                        }
+                    }
+                        break;
+                    case 0x30:
+                    {
+                         [DeviceToolShare.ineqSeleDataArray  removeAllObjects];
+                        for (hornDataModel *model in DeviceToolShare.ineqDataArray) {
+                            if (model.outCh == CH5 || model.outCh == CH6) {
+                                SDLog(@"记忆 通道 = %ld",(long)model.outCh);
+                                [self changeIneqSeleBand:model bandNumber:data1];
+                                [DeviceToolShare.ineqSeleDataArray addObject:model];
+                            }
+                        }
+                    }
+                        break;
+                    case 0x40:
+                    {
+                        for (hornDataModel *model in DeviceToolShare.ineqDataArray) {
+                            if (model.outCh == CH7) {
+                                SDLog(@"记忆 通道 = %ld",(long)model.outCh);
+                                [self changeIneqSeleBand:model bandNumber:data1];
+                                [DeviceToolShare.ineqSeleDataArray  removeAllObjects];
+                                [DeviceToolShare.ineqSeleDataArray addObject:model];
+                            }
+                        }
+                    }
+                        break;
+                    case 0x80:
+                    {
+                        for (hornDataModel *model in DeviceToolShare.ineqDataArray) {
+                            if (model.outCh == CH8) {
+                                SDLog(@"记忆 通道 = %ld",(long)model.outCh);
+                                [self changeIneqSeleBand:model bandNumber:data1];
+                                [DeviceToolShare.ineqSeleDataArray  removeAllObjects];
+                                [DeviceToolShare.ineqSeleDataArray addObject:model];
+                            }
+                        }
+                    }
+                        break;
+                    case 0xC0:
+                    {
+                         [DeviceToolShare.ineqSeleDataArray  removeAllObjects];
+                        for (hornDataModel *model in DeviceToolShare.ineqDataArray) {
+                            if (model.outCh == CH7 || model.outCh == CH8) {
+                                SDLog(@"记忆 通道 = %ld",(long)model.outCh);
+                                [self changeIneqSeleBand:model bandNumber:data1];
+                                
+                                [DeviceToolShare.ineqSeleDataArray addObject:model];
+                            }
+                        }
+                    }
+                        break;
+                        
+                    default:
+                        break;
+                }
+            }else if (DataAdr == 0x32) {
+                
+                SDLog(@"地址32 =%@ ",[self hexadecimalString:data]);
+                switch (data0) {
+                    case 0x01:
+                    {
+                        for (hornDataModel *model in DeviceToolShare.hornDataArray) {
+                            if (model.outCh == CH1) {
+                                SDLog(@"记忆cheq 通道 = %ld",(long)model.outCh);
+                                [self changeCheqSeleBand:model bandNumber:data1];
+                                [DeviceToolShare.eqSeleHornDataArray  removeAllObjects];
+                                [DeviceToolShare.eqSeleHornDataArray   addObject:model];
+                            }
+                        }
+                    }
+                        break;
+                    case 0x02:
+                    {
+                        for (hornDataModel *model in DeviceToolShare.hornDataArray) {
+                            if (model.outCh == CH2) {
+                                SDLog(@"记忆cheq 通道 = %ld",(long)model.outCh);
+                                [self changeCheqSeleBand:model bandNumber:data1];
+                                [DeviceToolShare.eqSeleHornDataArray  removeAllObjects];
+                                [DeviceToolShare.eqSeleHornDataArray addObject:model];
+                            }
+                        }
+                    }
+                        break;
+                    case 0x03:
+                    {
+                        [DeviceToolShare.eqSeleHornDataArray removeAllObjects];
+                        for (hornDataModel *model in DeviceToolShare.hornDataArray) {
+                            if (model.outCh == CH1 || model.outCh == CH2) {
+                                SDLog(@"记忆cheq 通道 = %ld",(long)model.outCh);
+                                [self changeCheqSeleBand:model bandNumber:data1];
+                                
+                                [DeviceToolShare.eqSeleHornDataArray addObject:model];
+                            }
+                        }
+                    }
+                        break;
+                    case 0x04:
+                    {
+                        for (hornDataModel *model in DeviceToolShare.hornDataArray) {
+                            if (model.outCh == CH3) {
+                                SDLog(@"记忆cheq 通道 = %ld",(long)model.outCh);
+                                [self changeCheqSeleBand:model bandNumber:data1];
+                                [DeviceToolShare.eqSeleHornDataArray  removeAllObjects];
+                                [DeviceToolShare.eqSeleHornDataArray addObject:model];
+                            }
+                        }
+                    }
+                        break;
+                    case 0x08:
+                    {
+                        for (hornDataModel *model in DeviceToolShare.hornDataArray) {
+                            if (model.outCh == CH4) {
+                                SDLog(@"记忆cheq 通道 = %ld",(long)model.outCh);
+                                [self changeCheqSeleBand:model bandNumber:data1];
+                                [DeviceToolShare.eqSeleHornDataArray  removeAllObjects];
+                                [DeviceToolShare.eqSeleHornDataArray addObject:model];
+                            }
+                        }
+                    }
+                        break;
+                    case 0x0C:
+                    {
+                         [DeviceToolShare.eqSeleHornDataArray removeAllObjects];
+                        for (hornDataModel *model in DeviceToolShare.hornDataArray) {
+                            
+                            if (model.outCh == CH3 || model.outCh == CH4) {
+                                SDLog(@"记忆cheq 通道 = %ld",(long)model.outCh);
+                                [self changeCheqSeleBand:model bandNumber:data1];
+                                
+                                [DeviceToolShare.eqSeleHornDataArray addObject:model];
+                            }
+                        }
+                    }
+                        break;
+                    case 0x10:
+                    {
+                        for (hornDataModel *model in DeviceToolShare.hornDataArray) {
+                            if (model.outCh == CH5) {
+                                SDLog(@"记忆cheq 通道 = %ld",(long)model.outCh);
+                                [self changeCheqSeleBand:model bandNumber:data1];
+                                [DeviceToolShare.eqSeleHornDataArray  removeAllObjects];
+                                [DeviceToolShare.eqSeleHornDataArray addObject:model];
+                            }
+                        }
+                    }
+                        break;
+                    case 0x20:
+                    {
+                        for (hornDataModel *model in DeviceToolShare.hornDataArray) {
+                            if (model.outCh == CH6) {
+                                SDLog(@"记忆cheq 通道 = %ld",(long)model.outCh);
+                                [self changeCheqSeleBand:model bandNumber:data1];
+                                [DeviceToolShare.eqSeleHornDataArray  removeAllObjects];
+                                
+                                [DeviceToolShare.eqSeleHornDataArray addObject:model];
+                            }
+                        }
+                    }
+                        break;
+                    case 0x30:
+                    {
+                         [DeviceToolShare.eqSeleHornDataArray removeAllObjects];
+                        for (hornDataModel *model in DeviceToolShare.hornDataArray) {
+                            if (model.outCh == CH5 || model.outCh == CH6) {
+                                SDLog(@"记忆cheq 通道 = %ld",(long)model.outCh);
+                                [self changeCheqSeleBand:model bandNumber:data1];
+                                
+                                [DeviceToolShare.eqSeleHornDataArray addObject:model];
+                            }
+                        }
+                    }
+                        break;
+                    case 0x40:
+                    {
+                        for (hornDataModel *model in DeviceToolShare.hornDataArray) {
+                            if (model.outCh == CH7) {
+                                SDLog(@"记忆cheq 通道 = %ld",(long)model.outCh);
+                                [self changeCheqSeleBand:model bandNumber:data1];
+                                [DeviceToolShare.eqSeleHornDataArray  removeAllObjects];
+                                [DeviceToolShare.eqSeleHornDataArray addObject:model];
+                            }
+                        }
+                    }
+                        break;
+                    case 0x80:
+                    {
+                         SDLog(@"记忆cheq 通道 = 888");
+                        for (hornDataModel *model in DeviceToolShare.hornDataArray) {
+                            if (model.outCh == CH8) {
+                                SDLog(@"记忆cheq 通道 = %ld",(long)model.outCh);
+                                [self changeCheqSeleBand:model bandNumber:data1];
+                                [DeviceToolShare.eqSeleHornDataArray  removeAllObjects];
+                                [DeviceToolShare.eqSeleHornDataArray addObject:model];
+                            }
+                        }
+                    }
+                        break;
+                    case 0xC0:
+                    {
+                         [DeviceToolShare.eqSeleHornDataArray removeAllObjects];
+                        for (hornDataModel *model in DeviceToolShare.hornDataArray) {
+                            if (model.outCh == CH7 || model.outCh == CH8) {
+                                SDLog(@"记忆cheq 通道 = %ld",(long)model.outCh);
+                                [self changeCheqSeleBand:model bandNumber:data1];
+                                
+                                [DeviceToolShare.eqSeleHornDataArray addObject:model];
+                            }
+                        }
+                    }
+                        break;
+                        
+                    default:
+                        break;
+                }
+            }else if (DataAdr == 0x33) {
+                SDLog(@"地址33 =%@ ",[self hexadecimalString:data]);
+                if (!self.SpdifInputNeedSecond ) {
+                    DeviceToolShare.spdifInputModel = nil;
+                    hornDataModel *spdifModel = [[hornDataModel alloc]init];
+                    
+                    NSString *byte5Str = [dataStrAll substringWithRange:NSMakeRange(10, 2)];
+                    NSString *byte6Str = [dataStrAll substringWithRange:NSMakeRange(12, 2)];
+                    NSString *byte7Str = [dataStrAll substringWithRange:NSMakeRange(14, 2)];
+                    NSString *byte8Str = [dataStrAll substringWithRange:NSMakeRange(16, 2)];
+                    NSString *byte9Str = [dataStrAll substringWithRange:NSMakeRange(18, 2)];
+                    NSString *byte10Str = [dataStrAll substringWithRange:NSMakeRange(20, 2)];
+                    NSInteger data0 = [self numberWithHexString:byte5Str];
+                    NSInteger data1 = [self numberWithHexString:byte6Str];
+                    NSInteger data2 = [self numberWithHexString:byte7Str];
+                    NSInteger data3 = [self numberWithHexString:byte8Str];
+                    NSInteger data4 = [self numberWithHexString:byte9Str];
+                    NSInteger data5 = [self numberWithHexString:byte10Str];
+                    spdifModel.ch1Input = [NSString stringWithFormat:@"%ld",(long)data0];
+                    spdifModel.ch2Input = [NSString stringWithFormat:@"%ld",(long)data1];
+                    spdifModel.ch3Input = [NSString stringWithFormat:@"%ld",(long)data2];
+                    spdifModel.ch4Input = [NSString stringWithFormat:@"%ld",(long)data3];
+                    spdifModel.digitalL = [NSString stringWithFormat:@"%ld",(long)data4];
+                    spdifModel.digitalR = [NSString stringWithFormat:@"%ld",(long)data5];
+                    DeviceToolShare.spdifInputModel = spdifModel;
+                }else{
+                    self.SpdifInputNeedSecond = NO;
+                }
+            }
+            
             }
         
             break;
@@ -1468,12 +1948,25 @@ static SocketManager *_sharedInstance;
             model.hornType = hornType;
             SDLog(@"_sockte 添加喇叭类型%@  %d",hornType,i/2 + 1);
             model.outCh = i/2 + 1;
-//            if (!isFind) {
+            if ([DeviceToolShare isBH_A180A]) {
+                if ([hornType isEqualToString:@"208"]) {
+                    BOOL haveOne = NO;
+                    for (hornDataModel *oldModel in DeviceToolShare.hornDataArray) {
+                        if ([oldModel.hornType isEqualToString:@"208"]) {
+                            haveOne = YES;
+                            oldModel.hornType = @"214";
+                            break;
+                        }
+                    }
+                    if (haveOne) {
+                        model.hornType = @"213";
+                    }
+                }
+            }
+            
             [DeviceToolShare.hornDataArray addObject:model];
-//            }
             [DeviceToolShare.selectHornArray addObject:hornType];
         }
-
     }
 }
 
@@ -1831,5 +2324,23 @@ static SocketManager *_sharedInstance;
         
     }
     return binary;
+}
+-(void)changeIneqSeleBand:(hornDataModel *)model bandNumber:(int)data1{
+    for (eqBandModel *ineqBand in model.eqBandIneqArray) {
+        if (ineqBand.bandNumber == data1) {
+            model.ineqSelectBand = ineqBand;
+            model.nowSelectBand = model.ineqSelectBand;
+            
+        }
+    }
+}
+-(void)changeCheqSeleBand:(hornDataModel *)model bandNumber:(int)data1{
+    for (eqBandModel *cheqBand in model.eqBandCheqArray) {
+        if (cheqBand.bandNumber == data1) {
+            model.cheqSelectBand = cheqBand;
+            model.nowSelectBand = model.cheqSelectBand;
+            
+        }
+    }
 }
 @end

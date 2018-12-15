@@ -490,7 +490,6 @@
                 label.backgroundColor = [UIColor greenColor];
             }
                 break;
-                
             default:
                 break;
         }

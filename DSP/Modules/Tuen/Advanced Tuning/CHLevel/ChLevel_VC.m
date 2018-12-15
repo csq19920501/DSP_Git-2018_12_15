@@ -171,6 +171,22 @@
                         [hornArray removeObject:mod];
                     }
                 }
+            }else if ([model.hornType intValue] == 213) {
+                NSMutableArray *copyArray = [hornArray copy];
+                for (hornDataModel * mod in copyArray) {
+                    if ([mod.hornType intValue] == 214) {
+                        [objcArray addObject:mod];
+                        [hornArray removeObject:mod];
+                    }
+                }
+            }else if ([model.hornType intValue] == 214) {
+                NSMutableArray *copyArray = [hornArray copy];
+                for (hornDataModel * mod in copyArray) {
+                    if ([mod.hornType intValue] == 213) {
+                        [objcArray addObject:mod];
+                        [hornArray removeObject:mod];
+                    }
+                }
             }
    
             [hornArray removeObject:model];
@@ -212,7 +228,8 @@
                 
                 if (([model.hornType intValue] >=201 && [model.hornType intValue] <= 207)
                     || ([model.hornType intValue] >=191 && [model.hornType intValue] <= 193)
-                    || [model.hornType intValue] == 208) {
+                    || ([model.hornType intValue] >=209 && [model.hornType intValue] <= 212)
+                    || [model.hornType intValue] == 213) {
     
                     carView.upTypeLabel.text = [NSString stringWithFormat:@"%@ CH%d",[CustomerCar changeTagToHorn:model.hornType],model.outCh];
                     

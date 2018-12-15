@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -18,19 +16,19 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background_car" translatesAutoresizingMaskIntoConstraints="NO" id="0Go-6a-cyn">
-                    <rect key="frame" x="72" y="25" width="220" height="482"/>
+                    <rect key="frame" x="72.5" y="25" width="219" height="482"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="0Go-6a-cyn" secondAttribute="height" multiplier="1:2.2" id="Vwq-K9-Ozf"/>
                     </constraints>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tVQ-xW-2Ld">
-                    <rect key="frame" x="30" y="162" width="304" height="303.5"/>
+                    <rect key="frame" x="30.5" y="162" width="303" height="303.5"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background_roundness" translatesAutoresizingMaskIntoConstraints="NO" id="ate-82-wfd">
-                            <rect key="frame" x="0.0" y="0.0" width="304" height="303"/>
+                            <rect key="frame" x="0.0" y="0.0" width="303" height="303.5"/>
                         </imageView>
                         <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JPX-Dt-tZC" userLabel="FLButton">
-                            <rect key="frame" x="0.0" y="8" width="145.5" height="137"/>
+                            <rect key="frame" x="0.0" y="9" width="145.5" height="137"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="JPX-Dt-tZC" secondAttribute="height" multiplier="50:47" id="GKd-aW-7cq"/>
                             </constraints>
@@ -42,20 +40,20 @@
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Jk-el-sPk" userLabel="henLine">
-                            <rect key="frame" x="0.0" y="145" width="304" height="12"/>
+                            <rect key="frame" x="0.0" y="146" width="303" height="11.5"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yzx-Pq-e9K" userLabel="shuLine">
-                            <rect key="frame" x="145.5" y="0.0" width="12.5" height="303.5"/>
+                            <rect key="frame" x="145.5" y="0.0" width="12" height="303.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bx7-nK-KcB" userLabel="FRButton">
-                            <rect key="frame" x="158" y="8" width="146" height="137"/>
+                            <rect key="frame" x="157.5" y="9" width="145.5" height="137"/>
                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <state key="normal" backgroundImage="fr_normat"/>
                             <state key="selected" backgroundImage="fr_selected"/>
@@ -64,7 +62,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" tag="103" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZNy-2a-gRM" userLabel="RLButton">
-                            <rect key="frame" x="0.0" y="157" width="145.5" height="128"/>
+                            <rect key="frame" x="0.0" y="157.5" width="145.5" height="128.5"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="ZNy-2a-gRM" secondAttribute="height" multiplier="25:22" id="8P2-kg-uI1"/>
                             </constraints>
@@ -76,7 +74,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" tag="104" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xT6-pZ-W0b" userLabel="RRButton">
-                            <rect key="frame" x="158" y="156.5" width="146" height="128"/>
+                            <rect key="frame" x="157.5" y="157.5" width="145.5" height="128.5"/>
                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <state key="normal" backgroundImage="rr_normat"/>
                             <state key="selected" backgroundImage="rr_selected"/>
@@ -97,7 +95,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" tag="106" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lxz-OJ-CTt" userLabel="TailButton">
-                            <rect key="frame" x="91.5" y="245" width="121.5" height="58"/>
+                            <rect key="frame" x="90.5" y="245" width="122" height="58.5"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="lxz-OJ-CTt" secondAttribute="height" multiplier="25:12" id="bsx-0E-QJh"/>
                             </constraints>
@@ -109,7 +107,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" tag="201" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a7S-v7-17l" userLabel="diYinL">
-                            <rect key="frame" x="10.5" y="85.5" width="58.5" height="58"/>
+                            <rect key="frame" x="10" y="86" width="58.5" height="58.5"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="a7S-v7-17l" secondAttribute="height" multiplier="1:1" id="BTo-dq-yKN"/>
                                 <constraint firstAttribute="width" secondItem="a7S-v7-17l" secondAttribute="height" id="Jeg-Tw-axW"/>
@@ -119,7 +117,7 @@
                             <state key="selected" backgroundImage="mid range_normat"/>
                         </button>
                         <button opaque="NO" tag="203" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jWE-rr-E7w" userLabel="gaoYinL">
-                            <rect key="frame" x="59" y="20.5" width="34" height="34.5"/>
+                            <rect key="frame" x="58.5" y="21" width="34" height="34"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="jWE-rr-E7w" secondAttribute="height" multiplier="1:1" id="GYC-ey-d3r"/>
                             </constraints>
@@ -128,7 +126,7 @@
                             <state key="selected" backgroundImage="tweeter_normat"/>
                         </button>
                         <button opaque="NO" tag="202" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A2F-ww-0CI" userLabel="zhongYinL">
-                            <rect key="frame" x="41" y="49" width="38.5" height="38.5"/>
+                            <rect key="frame" x="41" y="49" width="39" height="39"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="A2F-ww-0CI" secondAttribute="height" multiplier="1:1" id="IQq-eL-TFk"/>
                             </constraints>
@@ -137,7 +135,7 @@
                             <state key="selected" backgroundImage="mid range_normat"/>
                         </button>
                         <button opaque="NO" tag="251" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NTo-0Z-Cpm" userLabel="diYinR">
-                            <rect key="frame" x="234.5" y="85.5" width="58.5" height="58"/>
+                            <rect key="frame" x="234.5" y="86" width="58.5" height="58.5"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="NTo-0Z-Cpm" secondAttribute="height" id="CtH-Co-dpQ"/>
                             </constraints>
@@ -146,31 +144,31 @@
                             <state key="selected" backgroundImage="mid range_normat"/>
                         </button>
                         <button opaque="NO" tag="253" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NRq-2d-ngQ" userLabel="gaoYinR">
-                            <rect key="frame" x="211" y="20" width="34" height="34.5"/>
+                            <rect key="frame" x="210.5" y="21" width="34" height="34"/>
                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <state key="normal" backgroundImage="tweeter_selected"/>
                             <state key="selected" backgroundImage="tweeter_normat"/>
                         </button>
                         <button opaque="NO" tag="252" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lfa-Es-pk8" userLabel="zhongYinR">
-                            <rect key="frame" x="224" y="48.5" width="38.5" height="38.5"/>
+                            <rect key="frame" x="223" y="49" width="39" height="39"/>
                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <state key="normal" backgroundImage="mid range_selected"/>
                             <state key="selected" backgroundImage="mid range_normat"/>
                         </button>
                         <button opaque="NO" tag="204" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kzg-tZ-POw" userLabel="coaxL">
-                            <rect key="frame" x="64.5" y="56.5" width="38.5" height="38.5"/>
+                            <rect key="frame" x="64" y="56.5" width="38.5" height="39"/>
                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <state key="normal" backgroundImage="coax_selected"/>
                             <state key="selected" backgroundImage="coax_normate"/>
                         </button>
                         <button opaque="NO" tag="254" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fD5-Ba-rFo" userLabel="coaxR">
-                            <rect key="frame" x="200.5" y="57" width="38.5" height="38.5"/>
+                            <rect key="frame" x="200.5" y="56.5" width="38.5" height="39"/>
                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <state key="normal" backgroundImage="coax_selected"/>
                             <state key="selected" backgroundImage="coax_normate"/>
                         </button>
                         <button opaque="NO" tag="205" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gm3-CT-4Zc" userLabel="2wayL">
-                            <rect key="frame" x="89.5" y="71.5" width="38.5" height="58.5"/>
+                            <rect key="frame" x="89" y="71" width="38.5" height="59.5"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="Gm3-CT-4Zc" secondAttribute="height" multiplier="40:61" id="ht4-Jp-w8B"/>
                             </constraints>
@@ -179,19 +177,19 @@
                             <state key="selected" backgroundImage="coax center_way2H_normate"/>
                         </button>
                         <button opaque="NO" tag="255" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tTz-xm-T4i" userLabel="2wayR">
-                            <rect key="frame" x="172" y="72" width="38.5" height="58.5"/>
+                            <rect key="frame" x="171.5" y="71" width="39" height="59.5"/>
                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <state key="normal" backgroundImage="coax center_way2H_selected"/>
                             <state key="selected" backgroundImage="coax center_way2H_normate"/>
                         </button>
                         <button opaque="NO" tag="206" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Llf-iV-XZd" userLabel="2wayRL">
-                            <rect key="frame" x="89.5" y="165" width="38.5" height="58"/>
+                            <rect key="frame" x="89" y="164.5" width="38.5" height="59.5"/>
                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <state key="normal" backgroundImage="coax center_way2H_selected"/>
                             <state key="selected" backgroundImage="coax center_way2H_normate"/>
                         </button>
                         <button opaque="NO" tag="256" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eVX-Tl-y08" userLabel="2wayRR">
-                            <rect key="frame" x="172.5" y="165" width="38.5" height="58"/>
+                            <rect key="frame" x="171.5" y="164.5" width="39" height="59.5"/>
                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <state key="normal" backgroundImage="coax center_way2H_selected"/>
                             <state key="selected" backgroundImage="coax center_way2H_normate"/>
@@ -208,23 +206,14 @@
                             <state key="normal" backgroundImage="coax_selected"/>
                             <state key="selected" backgroundImage="coax_normate"/>
                         </button>
-                        <button opaque="NO" tag="208" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cLR-9u-N2R" userLabel="diYinPao">
-                            <rect key="frame" x="120.5" y="254" width="62" height="39"/>
-                            <constraints>
-                                <constraint firstAttribute="width" secondItem="cLR-9u-N2R" secondAttribute="height" multiplier="65:41" id="AQD-1r-rF4"/>
-                            </constraints>
-                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <state key="normal" backgroundImage="subwoofer_selected"/>
-                            <state key="selected" backgroundImage="subwoofer_normat"/>
-                        </button>
                         <button opaque="NO" tag="209" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="haF-3a-cH4" userLabel="coaxCenter">
-                            <rect key="frame" x="133" y="1" width="38" height="39"/>
+                            <rect key="frame" x="132" y="1" width="39" height="39"/>
                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <state key="normal" backgroundImage="coax_selected"/>
                             <state key="selected" backgroundImage="coax_normate"/>
                         </button>
                         <button opaque="NO" tag="210" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4zi-pH-9Dd" userLabel="2wayCenter">
-                            <rect key="frame" x="121.5" y="0.0" width="59.5" height="39"/>
+                            <rect key="frame" x="121.5" y="0.0" width="60" height="39"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="4zi-pH-9Dd" secondAttribute="height" multiplier="62:40.5" id="YNa-ih-gmd"/>
                             </constraints>
@@ -233,7 +222,7 @@
                             <state key="selected" backgroundImage="coax center_way2_normat"/>
                         </button>
                         <button opaque="NO" tag="3000" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z9v-8S-Pv8" userLabel="connectF">
-                            <rect key="frame" x="135" y="73.5" width="34.5" height="34"/>
+                            <rect key="frame" x="134.5" y="74" width="34" height="33.5"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="Z9v-8S-Pv8" secondAttribute="height" id="xQF-eO-ODy"/>
                             </constraints>
@@ -245,7 +234,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" tag="3001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uPU-dS-KVJ" userLabel="connectR">
-                            <rect key="frame" x="135" y="175" width="34.5" height="34"/>
+                            <rect key="frame" x="134.5" y="176" width="34" height="33.5"/>
                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <state key="normal" backgroundImage="connect_normat"/>
                             <state key="selected" backgroundImage="disconnect_selected"/>
@@ -254,7 +243,7 @@
                             </connections>
                         </button>
                         <button hidden="YES" opaque="NO" tag="901" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zFe-X1-zEn">
-                            <rect key="frame" x="27" y="2" width="34" height="33"/>
+                            <rect key="frame" x="27" y="1.5" width="33.5" height="33.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <state key="normal" title="FR" backgroundImage="volume_normat">
@@ -276,7 +265,7 @@
                             </state>
                         </button>
                         <button hidden="YES" opaque="NO" tag="951" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fec-aC-p58">
-                            <rect key="frame" x="243" y="2" width="33.5" height="33"/>
+                            <rect key="frame" x="242.5" y="1.5" width="33.5" height="33.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <state key="normal" title="FR" backgroundImage="volume_normat">
@@ -287,7 +276,7 @@
                             </state>
                         </button>
                         <button hidden="YES" opaque="NO" tag="952" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fbC-S5-LzP">
-                            <rect key="frame" x="273" y="36.5" width="33.5" height="33.5"/>
+                            <rect key="frame" x="272.5" y="36.5" width="34" height="33.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <state key="normal" title="FR" backgroundImage="volume_normat">
@@ -298,7 +287,7 @@
                             </state>
                         </button>
                         <button opaque="NO" tag="191" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XuA-WI-BaV" userLabel="181DIyin">
-                            <rect key="frame" x="1" y="153" width="58.5" height="58"/>
+                            <rect key="frame" x="1" y="153" width="58.5" height="58.5"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="XuA-WI-BaV" secondAttribute="height" multiplier="1:1" id="zzb-lx-jTh"/>
                             </constraints>
@@ -307,7 +296,7 @@
                             <state key="selected" backgroundImage="mid range_normat"/>
                         </button>
                         <button opaque="NO" tag="192" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nje-B4-ksa" userLabel="182Mid">
-                            <rect key="frame" x="41" y="193" width="38.5" height="38.5"/>
+                            <rect key="frame" x="41" y="193" width="39" height="39"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="Nje-B4-ksa" secondAttribute="height" multiplier="1:1" id="eQa-rf-2q9"/>
                             </constraints>
@@ -316,7 +305,7 @@
                             <state key="selected" backgroundImage="mid range_normat"/>
                         </button>
                         <button opaque="NO" tag="193" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xjY-5U-0As" userLabel="183Gao">
-                            <rect key="frame" x="74" y="218" width="34" height="34.5"/>
+                            <rect key="frame" x="74" y="218" width="34" height="34"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="xjY-5U-0As" secondAttribute="height" multiplier="1:1" id="Jh8-Ue-SN5"/>
                             </constraints>
@@ -325,7 +314,7 @@
                             <state key="selected" backgroundImage="tweeter_normat"/>
                         </button>
                         <button opaque="NO" tag="242" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZOR-ie-dcZ" userLabel="182Mid">
-                            <rect key="frame" x="224" y="193" width="38.5" height="38.5"/>
+                            <rect key="frame" x="223" y="193" width="39" height="39"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="ZOR-ie-dcZ" secondAttribute="height" multiplier="1:1" id="TzN-we-ECf"/>
                             </constraints>
@@ -334,7 +323,7 @@
                             <state key="selected" backgroundImage="mid range_normat"/>
                         </button>
                         <button opaque="NO" tag="243" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r2i-j3-F0b" userLabel="183Gao">
-                            <rect key="frame" x="196" y="218.5" width="34" height="34"/>
+                            <rect key="frame" x="195" y="218" width="34" height="34"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="r2i-j3-F0b" secondAttribute="height" multiplier="1:1" id="ute-lL-o6M"/>
                             </constraints>
@@ -343,7 +332,7 @@
                             <state key="selected" backgroundImage="tweeter_normat"/>
                         </button>
                         <button opaque="NO" tag="241" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0hh-hl-wuB" userLabel="181DIyin">
-                            <rect key="frame" x="244.5" y="153" width="58.5" height="58"/>
+                            <rect key="frame" x="243.5" y="153" width="58.5" height="58.5"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="0hh-hl-wuB" secondAttribute="height" multiplier="1:1" id="F4p-hE-PV2"/>
                             </constraints>
@@ -352,7 +341,7 @@
                             <state key="selected" backgroundImage="mid range_normat"/>
                         </button>
                         <button opaque="NO" tag="212" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qXy-lo-Koe" userLabel="182Mid">
-                            <rect key="frame" x="133" y="1.5" width="38.5" height="38.5"/>
+                            <rect key="frame" x="132" y="1" width="39" height="39"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="qXy-lo-Koe" secondAttribute="height" multiplier="1:1" id="pyb-DW-Hg2"/>
                             </constraints>
@@ -361,10 +350,31 @@
                             <state key="selected" backgroundImage="mid range_normat"/>
                         </button>
                         <button opaque="NO" tag="211" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KBP-wk-Z5W" userLabel="183Gao">
-                            <rect key="frame" x="133" y="1.5" width="38.5" height="38.5"/>
+                            <rect key="frame" x="132" y="1" width="39" height="39"/>
                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <state key="normal" backgroundImage="tweeter_selected"/>
                             <state key="selected" backgroundImage="tweeter_normat"/>
+                        </button>
+                        <button opaque="NO" tag="214" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sv0-mh-msl" userLabel="SUBR">
+                            <rect key="frame" x="162.5" y="262" width="39" height="24.5"/>
+                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <state key="normal" backgroundImage="subwoofer_selected"/>
+                            <state key="selected" backgroundImage="subwoofer_normat"/>
+                        </button>
+                        <button opaque="NO" tag="213" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="woq-Zh-1tT" userLabel="SUBL">
+                            <rect key="frame" x="101.5" y="262" width="39" height="24.5"/>
+                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <state key="normal" backgroundImage="subwoofer_selected"/>
+                            <state key="selected" backgroundImage="subwoofer_normat"/>
+                        </button>
+                        <button opaque="NO" tag="208" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cLR-9u-N2R" userLabel="diYinPao">
+                            <rect key="frame" x="120.5" y="254.5" width="62" height="39.5"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="cLR-9u-N2R" secondAttribute="height" multiplier="65:41" id="AQD-1r-rF4"/>
+                            </constraints>
+                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <state key="normal" backgroundImage="subwoofer_selected"/>
+                            <state key="selected" backgroundImage="subwoofer_normat"/>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -377,13 +387,14 @@
                         <constraint firstItem="uPU-dS-KVJ" firstAttribute="centerX" secondItem="Z9v-8S-Pv8" secondAttribute="centerX" id="52y-dT-eva"/>
                         <constraint firstItem="fbC-S5-LzP" firstAttribute="centerX" secondItem="tVQ-xW-2Ld" secondAttribute="centerX" multiplier="1.91" id="5gs-7r-TzB"/>
                         <constraint firstItem="NTo-0Z-Cpm" firstAttribute="width" secondItem="a7S-v7-17l" secondAttribute="width" id="60I-ZF-yR8"/>
+                        <constraint firstItem="sv0-mh-msl" firstAttribute="width" secondItem="woq-Zh-1tT" secondAttribute="width" id="660-wB-rK5"/>
                         <constraint firstItem="Nje-B4-ksa" firstAttribute="centerX" secondItem="A2F-ww-0CI" secondAttribute="centerX" id="6EX-JD-dWB"/>
                         <constraint firstItem="Z9v-8S-Pv8" firstAttribute="centerX" secondItem="tVQ-xW-2Ld" secondAttribute="centerX" id="6SA-4f-O7r"/>
                         <constraint firstItem="r2i-j3-F0b" firstAttribute="centerY" secondItem="xjY-5U-0As" secondAttribute="centerY" id="7LX-gS-M8S"/>
                         <constraint firstItem="emU-kF-JI1" firstAttribute="height" secondItem="9c7-Cw-E3d" secondAttribute="height" id="7hM-1t-wPc"/>
                         <constraint firstItem="Lfa-Es-pk8" firstAttribute="width" secondItem="A2F-ww-0CI" secondAttribute="width" id="7kW-tz-TMX"/>
-                        <constraint firstItem="cLR-9u-N2R" firstAttribute="centerX" secondItem="tVQ-xW-2Ld" secondAttribute="centerX" id="88c-Vt-7y3"/>
                         <constraint firstItem="Gm3-CT-4Zc" firstAttribute="width" secondItem="Kzg-tZ-POw" secondAttribute="width" id="8UX-li-Oc2"/>
+                        <constraint firstItem="woq-Zh-1tT" firstAttribute="centerX" secondItem="cLR-9u-N2R" secondAttribute="centerX" multiplier="0.8" id="8hT-09-p1T"/>
                         <constraint firstItem="ZOR-ie-dcZ" firstAttribute="width" secondItem="Nje-B4-ksa" secondAttribute="width" id="8jK-zg-8iL"/>
                         <constraint firstItem="emU-kF-JI1" firstAttribute="centerX" secondItem="fD5-Ba-rFo" secondAttribute="centerX" id="8vh-3C-Hb9"/>
                         <constraint firstItem="eVX-Tl-y08" firstAttribute="centerY" secondItem="Llf-iV-XZd" secondAttribute="centerY" id="8wB-Qa-Zyy"/>
@@ -391,6 +402,7 @@
                         <constraint firstItem="A2F-ww-0CI" firstAttribute="width" secondItem="zFe-X1-zEn" secondAttribute="width" multiplier="1.15" id="9XV-X4-VFE"/>
                         <constraint firstItem="a7S-v7-17l" firstAttribute="width" secondItem="JPX-Dt-tZC" secondAttribute="width" multiplier="60:150" id="AD2-DU-7AO"/>
                         <constraint firstItem="4zi-pH-9Dd" firstAttribute="width" secondItem="tVQ-xW-2Ld" secondAttribute="width" multiplier="62:316" id="AUG-9Z-P4n"/>
+                        <constraint firstItem="sv0-mh-msl" firstAttribute="centerX" secondItem="cLR-9u-N2R" secondAttribute="centerX" multiplier="1.2" id="AdL-nC-h8C"/>
                         <constraint firstItem="Clm-rG-EtI" firstAttribute="centerX" secondItem="tVQ-xW-2Ld" secondAttribute="centerX" id="B5e-NL-W3K"/>
                         <constraint firstItem="Fec-aC-p58" firstAttribute="height" secondItem="zFe-X1-zEn" secondAttribute="height" id="BmN-MG-Cer"/>
                         <constraint firstItem="4zi-pH-9Dd" firstAttribute="centerX" secondItem="tVQ-xW-2Ld" secondAttribute="centerX" id="BmT-Hf-g89"/>
@@ -412,12 +424,14 @@
                         <constraint firstItem="eVX-Tl-y08" firstAttribute="centerX" secondItem="tTz-xm-T4i" secondAttribute="centerX" id="Jyu-le-Sel"/>
                         <constraint firstItem="Kzg-tZ-POw" firstAttribute="width" secondItem="A2F-ww-0CI" secondAttribute="width" id="K9K-54-jgI"/>
                         <constraint firstItem="jWE-rr-E7w" firstAttribute="centerX" secondItem="tVQ-xW-2Ld" secondAttribute="centerX" multiplier="0.5" id="KAJ-1d-WTo"/>
+                        <constraint firstItem="emU-kF-JI1" firstAttribute="width" secondItem="sv0-mh-msl" secondAttribute="width" id="Ke1-a9-Zo5"/>
                         <constraint firstItem="Z9v-8S-Pv8" firstAttribute="width" secondItem="tVQ-xW-2Ld" secondAttribute="width" multiplier="35:316" id="Koa-uX-dNG"/>
                         <constraint firstItem="fD5-Ba-rFo" firstAttribute="bottom" secondItem="tTz-xm-T4i" secondAttribute="bottom" constant="-35" id="KrV-F3-gkA"/>
                         <constraint firstItem="emU-kF-JI1" firstAttribute="width" secondItem="9c7-Cw-E3d" secondAttribute="width" id="Ldm-te-3Sy"/>
                         <constraint firstItem="XuA-WI-BaV" firstAttribute="width" secondItem="a7S-v7-17l" secondAttribute="width" id="MSC-kZ-Xfb"/>
                         <constraint firstItem="ZOR-ie-dcZ" firstAttribute="centerY" secondItem="Nje-B4-ksa" secondAttribute="centerY" id="MhK-yv-cQZ"/>
                         <constraint firstItem="NRq-2d-ngQ" firstAttribute="width" secondItem="jWE-rr-E7w" secondAttribute="width" id="Mqc-iy-cSi"/>
+                        <constraint firstItem="cLR-9u-N2R" firstAttribute="width" secondItem="tVQ-xW-2Ld" secondAttribute="width" multiplier="65:316" constant="-0.33000000000000002" id="NJq-YP-Ahw"/>
                         <constraint firstItem="Yzx-Pq-e9K" firstAttribute="centerX" secondItem="tVQ-xW-2Ld" secondAttribute="centerX" id="NOC-vs-XD0"/>
                         <constraint firstItem="0Jk-el-sPk" firstAttribute="top" secondItem="Bx7-nK-KcB" secondAttribute="bottom" id="Noc-79-RyZ"/>
                         <constraint firstItem="uPU-dS-KVJ" firstAttribute="width" secondItem="Z9v-8S-Pv8" secondAttribute="width" id="NqZ-Bi-Byz"/>
@@ -425,8 +439,10 @@
                         <constraint firstItem="a7S-v7-17l" firstAttribute="centerY" secondItem="tVQ-xW-2Ld" secondAttribute="centerY" multiplier="0.76" id="Oe9-Nv-SKt"/>
                         <constraint firstItem="fD5-Ba-rFo" firstAttribute="width" secondItem="Kzg-tZ-POw" secondAttribute="width" id="Oq0-Wf-to6"/>
                         <constraint firstItem="Kzg-tZ-POw" firstAttribute="height" secondItem="A2F-ww-0CI" secondAttribute="height" id="OtX-OV-ypP"/>
+                        <constraint firstItem="sv0-mh-msl" firstAttribute="width" secondItem="sv0-mh-msl" secondAttribute="height" multiplier="65:41" id="PLB-Rr-FZC"/>
                         <constraint firstItem="Yzx-Pq-e9K" firstAttribute="top" secondItem="tVQ-xW-2Ld" secondAttribute="top" id="PMj-cz-MQQ"/>
                         <constraint firstItem="1Zq-6p-YbY" firstAttribute="centerX" secondItem="tVQ-xW-2Ld" secondAttribute="centerX" multiplier="0.09" id="Rbq-Lv-Jy2"/>
+                        <constraint firstItem="cLR-9u-N2R" firstAttribute="centerX" secondItem="tVQ-xW-2Ld" secondAttribute="centerX" id="RtH-WI-C9l"/>
                         <constraint firstItem="NRq-2d-ngQ" firstAttribute="centerX" secondItem="tVQ-xW-2Ld" secondAttribute="centerX" multiplier="1.5" id="S3d-3f-6lX"/>
                         <constraint firstItem="Nje-B4-ksa" firstAttribute="centerY" secondItem="tVQ-xW-2Ld" secondAttribute="centerY" multiplier="1.4" id="SKY-WJ-TOA"/>
                         <constraint firstItem="ate-82-wfd" firstAttribute="top" secondItem="tVQ-xW-2Ld" secondAttribute="top" id="SQB-qu-KEB"/>
@@ -435,6 +451,7 @@
                         <constraint firstItem="qXy-lo-Koe" firstAttribute="height" secondItem="haF-3a-cH4" secondAttribute="height" id="Ssg-nt-ye0"/>
                         <constraint firstAttribute="bottom" secondItem="ate-82-wfd" secondAttribute="bottom" id="TV4-n7-pFG"/>
                         <constraint firstItem="xT6-pZ-W0b" firstAttribute="leading" secondItem="Yzx-Pq-e9K" secondAttribute="trailing" id="V1k-Tk-LIP"/>
+                        <constraint firstItem="woq-Zh-1tT" firstAttribute="width" secondItem="woq-Zh-1tT" secondAttribute="height" multiplier="65:41" id="VPK-gP-wuy"/>
                         <constraint firstItem="Kzg-tZ-POw" firstAttribute="centerX" secondItem="tVQ-xW-2Ld" secondAttribute="centerX" multiplier="0.55" id="VaM-Vq-WTm"/>
                         <constraint firstItem="a7S-v7-17l" firstAttribute="width" secondItem="jWE-rr-E7w" secondAttribute="width" multiplier="60:35" id="Vpt-UX-vik"/>
                         <constraint firstItem="xjY-5U-0As" firstAttribute="centerY" secondItem="tVQ-xW-2Ld" secondAttribute="centerY" multiplier="1.55" id="W6M-Gu-qCN"/>
@@ -443,9 +460,9 @@
                         <constraint firstItem="fD5-Ba-rFo" firstAttribute="centerX" secondItem="tVQ-xW-2Ld" secondAttribute="centerX" multiplier="1.45" id="XGP-Rw-XHG"/>
                         <constraint firstItem="9c7-Cw-E3d" firstAttribute="centerY" secondItem="tVQ-xW-2Ld" secondAttribute="centerY" multiplier="1.15" id="XGU-5E-vQ2"/>
                         <constraint firstItem="Gm3-CT-4Zc" firstAttribute="centerX" secondItem="Kzg-tZ-POw" secondAttribute="centerX" multiplier="1.3" id="YMy-wT-vbR"/>
+                        <constraint firstItem="sv0-mh-msl" firstAttribute="centerY" secondItem="woq-Zh-1tT" secondAttribute="centerY" id="YR5-LN-z3X"/>
                         <constraint firstItem="eVX-Tl-y08" firstAttribute="width" secondItem="eVX-Tl-y08" secondAttribute="height" multiplier="40:61" id="Z2j-JZ-jpu"/>
                         <constraint firstItem="emU-kF-JI1" firstAttribute="centerY" secondItem="9c7-Cw-E3d" secondAttribute="centerY" id="Z43-yA-4J6"/>
-                        <constraint firstItem="cLR-9u-N2R" firstAttribute="width" secondItem="tVQ-xW-2Ld" secondAttribute="width" multiplier="65:316" id="ZbB-o9-I8e"/>
                         <constraint firstItem="A2F-ww-0CI" firstAttribute="width" secondItem="A2F-ww-0CI" secondAttribute="height" id="Zx4-kA-9OE"/>
                         <constraint firstItem="r2i-j3-F0b" firstAttribute="width" secondItem="xjY-5U-0As" secondAttribute="width" id="aO8-mt-g5h"/>
                         <constraint firstItem="Bx7-nK-KcB" firstAttribute="leading" secondItem="Yzx-Pq-e9K" secondAttribute="trailing" id="aP3-Ro-QvO"/>
@@ -478,6 +495,7 @@
                         <constraint firstItem="XuA-WI-BaV" firstAttribute="centerX" secondItem="tVQ-xW-2Ld" secondAttribute="centerX" multiplier="0.2" id="hla-S7-8MW"/>
                         <constraint firstItem="9c7-Cw-E3d" firstAttribute="width" secondItem="haF-3a-cH4" secondAttribute="width" id="hma-jA-l1T"/>
                         <constraint firstItem="Clm-rG-EtI" firstAttribute="width" secondItem="tVQ-xW-2Ld" secondAttribute="width" multiplier="85:312" id="iQH-xp-NfV"/>
+                        <constraint firstItem="cLR-9u-N2R" firstAttribute="centerY" secondItem="lxz-OJ-CTt" secondAttribute="centerY" id="izU-8Z-V0I"/>
                         <constraint firstItem="haF-3a-cH4" firstAttribute="centerX" secondItem="tVQ-xW-2Ld" secondAttribute="centerX" id="j5r-9s-agN"/>
                         <constraint firstItem="Lfa-Es-pk8" firstAttribute="centerY" secondItem="A2F-ww-0CI" secondAttribute="centerY" id="jJF-Mv-Nv4"/>
                         <constraint firstItem="Nje-B4-ksa" firstAttribute="width" secondItem="A2F-ww-0CI" secondAttribute="width" id="jXt-m0-czM"/>
@@ -496,7 +514,6 @@
                         <constraint firstItem="Llf-iV-XZd" firstAttribute="width" secondItem="Llf-iV-XZd" secondAttribute="height" multiplier="40:61" id="rC7-Ja-Aga"/>
                         <constraint firstItem="Clm-rG-EtI" firstAttribute="top" secondItem="tVQ-xW-2Ld" secondAttribute="top" id="rNa-aQ-8sZ"/>
                         <constraint firstItem="jWE-rr-E7w" firstAttribute="centerY" secondItem="tVQ-xW-2Ld" secondAttribute="centerY" multiplier="0.25" id="sd6-yF-1GE"/>
-                        <constraint firstItem="cLR-9u-N2R" firstAttribute="centerY" secondItem="lxz-OJ-CTt" secondAttribute="centerY" id="sea-Ub-ICo"/>
                         <constraint firstItem="A2F-ww-0CI" firstAttribute="height" secondItem="zFe-X1-zEn" secondAttribute="height" multiplier="1.15" id="sen-EI-gFd"/>
                         <constraint firstItem="9c7-Cw-E3d" firstAttribute="width" secondItem="Kzg-tZ-POw" secondAttribute="width" id="smQ-vB-r7a"/>
                         <constraint firstItem="Fec-aC-p58" firstAttribute="centerX" secondItem="tVQ-xW-2Ld" secondAttribute="centerX" multiplier="1.71" id="t3I-oa-zwV"/>
@@ -504,6 +521,7 @@
                         <constraint firstItem="4zi-pH-9Dd" firstAttribute="top" secondItem="tVQ-xW-2Ld" secondAttribute="top" id="udu-EQ-BXd"/>
                         <constraint firstItem="qXy-lo-Koe" firstAttribute="centerY" secondItem="haF-3a-cH4" secondAttribute="centerY" id="uuZ-9R-XvX"/>
                         <constraint firstItem="0Jk-el-sPk" firstAttribute="top" secondItem="JPX-Dt-tZC" secondAttribute="bottom" id="vjK-od-HJ9"/>
+                        <constraint firstItem="sv0-mh-msl" firstAttribute="centerY" secondItem="cLR-9u-N2R" secondAttribute="centerY" id="vug-Cl-xod"/>
                         <constraint firstItem="A2F-ww-0CI" firstAttribute="centerY" secondItem="tVQ-xW-2Ld" secondAttribute="centerY" multiplier="0.45" id="wgu-AZ-tHo"/>
                         <constraint firstItem="0hh-hl-wuB" firstAttribute="width" secondItem="XuA-WI-BaV" secondAttribute="width" id="xAP-a2-8az"/>
                         <constraint firstItem="ZOR-ie-dcZ" firstAttribute="centerX" secondItem="Lfa-Es-pk8" secondAttribute="centerX" id="xLl-OR-sZU"/>
@@ -526,7 +544,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button hidden="YES" opaque="NO" tag="903" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MXM-cR-fa1">
-                    <rect key="frame" x="2" y="249" width="34" height="33"/>
+                    <rect key="frame" x="2" y="248.5" width="34" height="34"/>
                     <fontDescription key="fontDescription" type="system" pointSize="8"/>
                     <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <state key="normal" title="FR" backgroundImage="volume_normat">
@@ -546,7 +564,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button hidden="YES" opaque="NO" tag="906" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HNg-QN-cTP">
-                    <rect key="frame" x="165" y="124.5" width="34" height="32.5"/>
+                    <rect key="frame" x="165" y="123.5" width="34" height="33.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <state key="normal" title="FR" backgroundImage="volume_normat">
@@ -557,7 +575,7 @@
                     </state>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KN5-Ia-gcj" userLabel="lineR">
-                    <rect key="frame" x="329" y="0.0" width="1" height="523"/>
+                    <rect key="frame" x="329" y="0.0" width="0.5" height="523"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="0.5" id="Bni-3Y-Unq"/>
                     </constraints>
@@ -566,7 +584,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button hidden="YES" opaque="NO" tag="953" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dcS-fK-VFP">
-                    <rect key="frame" x="330" y="249" width="34" height="33"/>
+                    <rect key="frame" x="329.5" y="248.5" width="34" height="34"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <state key="normal" title="FR" backgroundImage="volume_normat">
@@ -577,7 +595,7 @@
                     </state>
                 </button>
                 <button hidden="YES" opaque="NO" tag="904" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5L4-vK-VoG">
-                    <rect key="frame" x="4" y="353" width="34" height="33.5"/>
+                    <rect key="frame" x="5" y="353.5" width="33.5" height="33.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <state key="normal" title="FR" backgroundImage="volume_normat">
@@ -588,7 +606,7 @@
                     </state>
                 </button>
                 <button hidden="YES" opaque="NO" tag="954" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mfn-Ep-1qB">
-                    <rect key="frame" x="325" y="353" width="34" height="33.5"/>
+                    <rect key="frame" x="325.5" y="353.5" width="34" height="33.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <state key="normal" title="FR" backgroundImage="volume_normat">
@@ -599,7 +617,7 @@
                     </state>
                 </button>
                 <button hidden="YES" opaque="NO" tag="905" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3gC-E0-Lcp">
-                    <rect key="frame" x="165" y="475.5" width="34" height="33"/>
+                    <rect key="frame" x="165" y="475.5" width="34" height="34"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <state key="normal" title="FR" backgroundImage="volume_normat">
@@ -667,7 +685,7 @@
                 <outlet property="SooArea" destination="lxz-OJ-CTt" id="yGn-Tg-7Uz"/>
                 <outlet property="buttonBackView" destination="tVQ-xW-2Ld" id="Hpk-Iy-6Kt"/>
             </connections>
-            <point key="canvasLocation" x="141" y="-952.5"/>
+            <point key="canvasLocation" x="225" y="-857.21830985915494"/>
         </view>
     </objects>
     <resources>
@@ -678,7 +696,7 @@
         <image name="coax center_way2H_normate" width="114" height="170"/>
         <image name="coax center_way2H_selected" width="193" height="288"/>
         <image name="coax center_way2_normat" width="261" height="165"/>
-        <image name="coax center_way2_selected" width="288" height="193"/>
+        <image name="coax center_way2_selected" width="175" height="119"/>
         <image name="coax_normate" width="115" height="115"/>
         <image name="coax_selected" width="119" height="119"/>
         <image name="connect_normat" width="78" height="78"/>
@@ -687,17 +705,17 @@
         <image name="fl_selected" width="460" height="432"/>
         <image name="fr_normat" width="432" height="405"/>
         <image name="fr_selected" width="460" height="432"/>
-        <image name="mid range_normat" width="117" height="117"/>
-        <image name="mid range_selected" width="169" height="169"/>
+        <image name="mid range_normat" width="141" height="141"/>
+        <image name="mid range_selected" width="123" height="121"/>
         <image name="rl_normat" width="432" height="380"/>
         <image name="rl_selected" width="460" height="406"/>
         <image name="rr_normat" width="432" height="379"/>
         <image name="rr_selected" width="460" height="405"/>
         <image name="subwoofer frame_normat" width="366" height="182"/>
         <image name="subwoofer frame_selected" width="392" height="210"/>
-        <image name="subwoofer_normat" width="180" height="142"/>
+        <image name="subwoofer_normat" width="236" height="180"/>
         <image name="subwoofer_selected" width="186" height="148"/>
-        <image name="tweeter_normat" width="46" height="46"/>
+        <image name="tweeter_normat" width="53" height="52"/>
         <image name="tweeter_selected" width="57" height="57"/>
         <image name="volume_normat" width="209" height="209"/>
         <image name="volume_selected" width="223" height="223"/>

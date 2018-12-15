@@ -391,7 +391,6 @@ typedef NS_ENUM(NSInteger,CHEQSelectType) {
             if (DeviceToolShare.ineqSeleDataArray.count == 2) {
                 NSString *outStr1;
                 NSString *outStr2;
-                
                 hornDataModel *model1 = (hornDataModel*)DeviceToolShare.ineqSeleDataArray[0];
                 outStr1 = [NSString stringWithFormat:@"%d",model1.outCh];
                 hornDataModel *model2 = (hornDataModel*)DeviceToolShare.ineqSeleDataArray[1];
@@ -402,8 +401,7 @@ typedef NS_ENUM(NSInteger,CHEQSelectType) {
                 }else{
                     titleStr = [NSString stringWithFormat:@"DigitalL_R"];
                 }
-                
-//                titleStr = [NSString stringWithFormat:@"%@ %@/%@ %@",[CustomerCar changeTagToHorn:model1.hornType],outStr1,[CustomerCar changeTagToHorn:model2.hornType],outStr2];
+
                 [self.nowHornTypeButton setTitle:titleStr forState:UIControlStateNormal];
             }else{
                 self.aaChartView.sinViewType = CheqViewType;
@@ -543,9 +541,9 @@ typedef NS_ENUM(NSInteger,CHEQSelectType) {
                             
                             self.hzLabel.text = [NSString stringWithFormat:@"F:%.0fHz",self.seleHornModel.nowSelectBand.freq];
                             self.gainLabel.text = [NSString stringWithFormat:@"G:%.1fdB",self.seleHornModel.nowSelectBand.gain];
-                            if ([self.gainLabel.text isEqualToString:@"-0.0dB"]
-                                || [self.gainLabel.text isEqualToString:@"0.0dB"]) {
-                                self.gainLabel.text = @"0dB";
+                            if ([self.gainLabel.text isEqualToString:@"G:-0.0dB"]
+                                || [self.gainLabel.text isEqualToString:@"G:0.0dB"]) {
+                                self.gainLabel.text = @"G:0dB";
                             }
                              if (self.seleHornModel.nowSelectBand.bandType == bandType_PEQ) {
                                  self.qLabel.text = [NSString stringWithFormat:@"Q:%.1f",self.seleHornModel.nowSelectBand.Q* Q_changeV];
@@ -573,9 +571,9 @@ typedef NS_ENUM(NSInteger,CHEQSelectType) {
                             
                             self.hzLabel.text = [NSString stringWithFormat:@"F:%.0fHz",self.seleHornModel.nowSelectBand.freq];
                             self.gainLabel.text = [NSString stringWithFormat:@"G:%.1fdB",self.seleHornModel.nowSelectBand.gain];
-                            if ([self.gainLabel.text isEqualToString:@"-0.0dB"]
-                                || [self.gainLabel.text isEqualToString:@"0.0dB"]) {
-                                self.gainLabel.text = @"0dB";
+                            if ([self.gainLabel.text isEqualToString:@"G:-0.0dB"]
+                                || [self.gainLabel.text isEqualToString:@"G:0.0dB"]) {
+                                self.gainLabel.text = @"G:0dB";
                             }
                             if (self.seleHornModel.nowSelectBand.bandType == bandType_PEQ) {
                                 self.qLabel.text = [NSString stringWithFormat:@"Q:%.1f",self.seleHornModel.nowSelectBand.Q* Q_changeV];
@@ -637,9 +635,9 @@ typedef NS_ENUM(NSInteger,CHEQSelectType) {
                 [self.progressV setValueChange:^(CGFloat level){
                     SDLog(@"levelChange = %.1f",(level -120)/10 );
                     self.gainLabel.text = [NSString stringWithFormat:@"G:%.1fdB",(level -120)/10];
-                    if ([self.gainLabel.text isEqualToString:@"-0.0dB"]
-                        || [self.gainLabel.text isEqualToString:@"0.0dB"]) {
-                        self.gainLabel.text = @"0dB";
+                    if ([self.gainLabel.text isEqualToString:@"G:-0.0dB"]
+                        || [self.gainLabel.text isEqualToString:@"G:0.0dB"]) {
+                        self.gainLabel.text = @"G:0dB";
                     }
                     
                     
@@ -668,7 +666,7 @@ typedef NS_ENUM(NSInteger,CHEQSelectType) {
                     }];
                     [self.progressV setLevel:(self.seleHornModel.nowSelectBand.Q * Q_changeV * 10 -1)];
                 }else{
-                    [self.progressV setMainLevel:197];//范围0.3~20
+                    [self.progressV setMainLevel:17];//范围0.3~20
                     [self.progressV drawProgress];
                     [self.progressV setValueChange:^(CGFloat level){
                         SDLog(@"levelChange = %.1f",(level + 3)/10 );

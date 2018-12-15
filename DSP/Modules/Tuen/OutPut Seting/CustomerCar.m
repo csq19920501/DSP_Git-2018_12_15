@@ -226,42 +226,42 @@
 
     _selectArea = selectArea;
     
-    int F_R_count= 0;
-    for (NSString *tagStr in _selectButtonArray) {
-        if ([tagStr isEqualToString:@"201"]
-            || [tagStr isEqualToString:@"202"]
-            || [tagStr isEqualToString:@"203"]
-            || [tagStr isEqualToString:@"204"]
-            || [tagStr isEqualToString:@"205"]
-            || [tagStr isEqualToString:@"206"]
-            || [tagStr isEqualToString:@"207"]
-            
-            || [tagStr isEqualToString:@"251"]
-            || [tagStr isEqualToString:@"252"]
-            || [tagStr isEqualToString:@"253"]
-            || [tagStr isEqualToString:@"254"]
-            || [tagStr isEqualToString:@"255"]
-            || [tagStr isEqualToString:@"256"]
-            || [tagStr isEqualToString:@"257"]
-            
-            || [tagStr isEqualToString:@"191"]
-            || [tagStr isEqualToString:@"192"]
-            || [tagStr isEqualToString:@"193"]
-            || [tagStr isEqualToString:@"241"]
-            || [tagStr isEqualToString:@"242"]
-            || [tagStr isEqualToString:@"243"]
-            
-            ) {
-            F_R_count ++;
-        }
-    }
-    if (F_R_count == 0 ) {
-        self.F_Type = _F_none_WoMidTwCo2w;
-        self.F_Type_R = _F_none_WoMidTwCo2w;
-        self.R_Type = _R_none_Co2w;
-        self.R_Type_R = _R_none_Co2w;
-    }
-    
+//    int F_R_count= 0;
+//    for (NSString *tagStr in _selectButtonArray) {
+//        if ([tagStr isEqualToString:@"201"]
+//            || [tagStr isEqualToString:@"202"]
+//            || [tagStr isEqualToString:@"203"]
+//            || [tagStr isEqualToString:@"204"]
+//            || [tagStr isEqualToString:@"205"]
+//            || [tagStr isEqualToString:@"206"]
+//            || [tagStr isEqualToString:@"207"]
+//            
+//            || [tagStr isEqualToString:@"251"]
+//            || [tagStr isEqualToString:@"252"]
+//            || [tagStr isEqualToString:@"253"]
+//            || [tagStr isEqualToString:@"254"]
+//            || [tagStr isEqualToString:@"255"]
+//            || [tagStr isEqualToString:@"256"]
+//            || [tagStr isEqualToString:@"257"]
+//            
+//            || [tagStr isEqualToString:@"191"]
+//            || [tagStr isEqualToString:@"192"]
+//            || [tagStr isEqualToString:@"193"]
+//            || [tagStr isEqualToString:@"241"]
+//            || [tagStr isEqualToString:@"242"]
+//            || [tagStr isEqualToString:@"243"]
+//            
+//            ) {
+//            F_R_count ++;
+//        }
+//    }
+//    if (F_R_count == 0 ) {
+//        self.F_Type = _F_none_WoMidTwCo2w;
+//        self.F_Type_R = _F_none_WoMidTwCo2w;
+//        self.R_Type = _R_none_Co2w;
+//        self.R_Type_R = _R_none_Co2w;
+//    }
+//    
     
     if (selectArea == selectAreaInit) {
             if (self.setUseImageType) {
@@ -277,7 +277,7 @@
         self.Center_Type = _Center_none_Co2w;        
         
         for (UIButton *but in self.buttonBackView.subviews) {
-            if ((but.tag >= 201 && but.tag <=212) || (but.tag >= 251 && but.tag <=257 )
+            if ((but.tag >= 201 && but.tag <=214) || (but.tag >= 251 && but.tag <=257 )
                 || (but.tag >= 191 && but.tag <=193) || (but.tag >= 241 && but.tag <=243 )) {
                 but.hidden = YES;
             }
@@ -329,15 +329,12 @@
         {
             if (csqAudiotype == woofer) {
                 butTag = @"201";
-                
             }
             else  if (csqAudiotype == midRange) {
                 butTag = @"202";
-               
             }
             else if (csqAudiotype == tweeter) {
                 butTag = @"203";
-                
             }
             else if (csqAudiotype == coax) {
                 butTag = @"204";
@@ -358,8 +355,6 @@
             }
             
             if (self.connectF) {
-               
-                
                 if (csqAudiotype == woofer) {
                     butTag = @"201";
                    
@@ -589,16 +584,100 @@
             break;
         case selectSoo:
         {
-            butTag = @"208";
-            self.Sub_Type = _Sub_Sub_none;
-            [_selectButtonArray addObject:butTag];
-            if (self.setUseImageType ) {
-                _setUseImageType(self.Sub_Type);
+            int sub_count = 0;
+            for (NSString *str in _selectButtonArray) {
+                if ([str isEqualToString:@"208"]
+                    || [str isEqualToString:@"213"]
+                    || [str isEqualToString:@"214"]) {
+                    sub_count++;
+                }
             }
+            if (sub_count == 0) {
+                butTag = @"208";
+                [_selectButtonArray addObject:butTag];
+                if (self.setUseHornWithArray) {
+                    _setUseHornWithArray(_selectButtonArray,selectSoo);
+                }
+            }else{
+                if ([_selectButtonArray containsObject:@"208"]) {
+                   
+                    UIButton* subCenter = (UIButton *)[self viewWithTag:208];
+                    [self removeButton:subCenter CanUseConnect:YES];
+                    
+                    [_selectButtonArray addObjectsFromArray:@[@"213",@"214"]];
+                    if (self.setUseHornWithArray) {
+                        _setUseHornWithArray(_selectButtonArray,selectSoo);
+                    }
+//                    UIButton * subL = (UIButton *)[self viewWithTag:213];
+//                    UIButton * subR = (UIButton *)[self viewWithTag:214];
+//                    subL.hidden = NO;
+//                    subR.hidden = NO;
+                }else if([_selectButtonArray containsObject:@"213"]){
+                    [_selectButtonArray addObject:@"214"];
+                    if (self.setUseHornWithArray) {
+                        _setUseHornWithArray(_selectButtonArray,selectSoo);
+                    }
+                }else if([_selectButtonArray containsObject:@"214"]){
+                    [_selectButtonArray addObject:@"213"];
+                    if (self.setUseHornWithArray) {
+                        _setUseHornWithArray(_selectButtonArray,selectSoo);
+                    }
+                }
+            }
+            
+//            if ([_selectButtonArray containsObject:@"209"]
+//                || [_selectButtonArray containsObject:@"210"]
+//                || [_selectButtonArray containsObject:@"211"]
+//                || [_selectButtonArray containsObject:@"212"]
+//                ) {
+//                butTag = @"208";
+//                [_selectButtonArray addObject:butTag];
+//                if (self.setUseHornWithArray) {
+//                    _setUseHornWithArray(_selectButtonArray,selectSoo);
+//                }
+//            }else if(![_selectButtonArray containsObject:@"213"]){
+//                butTag = @"213";
+//
+//                if (self.setUseHornWithArray) {
+//                    _setUseHornWithArray(_selectButtonArray,selectSoo);
+//                }
+//            }else if(![_selectButtonArray containsObject:@"214"]){
+//                butTag = @"214";
+//
+//                if (self.setUseHornWithArray) {
+//                    _setUseHornWithArray(_selectButtonArray,selectSoo);
+//                }
+//            }
+            
         }
             break;
         case selectCenter:
         {
+            
+//            int sub_count = 0;
+//            for (NSString *str in _selectButtonArray) {
+//                if ([str isEqualToString:@"208"]
+//                    || [str isEqualToString:@"213"]
+//                    || [str isEqualToString:@"214"]) {
+//                    sub_count++;
+//                }
+//            }
+//            if (sub_count == 1) {
+//                 if([_selectButtonArray containsObject:@"213"]){
+//                    [_selectButtonArray addObject:@"214"];
+//                    if (self.setUseImageType ) {
+//                        _setUseImageType(self.Sub_Type);
+//                    }
+//                }else if([_selectButtonArray containsObject:@"214"]){
+//                    [_selectButtonArray addObject:@"213"];
+//                    if (self.setUseImageType ) {
+//                        _setUseImageType(self.Sub_Type);
+//                    }
+//                }
+//            }
+            
+            
+            
             if (csqAudiotype == coax) {
                 butTag = @"209";
                 
@@ -632,9 +711,7 @@
 -(void)removeButton:(UIButton *)but CanUseConnect:(BOOL)canUseConnect{
     int butTag = (int)but.tag;
     
-    if (self.valueChange) {
-        self.valueChange();
-    }
+    
 
     [_selectButtonArray removeObject:[NSString stringWithFormat:@"%d",butTag]];
     but.hidden = YES;
@@ -678,11 +755,37 @@
     }else if (but.tag == 208)
     {
 
+    }else if (but.tag == 213)
+    {
+        [_selectButtonArray removeObject:@"214"];
+        UIButton *subR = (UIButton *)[self viewWithTag:214];
+        subR.hidden = YES;
+        [_selectButtonArray addObject:@"208"];
+        UIButton *sub = (UIButton *)[self viewWithTag:208];
+        sub.hidden = NO;
+        if (self.setUseHornWithArray) {
+            _setUseHornWithArray(_selectButtonArray,self.selectArea);
+        }
+    }else if (but.tag == 214)
+    {
+        [_selectButtonArray removeObject:@"213"];
+        UIButton *subL = (UIButton *)[self viewWithTag:213];
+        subL.hidden = YES;
+        [_selectButtonArray addObject:@"208"];
+        UIButton *sub = (UIButton *)[self viewWithTag:208];
+        sub.hidden = NO;
+        if (self.setUseHornWithArray) {
+            _setUseHornWithArray(_selectButtonArray,self.selectArea);
+        }
     }
     if (self.selectArea != selectAreaZero && self.selectArea != selectAreaInit) {
         [self setSelectArea:self.selectArea];
     }
     SDLog(@" _selectButtonArray = %@",_selectButtonArray);
+    if (self.valueChange) {
+        self.valueChange();
+    }
+    
 }
 
 //定制outPut页面
@@ -708,7 +811,7 @@
     self.SooArea.hidden = YES;
     self.CenterArea.hidden = YES;
     for (UIButton *but in self.buttonBackView.subviews) {
-        if ((but.tag >= 201 && but.tag <=212) || (but.tag >= 251 && but.tag <=257)
+        if ((but.tag >= 201 && but.tag <=214) || (but.tag >= 251 && but.tag <=257)
             || (but.tag >= 191 && but.tag <=193) || (but.tag >= 241 && but.tag <=243)) {
             but.hidden = YES;
         }
@@ -743,7 +846,7 @@
     self.SooArea.hidden = YES;
     self.CenterArea.hidden = YES;
     for (UIButton *but in self.buttonBackView.subviews) {
-        if ((but.tag >= 201 && but.tag <=212) || (but.tag >= 251 && but.tag <=257)
+        if ((but.tag >= 201 && but.tag <=214) || (but.tag >= 251 && but.tag <=257)
             || (but.tag >= 191 && but.tag <=193) || (but.tag >= 241 && but.tag <=243)) {
             but.hidden = YES;
         }
@@ -824,6 +927,8 @@
                 break;
             
             case 208:
+                case 213:
+                case 214:
             case 209:
             case 210:
                 case 211:
@@ -1015,6 +1120,16 @@
             return @"Subwoofer";
         }
             break;
+        case 213:
+        {
+            return @"Subwoofer L";
+        }
+            break;
+        case 214:
+        {
+            return @"Subwoofer R";
+        }
+            break;
         case 209:
         {
             return @"Coax Center";
@@ -1035,6 +1150,7 @@
             return @"Midrange Center";
         }
             break;
+        
             
         default:
             
@@ -1069,7 +1185,7 @@
 //    [super awakeFromNib];
         for (UIButton *but in self.buttonBackView.subviews) {
 
-            if ((but.tag >= 201 && but.tag <=212) || (but.tag >= 251 && but.tag <=257)
+            if ((but.tag >= 201 && but.tag <=214) || (but.tag >= 251 && but.tag <=257)
                 || (but.tag >= 191 && but.tag <=193) || (but.tag >= 241 && but.tag <=243)) {
 
 //                but.enabled = NO;
@@ -1135,7 +1251,7 @@
         moveX_R = self.CenterArea.right;
         moveY_Top = self.CenterArea.top;
         moveY_Bottom = self.CenterArea.bottom;
-    }else if (but.tag == 208)
+    }else if (but.tag == 208 || but.tag == 213 || but.tag == 214)
     {
         moveX_L = self.SooArea.left;
         moveX_R = self.SooArea.right;

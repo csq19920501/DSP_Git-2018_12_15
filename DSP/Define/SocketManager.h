@@ -74,6 +74,13 @@ static NSString *const EQRefreshNotificaion = @"EQRefreshNotificaion";
 #define crossoverHiGainAdr @"29"
 #define crossoverLoQAdr @"2a"
 #define crossoverLoGainAdr @"2b"
+//MCU 发送 记忆app滤波器界面退出通道
+#define crossoverMerrorAdr @"30"
+//MCU 发送 记忆app Ineq退出通道
+#define ineqMerrorAdr @"31"
+//MCU 发送 记忆app Ineq退出通道
+#define cheqMerrorAdr @"32"
+#define spdifInputAdr @"33"
 typedef NS_ENUM(NSInteger,McuType) {
     MainSoundLevle = 0,
     SUBSoundLevle ,
@@ -115,6 +122,7 @@ typedef NS_ENUM(NSInteger,McuType) {
     Reset_selectEQ,
     Reset_selectCrossover,
     mcuVersionType,
+    spdifInputType,
 };
 
 @interface SocketManager : NSObject

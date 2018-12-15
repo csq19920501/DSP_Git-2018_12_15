@@ -891,6 +891,22 @@ typedef NS_ENUM(NSInteger,ChdelayNowChangeType) {
                 [clcikButton setTitle:@"Subwoofer" forState:UIControlStateSelected];
             }
                 break;
+            case 213:
+            {
+                seleTag = SubWooferL;
+                clcikButton = (UIButton *)[self.view viewWithTag:seleTag];
+                [clcikButton setTitle:@"Subwoofer" forState:UIControlStateNormal];
+                [clcikButton setTitle:@"Subwoofer" forState:UIControlStateSelected];
+            }
+                break;
+            case 214:
+            {
+                seleTag = SubWooferR;
+                clcikButton = (UIButton *)[self.view viewWithTag:seleTag];
+                [clcikButton setTitle:@"Subwoofer" forState:UIControlStateNormal];
+                [clcikButton setTitle:@"Subwoofer" forState:UIControlStateSelected];
+            }
+                break;
             case 209:
             case 210:
             case 211:

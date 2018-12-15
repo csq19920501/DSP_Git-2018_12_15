@@ -42,7 +42,7 @@ typedef NS_ENUM(NSInteger,OutPutCH) {
 
 @property(nonatomic,assign)OutPutCH outCh;
 @property(nonatomic,assign)CGFloat CHLevelFloat;
-@property(nonatomic,copy)NSString *hornType;//喇叭类型  201 202
+@property(nonatomic,copy)NSString *hornType;//喇叭类型  201 202 203 等等
 
 @property(nonatomic,assign)CGFloat CrossoverFilterType;
 @property(nonatomic,assign)CGFloat CrossoverHiSlope;

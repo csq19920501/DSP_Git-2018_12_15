@@ -255,70 +255,146 @@
         self.topBackView.layer.borderColor = [UIColor whiteColor].CGColor;
         self.topBackView.layer.borderWidth = 0.7;
         
-//        self.customerCar = [[CustomerCar alloc]init];
-//        [self.customerCar showInView:self.showCarBackView withFrame:self.showCarBackView.bounds];
-//        self.customerCar.F_connectButton.hidden = YES;
-//        self.customerCar.R_connectButton.hidden = YES;
-//        [self.customerCar inputSettingViewWith:self.selectCarArray];
-//
-//        [self.customerCar setHornClick:^(int tag){
-//            weakself.topBackView.hidden = NO;
-//            SDLog(@"tag = %d",tag);
-//            for (hornDataModel *model in DeviceToolShare.hornDataArray) {
-//                if ([model.hornType isEqualToString:[NSString stringWithFormat:@"%d",tag]]) {
-//                    SDLog(@"customerCar 找到seleHornmodel");
-//                    weakself.seleHornModel = model;
-//                }
-//            }
-//
-//            NSArray *inputLevelArr = @[weakself.seleHornModel.ch1Input,weakself.seleHornModel.ch2Input,weakself.seleHornModel.ch3Input,weakself.seleHornModel.ch4Input,weakself.seleHornModel.ch5Input,weakself.seleHornModel.ch6Input,weakself.seleHornModel.digitalL,weakself.seleHornModel.digitalR,];
-//
-//            NSMutableArray *textArr = [NSMutableArray array];
-//            for (int i = 1001; i <= 1008; i++) {
-//                UITextField * tf = (UITextField*)[weakself.view viewWithTag:i];
-//                tf.text = inputLevelArr[i - 1001];
-//                [textArr addObject:tf.text];
-//
-//                UIButton *but = (UIButton *)[weakself.view viewWithTag:i + 8000];
-//                if (DeviceToolShare.DspMode == ANALOG) {
-//                    weakself.anaButton.selected = YES;
-//                    weakself.digitalButton.selected = NO;
-//                    if (i <= 1006) {
-//                        if ([tf.text intValue] == 0) {
-//                            but.selected = NO;
-//                        }else{
-//                            but.selected = YES;
-//                        }
-//                    }
-//                    else{
-//                        but.selected = NO;
-//                    }
-//                }
-//                else{
-//                    weakself.anaButton.selected = NO;
-//                    weakself.digitalButton.selected = YES;
-//                    if (i > 1006) {
-//                        if ([tf.text intValue] == 0) {
-//                            but.selected = NO;
-//                        }else{
-//                            but.selected = YES;
-//                        }
-//                    }
-//                    else{
-//                        but.selected = NO;
-//                    }
-//                }
-//            }
-//            [self->textArray addObject:textArr];
-//            weakself.coverShowCarView.hidden = NO;
-//
-//            NSString *titleStr = [CustomerCar changeTagToHorn:[NSString stringWithFormat:@"%d",tag]];
-//
-//
-//            weakself.right2Label.text = [NSString stringWithFormat:@"%@ CH%d",titleStr,(int)weakself.seleHornModel.outCh];
-//        }];
+        self.customerCar = [[CustomerCar alloc]init];
+        [self.customerCar showInView:self.showCarBackView withFrame:self.showCarBackView.bounds];
+        self.customerCar.F_connectButton.hidden = YES;
+        self.customerCar.R_connectButton.hidden = YES;
+        [self.customerCar inputSettingViewWith:self.selectCarArray];
+
+        if (DeviceToolShare.spdifInputModel) {
+            [self demoSeleModle:9];
+        }else{
+            if (!kArrayIsEmpty(DeviceToolShare.hornDataArray)) {
+                hornDataModel *model = DeviceToolShare.hornDataArray[0];
+                [self demoSeleModle:model.hornType.intValue];
+            }
+        }
+        
+        
+        
+        [self.customerCar setHornClick:^(int tag){
+            weakself.topBackView.hidden = NO;
+            SDLog(@"tag = %d",tag);
+            for (hornDataModel *model in DeviceToolShare.hornDataArray) {
+                if ([model.hornType isEqualToString:[NSString stringWithFormat:@"%d",tag]]) {
+                    SDLog(@"customerCar 找到seleHornmodel");
+                    weakself.seleHornModel = model;
+                }
+            }
+            
+            NSArray *inputLevelArr = @[weakself.seleHornModel.ch1Input,weakself.seleHornModel.ch2Input,weakself.seleHornModel.ch3Input,weakself.seleHornModel.ch4Input,weakself.seleHornModel.ch5Input,weakself.seleHornModel.ch6Input,weakself.seleHornModel.digitalL,weakself.seleHornModel.digitalR,];
+            
+            NSMutableArray *textArr = [NSMutableArray array];
+            for (int i = 1001; i <= 1008; i++) {
+                UITextField * tf = (UITextField*)[weakself.view viewWithTag:i];
+                tf.text = inputLevelArr[i - 1001];
+                [textArr addObject:tf.text];
+                
+                UIButton *but = (UIButton *)[weakself.view viewWithTag:i + 8000];
+                if (DeviceToolShare.DspMode == ANALOG) {
+                    weakself.anaButton.selected = YES;
+                    weakself.digitalButton.selected = NO;
+                    if (i <= 1006) {
+                        if ([tf.text intValue] == 0) {
+                            but.selected = NO;
+                        }else{
+                            but.selected = YES;
+                        }
+                    }
+                    else{
+                        but.selected = NO;
+                    }
+                }
+                else{
+                    weakself.anaButton.selected = NO;
+                    weakself.digitalButton.selected = YES;
+                    if (i > 1006) {
+                        if ([tf.text intValue] == 0) {
+                            but.selected = NO;
+                        }else{
+                            but.selected = YES;
+                        }
+                    }
+                    else{
+                        but.selected = NO;
+                    }
+                }
+            }
+            [self->textArray addObject:textArr];
+            //            weakself.coverShowCarView.hidden = NO;
+            
+            NSString *titleStr = [CustomerCar changeTagToHorn:[NSString stringWithFormat:@"%d",tag]];
+            
+            
+            weakself.right2Label.text = [NSString stringWithFormat:@"%@ CH%d",titleStr,(int)weakself.seleHornModel.outCh];
+        }];
+        
+        
     }))
+}
+-(void)demoSeleModle:(int )tag{
+    MPWeakSelf(self)
+    self.topBackView.hidden = NO;
+    SDLog(@"tag = %d",tag);
+    if (tag == 9) {
+        self.seleHornModel = DeviceToolShare.spdifInputModel;
+    }else{
+        for (hornDataModel *model in DeviceToolShare.hornDataArray) {
+            if ([model.hornType isEqualToString:[NSString stringWithFormat:@"%d",tag]]) {
+                SDLog(@"customerCar 找到seleHornmodel");
+                self.seleHornModel = model;
+            }
+        }
+    }
     
+    
+    weakself.seleHornModel = DeviceToolShare.spdifInputModel;
+    
+    NSArray *inputLevelArr = @[weakself.seleHornModel.ch1Input,weakself.seleHornModel.ch2Input,weakself.seleHornModel.ch3Input,weakself.seleHornModel.ch4Input,weakself.seleHornModel.ch5Input,weakself.seleHornModel.ch6Input,weakself.seleHornModel.digitalL,weakself.seleHornModel.digitalR,];
+    
+    NSMutableArray *textArr = [NSMutableArray array];
+    for (int i = 1001; i <= 1008; i++) {
+        UITextField * tf = (UITextField*)[weakself.view viewWithTag:i];
+        tf.text = inputLevelArr[i - 1001];
+        [textArr addObject:tf.text];
+        
+        UIButton *but = (UIButton *)[weakself.view viewWithTag:i + 8000];
+        if (DeviceToolShare.DspMode == ANALOG) {
+            weakself.anaButton.selected = YES;
+            weakself.digitalButton.selected = NO;
+            if (i <= 1006) {
+                if ([tf.text intValue] == 0) {
+                    but.selected = NO;
+                }else{
+                    but.selected = YES;
+                }
+            }
+            else{
+                but.selected = NO;
+            }
+        }
+        else{
+            weakself.anaButton.selected = NO;
+            weakself.digitalButton.selected = YES;
+            if (i > 1006) {
+                if ([tf.text intValue] == 0) {
+                    but.selected = NO;
+                }else{
+                    but.selected = YES;
+                }
+            }
+            else{
+                but.selected = NO;
+            }
+        }
+    }
+    [self->textArray addObject:textArr];
+    //            weakself.coverShowCarView.hidden = NO;
+    
+    NSString *titleStr = [CustomerCar changeTagToHorn:[NSString stringWithFormat:@"%d",tag]];
+    
+    
+    weakself.right2Label.text = [NSString stringWithFormat:@"%@ CH%d",titleStr,(int)weakself.seleHornModel.outCh];
 }
 - (IBAction)setNext:(id)sender {
 //    [self sendPersentTip];

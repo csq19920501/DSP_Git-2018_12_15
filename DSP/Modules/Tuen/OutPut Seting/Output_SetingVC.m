@@ -145,25 +145,34 @@ static Output_SetingVC *_instance;
             model.outCh = CH4;
             Ch4L = @"03";
             Ch4R = @"01";
-        }else if ([model.hornType isEqualToString:@"208"]) {
+        }else if ([model.hornType isEqualToString:@"208"] || [model.hornType isEqualToString:@"214"]) {
             model.outCh = CH8;
             Ch8L = @"06";
             Ch8R = @"06";
         }else if ([model.hornType isEqualToString:@"209"]
                   || [model.hornType isEqualToString:@"210"]
                   || [model.hornType isEqualToString:@"211"]
-                  || [model.hornType isEqualToString:@"212"]) {
+                  || [model.hornType isEqualToString:@"212"]
+                  || [model.hornType isEqualToString:@"213"]) {
             model.outCh = CH7;
-            Ch7L = @"01";
+            
             if ([model.hornType isEqualToString:@"209"]) {
+                Ch7L = @"01";
                 Ch7R = @"04";
             }else if ([model.hornType isEqualToString:@"210"]) {
+                Ch7L = @"01";
                 Ch7R = @"05";
             }else if ([model.hornType isEqualToString:@"211"]) {
+                Ch7L = @"01";
                 Ch7R = @"03";
             }else if ([model.hornType isEqualToString:@"212"]) {
+                Ch7L = @"01";
                 Ch7R = @"02";
+            }else if ([model.hornType isEqualToString:@"213"]) {
+                Ch7L = @"06";
+                Ch7R = @"06";
             }
+            
             
         }else{
             if (outCH_count == 0) {
@@ -782,6 +791,16 @@ static Output_SetingVC *_instance;
                 
             }
             if (seleType == selectCenter ) {
+                int sub_count = 0;
+                for (NSString *tagStr in seleArray) {
+                    if ([tagStr isEqualToString:@"208"]
+                        || [tagStr isEqualToString:@"213"]
+                        || [tagStr isEqualToString:@"214"]
+                        ) {
+                        sub_count ++;
+                    }
+                }
+                
                 int F_R_count= 0;
                 for (NSString *tagStr in seleArray) {
                     if ([tagStr isEqualToString:@"209"]
@@ -793,95 +812,115 @@ static Output_SetingVC *_instance;
                         F_R_count ++;
                     }
                 }
-                if (F_R_count >= 1) {
+                if (sub_count != 2) {
+                    if (F_R_count >= 1) {
+                        if (weakself.customerCar.setUseImageType) {
+                            weakself.customerCar.setUseImageType(imageNone);
+                        }
+                    }else{
+                        weakself.woImage.userInteractionEnabled =  NO;
+                        weakself.woImage.highlighted  = NO;
+                        weakself.supWoImage.userInteractionEnabled =  NO;
+                        weakself.supWoImage.highlighted  = NO;
+                        weakself.midImage.userInteractionEnabled =  YES;
+                        weakself.midImage.highlighted  = YES;
+                        weakself.TweeImage.userInteractionEnabled =  YES;
+                        weakself.TweeImage.highlighted  = YES;
+                        weakself.twoWayImage.userInteractionEnabled =  YES;
+                        weakself.twoWayImage.highlighted  = YES;
+                        weakself.coaxImage.userInteractionEnabled =  YES;
+                        weakself.coaxImage.highlighted  = YES;
+                        
+                    }
+                }else{
                     if (weakself.customerCar.setUseImageType) {
                         weakself.customerCar.setUseImageType(imageNone);
                     }
-                }else{
-                    weakself.woImage.userInteractionEnabled =  NO;
-                    weakself.woImage.highlighted  = NO;
-                    weakself.supWoImage.userInteractionEnabled =  NO;
-                    weakself.supWoImage.highlighted  = NO;
-                    weakself.midImage.userInteractionEnabled =  YES;
-                    weakself.midImage.highlighted  = YES;
-                    weakself.TweeImage.userInteractionEnabled =  YES;
-                    weakself.TweeImage.highlighted  = YES;
-                    weakself.twoWayImage.userInteractionEnabled =  YES;
-                    weakself.twoWayImage.highlighted  = YES;
-                    weakself.coaxImage.userInteractionEnabled =  YES;
-                    weakself.coaxImage.highlighted  = YES;
-                    
-//                    for (NSString *tagStr in seleArray) {
-//                        switch (tagStr.integerValue) {
-//
-//                            case 209:
-//                            {
-//                                weakself.coaxImage.userInteractionEnabled =  NO;
-//                                weakself.coaxImage.highlighted  = NO;
-//                            }
-//                                break;
-//                            case 210:
-//                            {
-//                                weakself.twoWayImage.userInteractionEnabled =  NO;
-//                                weakself.twoWayImage.highlighted  = NO;
-//                            }
-//                                break;
-//
-//                            default:
-//                                break;
-//                        }
-//                    }
                 }
+                
                 
             }
             if (seleType == selectSoo ) {
                 int F_R_count= 0;
+                int Center_count = 0;
                 for (NSString *tagStr in seleArray) {
+                    if ([tagStr isEqualToString:@"209"]
+                        || [tagStr isEqualToString:@"210"]
+                        || [tagStr isEqualToString:@"211"]
+                        || [tagStr isEqualToString:@"212"]
+                        ) {
+                        Center_count ++;
+                    }
+                }
+                for (NSString *tagStr in seleArray) {   
                     if ([tagStr isEqualToString:@"208"]
+                        || [tagStr isEqualToString:@"213"]
+                        || [tagStr isEqualToString:@"214"]
                         ) {
                         F_R_count ++;
                     }
                 }
-                if (F_R_count >= 1) {
-                    if (weakself.customerCar.setUseImageType) {
-                        weakself.customerCar.setUseImageType(imageNone);
+                if (Center_count >= 1) {
+                    if (F_R_count >= 1) {
+                        if (weakself.customerCar.setUseImageType) {
+                            weakself.customerCar.setUseImageType(imageNone);
+                        }
+                    }else{
+                        weakself.woImage.userInteractionEnabled =  NO;
+                        weakself.woImage.highlighted  = NO;
+                        weakself.supWoImage.userInteractionEnabled =  YES;
+                        weakself.supWoImage.highlighted  = YES;
+                        weakself.midImage.userInteractionEnabled =  NO;
+                        weakself.midImage.highlighted  = NO;
+                        weakself.TweeImage.userInteractionEnabled =  NO;
+                        weakself.TweeImage.highlighted  = NO;
+                        weakself.twoWayImage.userInteractionEnabled =  NO;
+                        weakself.twoWayImage.highlighted  = NO;
+                        weakself.coaxImage.userInteractionEnabled =  NO;
+                        weakself.coaxImage.highlighted  = NO;
                     }
                 }else{
-                    weakself.woImage.userInteractionEnabled =  NO;
-                    weakself.woImage.highlighted  = NO;
-                    weakself.supWoImage.userInteractionEnabled =  YES;
-                    weakself.supWoImage.highlighted  = YES;
-                    weakself.midImage.userInteractionEnabled =  NO;
-                    weakself.midImage.highlighted  = NO;
-                    weakself.TweeImage.userInteractionEnabled =  NO;
-                    weakself.TweeImage.highlighted  = NO;
-                    weakself.twoWayImage.userInteractionEnabled =  NO;
-                    weakself.twoWayImage.highlighted  = NO;
-                    weakself.coaxImage.userInteractionEnabled =  NO;
-                    weakself.coaxImage.highlighted  = NO;
+                    if ([DeviceToolShare isBH_A180A]) {
+                        if (F_R_count > 1) {
+                            if (weakself.customerCar.setUseImageType) {
+                                weakself.customerCar.setUseImageType(imageNone);
+                            }
+                        }else{
+                            weakself.woImage.userInteractionEnabled =  NO;
+                            weakself.woImage.highlighted  = NO;
+                            weakself.supWoImage.userInteractionEnabled =  YES;
+                            weakself.supWoImage.highlighted  = YES;
+                            weakself.midImage.userInteractionEnabled =  NO;
+                            weakself.midImage.highlighted  = NO;
+                            weakself.TweeImage.userInteractionEnabled =  NO;
+                            weakself.TweeImage.highlighted  = NO;
+                            weakself.twoWayImage.userInteractionEnabled =  NO;
+                            weakself.twoWayImage.highlighted  = NO;
+                            weakself.coaxImage.userInteractionEnabled =  NO;
+                            weakself.coaxImage.highlighted  = NO;
+                        }
+                    }else{
+                        if (F_R_count >= 1) {
+                            if (weakself.customerCar.setUseImageType) {
+                                weakself.customerCar.setUseImageType(imageNone);
+                            }
+                        }else{
+                            weakself.woImage.userInteractionEnabled =  NO;
+                            weakself.woImage.highlighted  = NO;
+                            weakself.supWoImage.userInteractionEnabled =  YES;
+                            weakself.supWoImage.highlighted  = YES;
+                            weakself.midImage.userInteractionEnabled =  NO;
+                            weakself.midImage.highlighted  = NO;
+                            weakself.TweeImage.userInteractionEnabled =  NO;
+                            weakself.TweeImage.highlighted  = NO;
+                            weakself.twoWayImage.userInteractionEnabled =  NO;
+                            weakself.twoWayImage.highlighted  = NO;
+                            weakself.coaxImage.userInteractionEnabled =  NO;
+                            weakself.coaxImage.highlighted  = NO;
+                        }
+                    }
                     
-//                    for (NSString *tagStr in seleArray) {
-//                        switch (tagStr.integerValue) {
-//
-//                            case 209:
-//                            {
-//                                weakself.coaxImage.userInteractionEnabled =  NO;
-//                                weakself.coaxImage.highlighted  = NO;
-//                            }
-//                                break;
-//                            case 210:
-//                            {
-//                                weakself.twoWayImage.userInteractionEnabled =  NO;
-//                                weakself.twoWayImage.highlighted  = NO;
-//                            }
-//                                break;
-//
-//                            default:
-//                                break;
-//                        }
-//                    }
                 }
-                
             }
         }];
         
@@ -912,299 +951,14 @@ static Output_SetingVC *_instance;
                         weakself.coaxImage.highlighted  = NO;
                     }
                     break;
-                case _F_none_WoMidTwCo2w:
-                {
-                    weakself.woImage.userInteractionEnabled =  YES;
-                    weakself.woImage.highlighted  = YES;
-                    weakself.supWoImage.userInteractionEnabled =  NO;
-                    weakself.supWoImage.highlighted  = NO;
-                    weakself.midImage.userInteractionEnabled =  YES;
-                    weakself.midImage.highlighted  = YES;
-                    weakself.TweeImage.userInteractionEnabled =  YES;
-                    weakself.TweeImage.highlighted  = YES;
-                    weakself.twoWayImage.userInteractionEnabled =  YES;
-                    weakself.twoWayImage.highlighted  = YES;
-                    weakself.coaxImage.userInteractionEnabled =  YES;
-                    weakself.coaxImage.highlighted  = YES;
-                }
-                    break;
-                case _F_none_Wo2w:
-                {
-                    weakself.woImage.userInteractionEnabled =  YES;
-                    weakself.woImage.highlighted  = YES;
-                    weakself.supWoImage.userInteractionEnabled =  NO;
-                    weakself.supWoImage.highlighted  = NO;
-                    weakself.midImage.userInteractionEnabled =  NO;
-                    weakself.midImage.highlighted  = NO;
-                    weakself.TweeImage.userInteractionEnabled =  NO;
-                    weakself.TweeImage.highlighted  = NO;
-                    weakself.twoWayImage.userInteractionEnabled =  YES;
-                    weakself.twoWayImage.highlighted  = YES;
-                    weakself.coaxImage.userInteractionEnabled =  NO;
-                    weakself.coaxImage.highlighted  = NO;
-                }
-                    break;
-                case _F_none_Wo2wCo:
-                {
-                    weakself.woImage.userInteractionEnabled =  YES;
-                    weakself.woImage.highlighted  = YES;
-                    weakself.supWoImage.userInteractionEnabled =  NO;
-                    weakself.supWoImage.highlighted  = NO;
-                    weakself.midImage.userInteractionEnabled =  NO;
-                    weakself.midImage.highlighted  = NO;
-                    weakself.TweeImage.userInteractionEnabled =  NO;
-                    weakself.TweeImage.highlighted  = NO;
-                    weakself.twoWayImage.userInteractionEnabled =  YES;
-                    weakself.twoWayImage.highlighted  = YES;
-                    weakself.coaxImage.userInteractionEnabled =  YES;
-                    weakself.coaxImage.highlighted  = YES;
-                }
-                    break;
-                case _F_none_WoCo:
-                {
-                    weakself.woImage.userInteractionEnabled =  YES;
-                    weakself.woImage.highlighted  = YES;
-                    weakself.supWoImage.userInteractionEnabled =  NO;
-                    weakself.supWoImage.highlighted  = NO;
-                    weakself.midImage.userInteractionEnabled =  NO;
-                    weakself.midImage.highlighted  = NO;
-                    weakself.TweeImage.userInteractionEnabled =  NO;
-                    weakself.TweeImage.highlighted  = NO;
-                    weakself.twoWayImage.userInteractionEnabled =  NO;
-                    weakself.twoWayImage.highlighted  = NO;
-                    weakself.coaxImage.userInteractionEnabled =  YES;
-                    weakself.coaxImage.highlighted  = YES;
-                }
-                    break;
-                case _F_Wo_MidTw2wCo:
-                {
-                    weakself.supWoImage.userInteractionEnabled =  NO;
-                    weakself.supWoImage.highlighted  = NO;
-                    weakself.woImage.userInteractionEnabled =  NO;
-                    weakself.woImage.highlighted  = NO;
-                    
-                    weakself.midImage.userInteractionEnabled =  YES;
-                    weakself.midImage.highlighted  = YES;
-                    weakself.TweeImage.userInteractionEnabled =  YES;
-                    weakself.TweeImage.highlighted  = YES;
-                    weakself.twoWayImage.userInteractionEnabled =  YES;
-                    weakself.twoWayImage.highlighted  = YES;
-                    weakself.coaxImage.userInteractionEnabled =  YES;
-                    weakself.coaxImage.highlighted  = YES;
-                    
-                }
-                    break;
-                case _F_none_WoMidTw:{
-                    weakself.supWoImage.userInteractionEnabled =  NO;
-                    weakself.supWoImage.highlighted  = NO;
-                    weakself.woImage.userInteractionEnabled =  YES;
-                    weakself.woImage.highlighted  = YES;
-                    
-                    weakself.midImage.userInteractionEnabled =  YES;
-                    weakself.midImage.highlighted  = YES;
-                    weakself.TweeImage.userInteractionEnabled =  YES;
-                    weakself.TweeImage.highlighted  = YES;
-                    weakself.twoWayImage.userInteractionEnabled =  NO;
-                    weakself.twoWayImage.highlighted  = NO;
-                    weakself.coaxImage.userInteractionEnabled =  NO;
-                    weakself.coaxImage.highlighted  = NO;
-                }
-                    break;
-                case _F_Wo_MidTw:{
-                    weakself.supWoImage.userInteractionEnabled =  NO;
-                    weakself.supWoImage.highlighted  = NO;
-                    weakself.woImage.userInteractionEnabled =  NO;
-                    weakself.woImage.highlighted  = NO;
-                    
-                    weakself.midImage.userInteractionEnabled =  YES;
-                    weakself.midImage.highlighted  = YES;
-                    weakself.TweeImage.userInteractionEnabled =  YES;
-                    weakself.TweeImage.highlighted  = YES;
-                    weakself.twoWayImage.userInteractionEnabled =  NO;
-                    weakself.twoWayImage.highlighted  = NO;
-                    weakself.coaxImage.userInteractionEnabled =  NO;
-                    weakself.coaxImage.highlighted  = NO;
-                }
-                    break;
-                case _F_Wo_2wCo:
-                case _R_none_Co2w:
-                case _Center_none_Co2w:
-                {
-                    weakself.supWoImage.userInteractionEnabled =  NO;
-                    weakself.supWoImage.highlighted  = NO;
-                    weakself.woImage.userInteractionEnabled =  NO;
-                    weakself.woImage.highlighted  = NO;
-                    
-                    weakself.midImage.userInteractionEnabled =  NO;
-                    weakself.midImage.highlighted  = NO;
-                    weakself.TweeImage.userInteractionEnabled =  NO;
-                    weakself.TweeImage.highlighted  = NO;
-                    weakself.twoWayImage.userInteractionEnabled =  YES;
-                    weakself.twoWayImage.highlighted  = YES;
-                    weakself.coaxImage.userInteractionEnabled =  YES;
-                    weakself.coaxImage.highlighted  = YES;
-                }
-                    break;
-                case _F_Wo_2w:
-                case _R_none_2w:
-                case _Center_none_2w:
-                {
-                    weakself.supWoImage.userInteractionEnabled =  NO;
-                    weakself.supWoImage.highlighted  = NO;
-                    weakself.woImage.userInteractionEnabled =  NO;
-                    weakself.woImage.highlighted  = NO;
-                    
-                    weakself.midImage.userInteractionEnabled =  NO;
-                    weakself.midImage.highlighted  = NO;
-                    weakself.TweeImage.userInteractionEnabled =  NO;
-                    weakself.TweeImage.highlighted  = NO;
-                    weakself.twoWayImage.userInteractionEnabled =  YES;
-                    weakself.twoWayImage.highlighted  = YES;
-                    weakself.coaxImage.userInteractionEnabled =  NO;
-                    weakself.coaxImage.highlighted  = NO;
-                    
-                }
-                    break;
-                case _F_Wo_Co:
-                case _R_none_Co:
-                {
-                    weakself.supWoImage.userInteractionEnabled =  NO;
-                    weakself.supWoImage.highlighted  = NO;
-                    weakself.woImage.userInteractionEnabled =  NO;
-                    weakself.woImage.highlighted  = NO;
-                    
-                    weakself.midImage.userInteractionEnabled =  NO;
-                    weakself.midImage.highlighted  = NO;
-                    weakself.TweeImage.userInteractionEnabled =  NO;
-                    weakself.TweeImage.highlighted  = NO;
-                    weakself.twoWayImage.userInteractionEnabled =  NO;
-                    weakself.twoWayImage.highlighted  = NO;
-                    weakself.coaxImage.userInteractionEnabled =  YES;
-                    weakself.coaxImage.highlighted  = YES;
-                    
-                }
-                    break;
-                case _F_Mid_WoTw:
-                {
-                    weakself.supWoImage.userInteractionEnabled =  NO;
-                    weakself.supWoImage.highlighted  = NO;
-                    weakself.woImage.userInteractionEnabled =  YES;
-                    weakself.woImage.highlighted  = YES;
-                    
-                    weakself.midImage.userInteractionEnabled =  NO;
-                    weakself.midImage.highlighted  = NO;
-                    weakself.TweeImage.userInteractionEnabled =  YES;
-                    weakself.TweeImage.highlighted  = YES;
-                    weakself.twoWayImage.userInteractionEnabled =  NO;
-                    weakself.twoWayImage.highlighted  = NO;
-                    weakself.coaxImage.userInteractionEnabled =  NO;
-                    weakself.coaxImage.highlighted  = NO;
-                    
-                }
-                    break;
-                case _F_Tw_WoMid:
-                {
-                    weakself.supWoImage.userInteractionEnabled =  NO;
-                    weakself.supWoImage.highlighted  = NO;
-                    weakself.woImage.userInteractionEnabled =  YES;
-                    weakself.woImage.highlighted  = YES;
-                    
-                    weakself.midImage.userInteractionEnabled =  YES;
-                    weakself.midImage.highlighted  = YES;
-                    weakself.TweeImage.userInteractionEnabled =  NO;
-                    weakself.TweeImage.highlighted  = NO;
-                    weakself.twoWayImage.userInteractionEnabled =  NO;
-                    weakself.twoWayImage.highlighted  = NO;
-                    weakself.coaxImage.userInteractionEnabled =  NO;
-                    weakself.coaxImage.highlighted  = NO;
-                    
-                }
-                    break;
-                case _F_TwMid_Wo:
-                case _F_Co_Wo:
-                case _F_2w_Wo:
-                {
-                    weakself.supWoImage.userInteractionEnabled =  NO;
-                    weakself.supWoImage.highlighted  = NO;
-                    weakself.woImage.userInteractionEnabled =  YES;
-                    weakself.woImage.highlighted  = YES;
-                    
-                    weakself.midImage.userInteractionEnabled =  NO;
-                    weakself.midImage.highlighted  = NO;
-                    weakself.TweeImage.userInteractionEnabled =  NO;
-                    weakself.TweeImage.highlighted  = NO;
-                    weakself.twoWayImage.userInteractionEnabled =  NO;
-                    weakself.twoWayImage.highlighted  = NO;
-                    weakself.coaxImage.userInteractionEnabled =  NO;
-                    weakself.coaxImage.highlighted  = NO;
-                }
-                    break;
-                case _F_WoMid_Tw:
-                {
-                    weakself.supWoImage.userInteractionEnabled =  NO;
-                    weakself.supWoImage.highlighted  = NO;
-                    weakself.woImage.userInteractionEnabled =  NO;
-                    weakself.woImage.highlighted  = NO;
-                    
-                    weakself.midImage.userInteractionEnabled =  NO;
-                    weakself.midImage.highlighted  = NO;
-                    weakself.TweeImage.userInteractionEnabled =  YES;
-                    weakself.TweeImage.highlighted  = YES;
-                    weakself.twoWayImage.userInteractionEnabled =  NO;
-                    weakself.twoWayImage.highlighted  = NO;
-                    weakself.coaxImage.userInteractionEnabled =  NO;
-                    weakself.coaxImage.highlighted  = NO;
-                    
-                }
-                    break;
-                case _F_WoTw_Mid:
-                {
-                    weakself.supWoImage.userInteractionEnabled =  NO;
-                    weakself.supWoImage.highlighted  = NO;
-                    weakself.woImage.userInteractionEnabled =  NO;
-                    weakself.woImage.highlighted  = NO;
-                    
-                    weakself.midImage.userInteractionEnabled =  YES;
-                    weakself.midImage.highlighted  = YES;
-                    weakself.TweeImage.userInteractionEnabled =  NO;
-                    weakself.TweeImage.highlighted  = NO;
-                    weakself.twoWayImage.userInteractionEnabled =  NO;
-                    weakself.twoWayImage.highlighted  = NO;
-                    weakself.coaxImage.userInteractionEnabled =  NO;
-                    weakself.coaxImage.highlighted  = NO;
-                    
-                }
-                    break;
-                case _Sub_none_Sub:
-                {
-                    weakself.supWoImage.userInteractionEnabled =  YES;
-                    weakself.supWoImage.highlighted  = YES;
-                    weakself.woImage.userInteractionEnabled =  NO;
-                    weakself.woImage.highlighted  = NO;
-                    
-                    weakself.midImage.userInteractionEnabled =  NO;
-                    weakself.midImage.highlighted  = NO;
-                    weakself.TweeImage.userInteractionEnabled =  NO;
-                    weakself.TweeImage.highlighted  = NO;
-                    weakself.twoWayImage.userInteractionEnabled =  NO;
-                    weakself.twoWayImage.highlighted  = NO;
-                    weakself.coaxImage.userInteractionEnabled =  NO;
-                    weakself.coaxImage.highlighted  = NO;
-                    
-                }
-                    break;
-                    
                 default:
                     break;
             }
-            
-            
         }];
         
         [self.customerCar showInView:self.showCarBackView withFrame:self.showCarBackView.bounds];
         self.customerCar.selectArea = selectAreaZero;
         [self.customerCar outPutSettingWithArr:DeviceToolShare.selectHornArray];
-//        self.customerCar.selectArea = selectAreaFL;
         [self.customerCar buttonAddPanges];
         self.customerCar.F_connectButton.enabled = NO;
         self.customerCar.R_connectButton.enabled = NO;

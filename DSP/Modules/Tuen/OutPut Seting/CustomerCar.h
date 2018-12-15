@@ -39,6 +39,8 @@ typedef NS_ENUM(NSInteger, CSQAreaType) {
     R_one,
     R_two,
     R_three,
+    SubWooferL,
+    SubWooferR,
 };
 
 

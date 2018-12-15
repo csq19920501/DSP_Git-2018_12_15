@@ -20,6 +20,24 @@
 - (IBAction)backClick:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
+- (IBAction)changeColor:(id)sender {
+    UIButton * but = (UIButton *)sender;
+    if (but.selected) {
+        return;
+    }
+    NSInteger tag = but.tag;
+    for (int j = 0; j < 4; j++) {
+        if(tag >= 501 + j * 10 && tag <= 505 + j * 10){
+            for (int i = 501 + j * 10; i <= 505 + j * 10; i++) {
+                UIButton *colorBut =(UIButton  *)[self.view viewWithTag:i];
+                colorBut.selected = NO;
+            }
+            but.selected = YES;
+        }
+    }
+    
+}
+
 - (IBAction)selectClick:(id)sender {
     UIButton *but = (UIButton *)sender;
 //    but.selected = !but.selected;

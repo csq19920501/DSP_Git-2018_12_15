@@ -187,6 +187,13 @@
             CGFloat gainA = sqrt(gain * gain);
             gainA = gainA/2.0;
             CGFloat bandX = model.bandX;
+        //原来0.3到20 改成 0.3到1的效果
+    if(q == 0.3){}
+    else if(q == 2){q = 1.1;}
+    else{
+        q = 0.3 + (7.0/17)*(q - 0.3);
+    }
+    
     
         if (q <= qPoint) {
             q = 0.6 + q/2.0;
@@ -317,44 +324,6 @@
 }
 
 - (void)drawRect:(CGRect)rect {
-    
-//    DISPATCH_ON_GROUP_THREAD((^{
-//        self.wigth = rect.size.width;
-//        self.height = rect.size.height;
-//
-////        CGContextRef cgctx=UIGraphicsGetCurrentContext();
-////        CGContextSetLineWidth(cgctx, 1.50f);
-////        CGContextSetStrokeColorWithColor(cgctx, [UIColor greenColor].CGColor);
-//        float y = 0.0;
-//        for(int x=0;x<rect.size.width;x++){
-//            y = [self changeViewWithX:x];
-//
-//            NSString *xStr = [NSString stringWithFormat:@"%d",x];
-//            NSString *yStr = [NSString stringWithFormat:@"%f",y];
-//            [rectArray addObject:@{xStr:yStr}];
-////            if (x == (int)self.selectBandX) {
-////                CGContextAddLineToPoint(cgctx,x,y);
-////                CGContextStrokePath(cgctx);
-////                CGContextMoveToPoint(cgctx,x,y);
-////
-////                CGContextSetLineWidth(cgctx, 2.5f);
-////                if (y > zeroHeight - 1) { //初始圆点停在 zeroHeight-1 的位置
-////                    CGContextAddEllipseInRect(cgctx, CGRectMake((x - 1), y-0.8, 2.5, 2.5));
-////                }else if ( y < zeroHeight-1){//初始圆点停在 zeroHeight-1 的位置
-////
-////                    CGContextAddEllipseInRect(cgctx, CGRectMake((x - 1), y -1.2 , 2.5, 2.5));
-////                }else{
-////                    CGContextAddEllipseInRect(cgctx, CGRectMake((x - 1), y-1.5, 2.5, 2.5));
-////                }
-////            }else{
-////                CGContextSetLineWidth(cgctx, 1.5f);
-////            }
-////
-////            CGContextAddLineToPoint(cgctx,x,y);
-////            CGContextStrokePath(cgctx);
-////            CGContextMoveToPoint(cgctx,x,y);
-//        }
-//        DISPATCH_ON_MAIN_THREAD(^{
             CGContextRef cgctx=UIGraphicsGetCurrentContext();
             CGContextSetLineWidth(cgctx, 1.50f);
             CGContextSetStrokeColorWithColor(cgctx, [UIColor greenColor].CGColor);
@@ -394,15 +363,6 @@
                 CGFloat y = yStr.floatValue;
                 [self drawLineX:x Y:y+1];
             }
-//        })
-    
-        //必须等上面绘制完成后才能绘制下面 所以不能放在一个循环里面
-        //        for(float x=0;x<rect.size.width;x++){
-        //            y = [self changeViewWithX:x];
-        //            //绘制直线区域
-        //            [self drawLineX:x Y:y+1];
-        //        }
-//    }))
 }
 //不需要创建路径
 -(void)drawLineX:(CGFloat)x Y:(CGFloat)y{
@@ -469,6 +429,13 @@
         }
         gainA = gainA/2.0;
         CGFloat bandX = eqBandModel.bandX;
+        
+        //原来0.3到20 改成 0.3到1的效果
+        if(q == 0.3){}
+        else if(q == 2){q = 1.1;}
+        else{
+            q = 0.3 + (7.0/17)*(q - 0.3);
+        }
     if (CsqDebug) {
         if (q <= qPoint) {
             CGFloat csqChangeZero = 6;
@@ -497,13 +464,7 @@
                     }
                 }else{
                     y = [self getY_fromX:x model:eqBandModel];
-//                    for (id object in eqBandModel.shelfArray) {
-//                        CGPoint retrievedPoint = CGPointFromString(object);
-//                        if (x == (int)retrievedPoint.x) {
-//                            y = retrievedPoint.y;
-//                            break;
-//                        }
-//                    }
+
                 }
             
             y = - y;
@@ -515,9 +476,7 @@
             }else if (q <= 2.4){
                 csqChangeZero = 59;
             }
-//            else if (q >= 3.0){
-//                csqChangeZero = 59;
-//            }
+
                 if (x < bandX - csqChangeZero) {
                     if (bandType == bandType_HSLF ) {
                         y = 0;
@@ -540,13 +499,10 @@
     }
     return  y ;
 }
-//#define originPoint[i] CGPointFromString([originPoint objectAtIndex:i]
-//void createCurve(CGPoint *originPoint,int originCount){
+
 -(instancetype)createCurveWith:(NSArray*)originPoint withCount:(int)originCount{
-//    NSMutableArray *pointArray = [NSMutableArray array];
+
     NSMutableDictionary *pointDictionary = [NSMutableDictionary dictionary];
-//    NSMutableArray *addArray = [NSMutableArray array];
-    //控制点收缩系数 ，经调试0.6较好，CvPoint是<a href="http://lib.csdn.net/base/opencv" class='replace_word' title="OpenCV知识库" target='_blank' style='color:#df3434; font-weight:bold;'>OpenCV</a>的，可自行定义结构体(x,y)
     float scale = 0.6;
     CGPoint midpoints[originCount];
     //生成中点
@@ -562,7 +518,7 @@
     //平移中点
     CGPoint extrapoints[2 * originCount];
     for(int i = 0 ;i < originCount ; i++){
-//        int nexti = (i + 1) % originCount;
+
         int backi = (i + originCount - 1) % originCount;
         
         CGPoint retrievedPoint = CGPointFromString([originPoint objectAtIndex:i]);

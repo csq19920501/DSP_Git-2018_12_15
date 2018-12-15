@@ -99,4 +99,8 @@ typedef NS_ENUM(NSInteger, DeviceType){
 @property(nonatomic,assign)INEQ_connectType analog3_4_connectType;
 @property(nonatomic,assign)INEQ_connectType analog5_6_connectType;
 @property(nonatomic,assign)INEQ_connectType diglital_r_l_connectType;
+
+//inputSettingSpdif  model
+@property(nonatomic,strong)id spdifInputModel;
+
 @end

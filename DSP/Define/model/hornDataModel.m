@@ -189,7 +189,9 @@
         self.digitalL = @"50";
         self.digitalR = @"50";
     }
-    if (hornType.intValue == 208) {
+    if (hornType.intValue == 208
+        || hornType.intValue == 213
+        || hornType.intValue == 214) {
         self.ch4Input = @"25";
         self.ch1Input = @"25";
         self.ch2Input = @"25";
@@ -221,7 +223,6 @@
 //    if (freq > 20000) {
 //        freq = 20000;
 //    }
-    
     return freq;
 }
 +(CGFloat)bandFromFreq:(CGFloat)freq{

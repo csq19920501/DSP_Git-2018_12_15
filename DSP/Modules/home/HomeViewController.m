@@ -99,7 +99,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 //    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(mainRefreshSucces) name:MainRefreshNotificaion object:nil];
-    
+     DeviceToolShare.deviceType = BH_A180A;
     
     KAddObserver(mainRefreshSucces,MainRefreshNotificaion,nil)
     KAddObserver(LinkSuccessNotificaion,LinkSuccessNotificaion,nil)
@@ -112,7 +112,14 @@
     }
     [SocketManagerShare setupSocket];
     
-    
+    //模拟数据
+    NSArray*  modelType = @[@"204",@"254",@"201",@"251",@"206",@"256",@"209",@"208"];
+    for (int i = 0; i < modelType.count; i++) {
+        hornDataModel *model = [[hornDataModel alloc]init];
+        model.hornType = modelType[i];
+        model.outCh = i + 1;
+        [DeviceToolShare.hornDataArray addObject:model];
+    }
     
 //    DeviceToolShare.eqF_isConnect = YES;
 //    DeviceToolShare.eqR_isConnect = YES;
