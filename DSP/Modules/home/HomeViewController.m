@@ -22,7 +22,6 @@
 #import "CYTabBarController.h"
 #import "CSQCircleView.h"
 #import "RootNavigationController.h"
-
 #import "SocketManager.h"
 #define hiddenAlpha  0.3
 #define diplayAlpha  1.0
@@ -128,6 +127,9 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    
+   
+    
 //    SDLog(@"viewWillAppear = %@",[SocketManager getBinaryByDecimal:7])
 
     if (!DeviceToolShare.ExternalRemodeControl) {
