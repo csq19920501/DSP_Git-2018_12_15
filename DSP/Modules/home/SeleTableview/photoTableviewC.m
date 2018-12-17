@@ -83,25 +83,27 @@
             break;
         case TUNE:
         {
+            if([DeviceToolShare isBH_A180A] && DeviceToolShare.SpdifOutBool){
+                titleArray = @[@"Input Level",@"Spdif Out",@"Output Setting",@"Advanced tuning"];
+                imageArray = @[@"input eq_normat",@"streaming_normat",@"output_normat",@"advanced tuning_normat"];
+                imageArrayHigth = @[@"input eq_selected",@"streaming_selected",@"output_selected",@"advanced tuning_selected"];
+                selectImageArray = @[@"input eq_selected",@"streaming_selected",@"output_selected",@"advanced tuning_selected"];
+            }else{
             titleArray = @[@"Input Level",@"Output Setting",@"Advanced tuning"];
             imageArray = @[@"input eq_normat",@"output_normat",@"advanced tuning_normat"];
             imageArrayHigth = @[@"input eq_selected",@"output_selected",@"advanced tuning_selected"];
             selectImageArray = @[@"input eq_selected",@"output_selected",@"advanced tuning_selected"];
+            }
         }
             break;
         case SETUP:
         {
-            if ([DeviceToolShare isBH_A180A] && DeviceToolShare.SpdifOutBool) {
-                titleArray = @[@"Manager Preset",@"Preferences",@"Spdif Out",@"Setup Wizard"];
-                imageArray = @[@"manager_normat",@"preferences_normat",@"streaming_normat",@"setup wizard_normat"];
-                imageArrayHigth = @[@"manager_selected",@"preferences_selected",@"streaming_selected",@"setup wizard_selected"];
-                selectImageArray = @[@"manager_selected",@"preferences_selected",@"streaming_selected",@"setup wizard_selected"];
-            }else{
+            
                 titleArray = @[@"Manager Preset",@"Preferences",@"Setup Wizard"];
                 imageArray = @[@"manager_normat",@"preferences_normat",@"setup wizard_normat"];
                 imageArrayHigth = @[@"manager_selected",@"preferences_selected",@"setup wizard_selected"];
                 selectImageArray = @[@"manager_selected",@"preferences_selected",@"setup wizard_selected"];
-            }
+            
            
         }
             break;

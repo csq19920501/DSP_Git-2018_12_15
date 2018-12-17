@@ -348,7 +348,7 @@
     }
     
     
-    weakself.seleHornModel = DeviceToolShare.spdifInputModel;
+//    weakself.seleHornModel = DeviceToolShare.spdifInputModel;
     
     NSArray *inputLevelArr = @[weakself.seleHornModel.ch1Input,weakself.seleHornModel.ch2Input,weakself.seleHornModel.ch3Input,weakself.seleHornModel.ch4Input,weakself.seleHornModel.ch5Input,weakself.seleHornModel.ch6Input,weakself.seleHornModel.digitalL,weakself.seleHornModel.digitalR,];
     

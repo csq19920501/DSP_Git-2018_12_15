@@ -221,12 +221,15 @@
                                                 vc.inputType = Dig;
                                             }
                                             [self.navigationController pushViewController:vc animated:YES];
-                                        }
-                                        if (indexRow == 1) {
-                                            Output_SetingVC *VC = [Output_SetingVC new];
+                                        }if (indexRow == 1) {
+                                            InputSettingSpdifVC *VC = [[InputSettingSpdifVC alloc]init];
                                             [self.navigationController pushViewController:VC animated:YES];
                                         }
                                         if (indexRow == 2) {
+                                            Output_SetingVC *VC = [Output_SetingVC new];
+                                            [self.navigationController pushViewController:VC animated:YES];
+                                        }
+                                        if (indexRow == 3) {
                                             [self gotoAdvanced];
                                         }
                                     }
@@ -235,9 +238,6 @@
                                         
                                         if (indexRow == 0) {
                                             ManagerPresetVC *VC = [[ManagerPresetVC alloc]init];
-                                            [self.navigationController pushViewController:VC animated:YES];
-                                        }if (indexRow == 2) {
-                                            InputSettingSpdifVC *VC = [[InputSettingSpdifVC alloc]init];
                                             [self.navigationController pushViewController:VC animated:YES];
                                         }
                                         if (indexRow == 1) {
