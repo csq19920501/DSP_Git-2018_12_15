@@ -109,7 +109,7 @@
         self.VCBottomConstraint.constant = 35.;
         self.naviBarHeight.constant = kTopHeight;
     }
-    [SocketManagerShare setupSocket];
+    
     
     //模拟数据
     NSArray*  modelType = @[@"204",@"254",@"201",@"251",@"206",@"256",@"209",@"208"];

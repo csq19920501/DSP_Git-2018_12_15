@@ -761,23 +761,18 @@ typedef NS_ENUM(NSInteger,CHEQSelectType) {
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.freqStep = 1;
-    
-    
     self.aaChartView.sinViewType = CheqViewType;
-    
     self.selectType = UnKnown;
-    
     if (isIphoneX) {
         self.VCBottomConstraint.constant = kTabBarHeight;
         self.naviBarHeight.constant = kTopHeight;
         self.csqCircleBottomConstraint.constant = 40.;
     }
-    
     KAddObserver(RemoveAllNotification, RemoveAllNotification, nil)
     KAddObserver(EQRefreshNotificaion, EQRefreshNotificaion, nil)
     if (SocketManagerShare.EQNeedRefresh && SocketManagerShare.isCurrentWIFI) {
         [UIUtil showProgressHUD:nil inView:self.view];
-        [SocketManagerShare sendTwoDataTipWithType:AckCurUiIdParameter withCount:0 withData0Int:1 withData1Int:4];
+//        [SocketManagerShare sendTwoDataTipWithType:AckCurUiIdParameter withCount:0 withData0Int:1 withData1Int:4];
     }else{
         [self refreshViews];
     }

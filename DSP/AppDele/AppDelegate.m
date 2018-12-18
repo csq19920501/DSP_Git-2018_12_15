@@ -24,9 +24,11 @@
     // Override point for customization after application launch.
     
 //    [NSThread sleepForTimeInterval:1];
+    [SocketManagerShare setupSocket];
     [self setGlobalStyle];
     [self setRootLoginVC];
     [self setupBugly];
+    
     return YES;
 }
 -(void)setRootLoginVC{

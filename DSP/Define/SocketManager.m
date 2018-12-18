@@ -24,15 +24,12 @@
 
 #define  SocketSendStr(X_type) [SocketManagerShare sendDataWithStr:X_type];
 
-@interface SocketManager ()
+@interface SocketManager ()<GCDAsyncSocketDelegate>
 {
     NSDictionary *_currentWifi;
     GCDAsyncSocket *_Socket;
     BOOL socketConnect;
-    
-    
     NSInteger InputAnalogPercenInt;
-    
 }
 
 @property(nonatomic,assign)BOOL MainSoundLevleNeedSecond;
@@ -119,7 +116,7 @@ static SocketManager *_sharedInstance;
     {
         _Socket = nil;
     }
-    _Socket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
+    _Socket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)];
     
     if ([self isCurrentWIFI]) {
         //连接服务端
@@ -439,46 +436,49 @@ static SocketManager *_sharedInstance;
             switch (data1) {
                 case 1:
                 {
-                    CSQ_DISPATCH_AFTER(6, ^{
-                        if (self.ChlevelNeedRefresh && self.AckCurUiIdParameterNeedSecond) {
+                    CSQ_DISPATCH_AFTER(2, ^{
+                        if (self.ChlevelNeedRefresh) {
                             if (count < maxCount){
                                 [self sendTwoDataTipWithType:mcuType withCount:count+1 withData0Int:data0 withData1Int:data1];
                             }else{
-                                DISPATCH_ON_MAIN_THREAD(^{
-                                    [UIUtil hideProgressHUD];
-                                })
+                                [_Socket disconnect];
                             }
                         }})
                 }
                     break;
                 case 2:
                 {
-                    CSQ_DISPATCH_AFTER(6, ^{
-                        if (self.ChDelayNeedRefresh && self.AckCurUiIdParameterNeedSecond) {
+                    CSQ_DISPATCH_AFTER(2, ^{
+                        if (self.ChDelayNeedRefresh ) {
                             if (count < maxCount){
                                 [self sendTwoDataTipWithType:mcuType withCount:count+1 withData0Int:data0 withData1Int:data1];
+                            }else{
+                                [_Socket disconnect];
                             }
                         }})
                 }
                     break;
                 case 3:
                 {
-                    CSQ_DISPATCH_AFTER(6, ^{
-                        if (self.CrossoverNeedRefresh
-                            && self.AckCurUiIdParameterNeedSecond) {
+                    CSQ_DISPATCH_AFTER(3, ^{
+                        if (self.CrossoverNeedRefresh) {
                             if (count < maxCount){
                                 [self sendTwoDataTipWithType:mcuType withCount:count+1 withData0Int:data0 withData1Int:data1];
+                            }else{
+                                [_Socket disconnect];
                             }
                         }})
                 }
                     break;
                 case 4:
                 {
-                    CSQ_DISPATCH_AFTER(6, ^{
-                        if (self.EQNeedRefresh
-                            && self.AckCurUiIdParameterNeedSecond) {
+                    CSQ_DISPATCH_AFTER(5, ^{
+                        if (self.EQNeedRefresh) {
+                            SocLog(@"socket 再次加载eq");
                             if (count < maxCount){
                                 [self sendTwoDataTipWithType:mcuType withCount:count+1 withData0Int:data0 withData1Int:data1];
+                            }else{
+                                [_Socket disconnect];
                             }
                         }})
                 }
@@ -535,7 +535,7 @@ static SocketManager *_sharedInstance;
 
             [SocketManagerShare sendDataWithStr:[NSString stringWithFormat:@"00%@00%@",LinkSuccessAdr,@"01"]];
             self.LinkSuccesNeedSecond = YES;
-            CSQ_DISPATCH_AFTER(8, ^{
+            CSQ_DISPATCH_AFTER(2, ^{
                 if(self.LinkSuccesNeedSecond){
                     if(count < maxCount) {
                         [self sendTipWithType:mcuType withCount:count+1];
@@ -603,7 +603,7 @@ static SocketManager *_sharedInstance;
         NSInteger allLength = [self numberWithHexString:byte2Str] + 3;
         if (self.readBuf.length >= allLength) {
             NSMutableData *msgData = [[self.readBuf subdataWithRange:NSMakeRange(0, allLength)] mutableCopy];
-            SDLog(@"_Socket 开始处理数据%@",[self hexadecimalString:msgData]);
+//            SDLog(@"_Socket 开始处理数据%@",[self hexadecimalString:msgData]);
             [self chuLiDataL:msgData];
             if (self.readBuf.length > allLength) {
                 self.readBuf = [NSMutableData dataWithData:[self.readBuf subdataWithRange:NSMakeRange(allLength, self.readBuf.length - allLength)]];
@@ -678,10 +678,11 @@ static SocketManager *_sharedInstance;
                 if (!self.LinkSuccesNeedSecond ) {
                     
                 }else{
-                    if (!self.AckCurUiIdParameterNeedSecond) {
-                        [self sendTwoDataTipWithType:AckCurUiIdParameter withCount:maxCount withData0Int:1 withData1Int:1];
+//                    if (!self.AckCurUiIdParameterNeedSecond) {
+                    SocLog(@"socket 主页面刷新成功");
+                    [self sendTwoDataTipWithType:AckCurUiIdParameter withCount:0 withData0Int:1 withData1Int:1];
 //                        self.AckCurUiIdParameterNeedSecond = NO;
-                    }
+//                    }
                     self.LinkSuccesNeedSecond = NO;
                 }
                 self.HomeNeedRefresh = NO;
@@ -1180,61 +1181,66 @@ static SocketManager *_sharedInstance;
                 }
             }
             else if (DataAdr == 0x24) {//
-                if (!self.AckCurUiIdParameterNeedSecond ) {
-                }else{
-                    self.AckCurUiIdParameterNeedSecond = NO;
-                }
+//                if (!self.AckCurUiIdParameterNeedSecond ) {
+//                }else{
+//                    self.AckCurUiIdParameterNeedSecond = NO;
+//                }
                 int data1 = ((const char *)[data bytes])[6];
                 switch (data1) {
                     case 1:
                     {
                         //主要信息加载完成后自动加载这里，尽量省去跳转页面时的加载等待
-                        SDLog(@"advanced Chlevel");
-                        self.ChlevelNeedRefresh = NO;
+                        SocLog(@"socket 加载完chlevel");
+                        
                         KPostNotification(ChevelRefreshNotificaion, nil)
                         DISPATCH_ON_MAIN_THREAD(^{
                             [UIUtil hideProgressHUD];
                         })
                         //Chlevel信息加载完成后自动加载ChDelay，尽量省去跳转页面时的加载等待
-                        if (self.ChDelayNeedRefresh) {
-                            [self sendTwoDataTipWithType:AckCurUiIdParameter withCount:maxCount withData0Int:1 withData1Int:2];
+                        if (self.ChDelayNeedRefresh && self.ChlevelNeedRefresh ) {
+                             SocLog(@"socket 加载完chlevel继续加载chdelay");
+                            [self sendTwoDataTipWithType:AckCurUiIdParameter withCount:0 withData0Int:1 withData1Int:2];
 
                         }
+                        self.ChlevelNeedRefresh = NO;
                     }
                         break;
                     case 2:
                     {
-                        SDLog(@"advanced chdelay");
-                        self.ChDelayNeedRefresh = NO;
+                        SocLog(@"socket 加载完chdelay");
+                        
                         KPostNotification(ChDelayRefreshNotificaion, nil)
                         DISPATCH_ON_MAIN_THREAD(^{
                             [UIUtil hideProgressHUD];
                         })
                         //ChDelay信息加载完成后自动加载Crossover，尽量省去跳转页面时的加载等待
-                        if (self.CrossoverNeedRefresh) {
-
-                            [self sendTwoDataTipWithType:AckCurUiIdParameter withCount:maxCount withData0Int:1 withData1Int:3];
+                        if (self.CrossoverNeedRefresh && self.ChDelayNeedRefresh) {
+                            SocLog(@"socket 加载完chdelay继续加载crossover");
+                            [self sendTwoDataTipWithType:AckCurUiIdParameter withCount:0 withData0Int:1 withData1Int:3];
 
                         }
+                        self.ChDelayNeedRefresh = NO;
                     }
                         break;
                     case 3:
                     {
-                        SDLog(@"advanced crossover");
-                        self.CrossoverNeedRefresh = NO;
+                        SocLog(@"socket 加载完crossover");
+                       
                         KPostNotification(CrossoverRefreshNotificaion, nil)
                         DISPATCH_ON_MAIN_THREAD(^{
                             [UIUtil hideProgressHUD];
                         })
                         //Crossover信息加载完成后自动加载EQ，尽量省去跳转页面时的加载等待
-                        if (self.EQNeedRefresh) {
-                            [self sendTwoDataTipWithType:AckCurUiIdParameter withCount:maxCount withData0Int:1 withData1Int:4];
+                        if (self.EQNeedRefresh && self.CrossoverNeedRefresh) {
+                            SocLog(@"socket 加载完crossover继续加载eq");
+                            [self sendTwoDataTipWithType:AckCurUiIdParameter withCount:0 withData0Int:1 withData1Int:4];
                         }
+                         self.CrossoverNeedRefresh = NO;
                     }
                         break;
                     case 4:
                     {
-                        SDLog(@"advanced eqneedrefresh");
+                        SocLog(@"socket 加载完eq");
                         self.EQNeedRefresh = NO;
                         KPostNotification(EQRefreshNotificaion, nil)
                     }

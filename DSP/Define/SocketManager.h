@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #define SocketManagerShare [SocketManager shareInstacne]
-#define maxCount 3
+#define maxCount 6
 #define afterRepeatTime 1
 
 //#define suiJiFaSong(X_type) NSTimeInterval timeIntervar = [[NSDate date] timeIntervalSince1970]*1000;if (timeIntervar - [CSQCircleView changeTimeInterval] >= 300) {[CSQCircleView setChangeTimeInterval: timeIntervar];X_type}
