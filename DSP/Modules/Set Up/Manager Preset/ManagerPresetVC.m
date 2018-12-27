@@ -41,7 +41,7 @@
     SocketManagerShare.ChDelayNeedRefresh = YES;
     SocketManagerShare.CrossoverNeedRefresh = YES;
     SocketManagerShare.EQNeedRefresh = YES;
-    [SocketManagerShare sendTwoDataTipWithType:AckCurUiIdParameter withCount:maxCount withData0Int:1 withData1Int:1];
+    [SocketManagerShare sendTwoDataTipWithType:AckCurUiIdParameter withCount:0 withData0Int:1 withData1Int:1];
 }
 
 - (IBAction)upClick:(id)sender {

@@ -79,7 +79,7 @@ static Output_SetingVC *_instance;
                 vc.selectCarArray = self.customerCar.selectButtonArray;
                 [DeviceToolShare saveInfo];
                 [self.navigationController pushViewController:vc animated:YES];
-            } withTitle:@"Output setup complete \n Please confirm go to input setting"];
+            } withTitle:@"Output setup complete \n Please confirm go to input seting"];
         }else{
             InputSettingVC *vc = [[InputSettingVC alloc]init];
             vc.selectCarArray = DeviceToolShare.selectHornArray;
@@ -92,7 +92,7 @@ static Output_SetingVC *_instance;
         [alert showInView:[AppData theTopView] withCancelTitle:@"Back" confirmTitle:@"OK" withCancelClick:nil
          withConfirmClick:^{
             SDLog(@"点击了OK");
-        } withTitle:@" Please confirm continue output setting"];
+        } withTitle:@" Please confirm continue output seting"];
     }
 }
 

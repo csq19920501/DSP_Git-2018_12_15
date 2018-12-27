@@ -69,6 +69,7 @@
 }
 -(void)ChevelRefreshNotificaion{
     DISPATCH_ON_MAIN_THREAD(^{
+        [UIUtil hideProgressHUD];
         [self.scrollerBackView removeAllSubviews];
         [self.CarScrView removeFromSuperview];
         [self setViews];
@@ -84,7 +85,7 @@
     KAddObserver(ChevelRefreshNotificaion, ChevelRefreshNotificaion, nil)
     if (SocketManagerShare.ChlevelNeedRefresh && SocketManagerShare.isCurrentWIFI) {
         [UIUtil showProgressHUD:nil inView:self.view];
-        [SocketManagerShare sendTwoDataTipWithType:AckCurUiIdParameter withCount:0 withData0Int:1 withData1Int:1];
+//        [SocketManagerShare sendTwoDataTipWithType:AckCurUiIdParameter withCount:0 withData0Int:1 withData1Int:1];
     }else{
         [self.scrollerBackView removeAllSubviews];
         [self.CarScrView removeFromSuperview];

@@ -66,7 +66,7 @@
             [tipStr appendString:[SocketManager stringWithHexNumber:data0]];
 //            [tipStr appendFormat:@"02"];
             [SocketManagerShare seneTipWithType:Reset_selectCrossover WithStr:tipStr Count:maxCount];
-    } withTitle:@"Reset will delect data ,Are you sure?"];
+    } withTitle:@"Reset will delece data ,Are you sure?"];
 }
 
 
@@ -251,9 +251,10 @@
     [self.csqCircleV setSendData:^(){
         self.stepLabel.isTapAction = YES;
     }];
-   
-
-    [self refreshViews];
+    DISPATCH_ON_MAIN_THREAD((^{
+        [UIUtil hideProgressHUD];
+        [self refreshViews];
+    }));
     
 }
 - (void)viewDidLoad {
@@ -269,7 +270,7 @@
     KAddObserver(CrossoverRefreshNotificaion, CrossoverRefreshNotificaion, nil)
     if (SocketManagerShare.CrossoverNeedRefresh && SocketManagerShare.isCurrentWIFI) {
         [UIUtil showProgressHUD:nil inView:self.view];
-        [SocketManagerShare sendTwoDataTipWithType:AckCurUiIdParameter withCount:0 withData0Int:1 withData1Int:3];
+//        [SocketManagerShare sendTwoDataTipWithType:AckCurUiIdParameter withCount:0 withData0Int:1 withData1Int:3];
     }else{
         [self refreshViews];
     }

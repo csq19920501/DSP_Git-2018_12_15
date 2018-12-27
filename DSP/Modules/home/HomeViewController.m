@@ -23,6 +23,7 @@
 #import "CSQCircleView.h"
 #import "RootNavigationController.h"
 #import "SocketManager.h"
+//#import "UDPServerCommunicationViewController.h"
 #define hiddenAlpha  0.3
 #define diplayAlpha  1.0
 @interface HomeViewController ()<UIGestureRecognizerDelegate>
@@ -98,7 +99,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 //    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(mainRefreshSucces) name:MainRefreshNotificaion object:nil];
-     DeviceToolShare.deviceType = BH_A180A;
+    DeviceToolShare.deviceType = BH_A180A;
     
     KAddObserver(mainRefreshSucces,MainRefreshNotificaion,nil)
     KAddObserver(LinkSuccessNotificaion,LinkSuccessNotificaion,nil)
@@ -215,25 +216,45 @@
                                         break;
                                     case TUNE:
                                     {
-                                        if (indexRow == 0) {
-                                            inputLevelVC *vc = [inputLevelVC new];
-                                            if (DeviceToolShare.DspMode == ANALOG) {
-                                                vc.inputType = Ana;
-                                            }else{
-                                                vc.inputType = Dig;
-                                            }
-                                            [self.navigationController pushViewController:vc animated:YES];
-                                        }if (indexRow == 1) {
-                                            InputSettingSpdifVC *VC = [[InputSettingSpdifVC alloc]init];
-                                            [self.navigationController pushViewController:VC animated:YES];
-                                        }
-                                        if (indexRow == 2) {
-                                            Output_SetingVC *VC = [Output_SetingVC new];
-                                            [self.navigationController pushViewController:VC animated:YES];
-                                        }
-                                        if (indexRow == 3) {
-                                            [self gotoAdvanced];
-                                        }
+                                         if([DeviceToolShare isBH_A180A] && DeviceToolShare.SpdifOutBool){
+                                             if (indexRow == 0) {
+                                                 inputLevelVC *vc = [inputLevelVC new];
+                                                 if (DeviceToolShare.DspMode == ANALOG) {
+                                                     vc.inputType = Ana;
+                                                 }else{
+                                                     vc.inputType = Dig;
+                                                 }
+                                                 [self.navigationController pushViewController:vc animated:YES];
+                                             }if (indexRow == 1) {
+                                                 InputSettingSpdifVC *VC = [[InputSettingSpdifVC alloc]init];
+                                                 [self.navigationController pushViewController:VC animated:YES];
+                                             }
+                                             if (indexRow == 2) {
+                                                 Output_SetingVC *VC = [Output_SetingVC new];
+                                                 [self.navigationController pushViewController:VC animated:YES];
+                                             }
+                                             if (indexRow == 3) {
+                                                 [self gotoAdvanced];
+                                             }
+                                         }else{
+                                             if (indexRow == 0) {
+                                                 inputLevelVC *vc = [inputLevelVC new];
+                                                 if (DeviceToolShare.DspMode == ANALOG) {
+                                                     vc.inputType = Ana;
+                                                 }else{
+                                                     vc.inputType = Dig;
+                                                 }
+                                                 [self.navigationController pushViewController:vc animated:YES];
+                                             }
+                                             if (indexRow == 1) {
+                                                 Output_SetingVC *VC = [Output_SetingVC new];
+                                                 [self.navigationController pushViewController:VC animated:YES];
+                                             }
+                                             if (indexRow == 2) {
+                                                 [self gotoAdvanced];
+                                             }
+                                         }
+                                        
                                     }
                                         break;
                                     case  SETUP:{
@@ -242,6 +263,10 @@
                                             ManagerPresetVC *VC = [[ManagerPresetVC alloc]init];
                                             [self.navigationController pushViewController:VC animated:YES];
                                         }
+//                                        if (indexRow == 2){
+//                                             UDPServerCommunicationViewController *VC = [[UDPServerCommunicationViewController alloc]init];
+//                                            [self.navigationController pushViewController:VC animated:YES];
+//                                        }
                                         if (indexRow == 1) {
                                             PreferencesVC *VC = [[PreferencesVC alloc]init];
                                             [VC setClickButton:^(PreferenceButtonType preferenceType,BOOL isFirst){

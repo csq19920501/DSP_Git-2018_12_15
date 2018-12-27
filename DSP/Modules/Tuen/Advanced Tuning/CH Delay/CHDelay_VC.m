@@ -420,6 +420,7 @@ typedef NS_ENUM(NSInteger,ChdelayNowChangeType) {
 }
 -(void)ChDelayRefreshNotificaion{
     DISPATCH_ON_MAIN_THREAD(^{
+        [UIUtil hideProgressHUD];
         [self refreshViews];
     })
 }
@@ -453,7 +454,7 @@ typedef NS_ENUM(NSInteger,ChdelayNowChangeType) {
         
     if (SocketManagerShare.ChDelayNeedRefresh && SocketManagerShare.isCurrentWIFI) {
         [UIUtil showProgressHUD:nil inView:self.view];
-        [SocketManagerShare sendTwoDataTipWithType:AckCurUiIdParameter withCount:0 withData0Int:1 withData1Int:2];
+//        [SocketManagerShare sendTwoDataTipWithType:AckCurUiIdParameter withCount:0 withData0Int:1 withData1Int:2];
     }else{
          [self refreshViews];
     }

@@ -124,7 +124,7 @@ static SocketManager *_sharedInstance;
         [_Socket connectToHost:self.server onPort:self.port error:&error];
         if (!error){
             SDLog(@"_Socket 本地socket连接服务端socket成功");
-            [_Socket readDataWithTimeout:-1 tag:0];
+//            [_Socket readDataWithTimeout:-1 tag:0];
             return YES;
         }else
         {
@@ -145,7 +145,7 @@ static SocketManager *_sharedInstance;
             [_Socket connectToHost:self.server onPort:self.port error:&error];
             if (!error){
                 SDLog(@"_Socket 本地socket连接服务端socket成功");
-                [_Socket readDataWithTimeout:-1 tag:0];
+//                [_Socket readDataWithTimeout:-1 tag:0];
             }else
             {
                 SDLog(@"_Socket error--%@",error);
@@ -161,7 +161,7 @@ static SocketManager *_sharedInstance;
     self.readBuf = [[NSMutableData alloc]init];
     
     socketConnect = YES;
-    [_Socket readDataWithTimeout:-1 tag:0];
+    [_Socket readDataWithTimeout:2 tag:0];
     
     KPostNotification(LinkSuccessNotificaion, nil)
     CSQ_DISPATCH_AFTER(0.5,^{
@@ -193,7 +193,6 @@ static SocketManager *_sharedInstance;
 //    [_Socket readDataWithTimeout:5 buffer:[NSMutableData new] bufferOffset:0 tag:tag];
     [_Socket readDataWithTimeout:-1 tag:0];
 }
-
 #pragma mark sendData
 //按照协议拼装部分指令
 -(void)sendDataWithStr:(NSString*)str{
@@ -436,7 +435,7 @@ static SocketManager *_sharedInstance;
             switch (data1) {
                 case 1:
                 {
-                    CSQ_DISPATCH_AFTER(2, ^{
+                    CSQ_DISPATCH_AFTER(5, ^{
                         if (self.ChlevelNeedRefresh) {
                             if (count < maxCount){
                                 [self sendTwoDataTipWithType:mcuType withCount:count+1 withData0Int:data0 withData1Int:data1];
@@ -448,7 +447,7 @@ static SocketManager *_sharedInstance;
                     break;
                 case 2:
                 {
-                    CSQ_DISPATCH_AFTER(2, ^{
+                    CSQ_DISPATCH_AFTER(5, ^{
                         if (self.ChDelayNeedRefresh ) {
                             if (count < maxCount){
                                 [self sendTwoDataTipWithType:mcuType withCount:count+1 withData0Int:data0 withData1Int:data1];
@@ -460,7 +459,7 @@ static SocketManager *_sharedInstance;
                     break;
                 case 3:
                 {
-                    CSQ_DISPATCH_AFTER(3, ^{
+                    CSQ_DISPATCH_AFTER(5, ^{
                         if (self.CrossoverNeedRefresh) {
                             if (count < maxCount){
                                 [self sendTwoDataTipWithType:mcuType withCount:count+1 withData0Int:data0 withData1Int:data1];
@@ -472,9 +471,10 @@ static SocketManager *_sharedInstance;
                     break;
                 case 4:
                 {
-                    CSQ_DISPATCH_AFTER(5, ^{
+//                    [_Socket readDataWithTimeout:3 tag:0];
+                    CSQ_DISPATCH_AFTER(12, ^{
                         if (self.EQNeedRefresh) {
-                            SocLog(@"socket 再次加载eq");
+//                            SocLog(@"socket 再次加载eq");
                             if (count < maxCount){
                                 [self sendTwoDataTipWithType:mcuType withCount:count+1 withData0Int:data0 withData1Int:data1];
                             }else{
@@ -569,8 +569,6 @@ static SocketManager *_sharedInstance;
             AfrerIfNeedRepeat(self.MaxOutputLevelNeedSecond)
         }
             break;
-        
-            
         default:
             break;
     }
@@ -581,6 +579,7 @@ static SocketManager *_sharedInstance;
 //接收服务器传过来的数据
 - (void)socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag
 {
+    [_Socket readDataWithTimeout:-1 tag:0];
     [self.readBuf appendData:data];
     while (self.readBuf.length >= 8) {
         NSMutableData *headData = [[self.readBuf subdataWithRange:NSMakeRange(0, 2)] mutableCopy];
@@ -613,7 +612,7 @@ static SocketManager *_sharedInstance;
             
         }else{
             //缓存区内数据包不是完整的，再次从服务器获取数据，中断while循环
-            [_Socket readDataWithTimeout:-1 tag:0];
+           
             break;
         }
     }
@@ -679,7 +678,7 @@ static SocketManager *_sharedInstance;
                     
                 }else{
 //                    if (!self.AckCurUiIdParameterNeedSecond) {
-                    SocLog(@"socket 主页面刷新成功");
+//                    SocLog(@"socket 主页面刷新成功");
                     [self sendTwoDataTipWithType:AckCurUiIdParameter withCount:0 withData0Int:1 withData1Int:1];
 //                        self.AckCurUiIdParameterNeedSecond = NO;
 //                    }
@@ -1190,15 +1189,13 @@ static SocketManager *_sharedInstance;
                     case 1:
                     {
                         //主要信息加载完成后自动加载这里，尽量省去跳转页面时的加载等待
-                        SocLog(@"socket 加载完chlevel");
+//                        SocLog(@"socket 加载完chlevel");
                         
                         KPostNotification(ChevelRefreshNotificaion, nil)
-                        DISPATCH_ON_MAIN_THREAD(^{
-                            [UIUtil hideProgressHUD];
-                        })
+
                         //Chlevel信息加载完成后自动加载ChDelay，尽量省去跳转页面时的加载等待
                         if (self.ChDelayNeedRefresh && self.ChlevelNeedRefresh ) {
-                             SocLog(@"socket 加载完chlevel继续加载chdelay");
+//                             SocLog(@"socket 加载完chlevel继续加载chdelay");
                             [self sendTwoDataTipWithType:AckCurUiIdParameter withCount:0 withData0Int:1 withData1Int:2];
 
                         }
@@ -1207,15 +1204,13 @@ static SocketManager *_sharedInstance;
                         break;
                     case 2:
                     {
-                        SocLog(@"socket 加载完chdelay");
+//                        SocLog(@"socket 加载完chdelay");
                         
                         KPostNotification(ChDelayRefreshNotificaion, nil)
-                        DISPATCH_ON_MAIN_THREAD(^{
-                            [UIUtil hideProgressHUD];
-                        })
+                        
                         //ChDelay信息加载完成后自动加载Crossover，尽量省去跳转页面时的加载等待
                         if (self.CrossoverNeedRefresh && self.ChDelayNeedRefresh) {
-                            SocLog(@"socket 加载完chdelay继续加载crossover");
+//                            SocLog(@"socket 加载完chdelay继续加载crossover");
                             [self sendTwoDataTipWithType:AckCurUiIdParameter withCount:0 withData0Int:1 withData1Int:3];
 
                         }
@@ -1224,15 +1219,13 @@ static SocketManager *_sharedInstance;
                         break;
                     case 3:
                     {
-                        SocLog(@"socket 加载完crossover");
+//                        SocLog(@"socket 加载完crossover");
                        
                         KPostNotification(CrossoverRefreshNotificaion, nil)
-                        DISPATCH_ON_MAIN_THREAD(^{
-                            [UIUtil hideProgressHUD];
-                        })
+                        
                         //Crossover信息加载完成后自动加载EQ，尽量省去跳转页面时的加载等待
                         if (self.EQNeedRefresh && self.CrossoverNeedRefresh) {
-                            SocLog(@"socket 加载完crossover继续加载eq");
+//                            SocLog(@"socket 加载完crossover继续加载eq");
                             [self sendTwoDataTipWithType:AckCurUiIdParameter withCount:0 withData0Int:1 withData1Int:4];
                         }
                          self.CrossoverNeedRefresh = NO;
@@ -1240,7 +1233,7 @@ static SocketManager *_sharedInstance;
                         break;
                     case 4:
                     {
-                        SocLog(@"socket 加载完eq");
+//                        SocLog(@"socket 加载完eq");
                         self.EQNeedRefresh = NO;
                         KPostNotification(EQRefreshNotificaion, nil)
                     }

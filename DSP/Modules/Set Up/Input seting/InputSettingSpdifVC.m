@@ -328,8 +328,7 @@
             
             weakself.right2Label.text = [NSString stringWithFormat:@"%@ CH%d",titleStr,(int)weakself.seleHornModel.outCh];
         }];
-        
-        
+
     }))
 }
 -(void)demoSeleModle:(int )tag{

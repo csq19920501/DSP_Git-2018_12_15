@@ -136,7 +136,7 @@ typedef NS_ENUM(NSInteger,CHEQSelectType) {
         }
         UIButton *bandButton = (UIButton *)[self.view viewWithTag:101];
         [self changeSelectType:bandButton];
-    } withTitle:@"Reset will delect data ,Are you sure?"];
+    } withTitle:@"Reset will delece data ,Are you sure?"];
 }
 
 - (IBAction)hornClick:(id)sender {

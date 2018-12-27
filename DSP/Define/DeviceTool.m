@@ -153,8 +153,9 @@ static DeviceTool *_deviceTool;
 -(void)setDeviceType:(DeviceType )modeType{
     _deviceType = modeType;
     if(modeType == BH_A180A){
-        
         self.SpdifOutBool = YES;
+    }else{
+        self.SpdifOutBool = NO;
     }
 }
 @end

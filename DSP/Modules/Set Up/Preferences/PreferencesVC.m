@@ -170,6 +170,13 @@
         UIButton *extrnalButton = (UIButton *)[self.view viewWithTag:103];
         extrnalButton.selected = YES;
     }
+    if (DeviceToolShare.SpdifOutBool) {
+        UIButton *extrnalButton = (UIButton *)[self.view viewWithTag:104];
+        extrnalButton.selected = YES;
+    }else {
+        UIButton *extrnalButton = (UIButton *)[self.view viewWithTag:204];
+        extrnalButton.selected = YES;
+    }
     
     self.appVersion.text = [NSString stringWithFormat:@"App Version: %@",appMPVersion];
     self.mcuVersion.text = [NSString stringWithFormat:@"Mcu Version: test%ld.%ld",DeviceToolShare.mcuVersion/10,DeviceToolShare.mcuVersion%10];

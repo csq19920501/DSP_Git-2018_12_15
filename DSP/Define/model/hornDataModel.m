@@ -8,7 +8,7 @@
 
 #import "hornDataModel.h"
 #include <math.h>
-#define Peq_Q 3.0
+#define Peq_Q 0.3
 #define Hslf_Q 0.7
 #define Lslf_Q 0.7
 @implementation hornDataModel
