@@ -110,7 +110,7 @@ typedef NS_ENUM(NSInteger,CHEQSelectType) {
                 data0 = data0 + pow(2,model2.outCh - 1);
             }
             NSMutableString *tipStr = [NSMutableString string];
-            [tipStr appendFormat:@"00%@00",ResetSelectEQ];
+            [tipStr appendFormat:@"00%@",ResetSelectEQ];
             [tipStr appendString:[SocketManager stringWithHexNumber:data0]];
             [tipStr appendFormat:@"02"];
             [SocketManagerShare seneTipWithType:Reset_selectEQ WithStr:tipStr Count:maxCount];
@@ -129,7 +129,7 @@ typedef NS_ENUM(NSInteger,CHEQSelectType) {
                 data0 = data0 + pow(2,model2.outCh - 1);
             }
             NSMutableString *tipStr = [NSMutableString string];
-            [tipStr appendFormat:@"00%@00",ResetSelectEQ];
+            [tipStr appendFormat:@"00%@",ResetSelectEQ];
             [tipStr appendString:[SocketManager stringWithHexNumber:data0]];
             [tipStr appendFormat:@"01"];
             [SocketManagerShare seneTipWithType:Reset_selectEQ WithStr:tipStr Count:maxCount];
