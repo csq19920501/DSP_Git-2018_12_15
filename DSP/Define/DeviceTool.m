@@ -158,4 +158,6 @@ static DeviceTool *_deviceTool;
         self.SpdifOutBool = NO;
     }
 }
+
+
 @end

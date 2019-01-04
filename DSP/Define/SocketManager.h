@@ -25,7 +25,13 @@ static NSString *const ChDelayRefreshNotificaion = @"ChDelayRefreshNotificaion";
 static NSString *const CrossoverRefreshNotificaion = @"CrossoverRefreshNotificaion";
 static NSString *const EQRefreshNotificaion = @"EQRefreshNotificaion";
 
-
+static NSString *const InputLevel1 = @"InputLevel1";
+static NSString *const InputLevel2 = @"InputLevel2";
+static NSString *const InputLevel3 = @"InputLevel3";
+static NSString *const InputLevel4 = @"InputLevel4";
+static NSString *const MainLevel = @"MainLevel";
+static NSString *const SubLevel = @"SubLevel";
+static NSString *const DSPMune = @"DSPMune";
 #define MainSoundAdr @"00"
 #define MainMuteAdr @"01"
 #define SUBSoundAdr @"02"

@@ -271,6 +271,43 @@
     }
 
 }
+-(void)setLevelNoNetwork:(CGFloat)level {
+    if (level < 1) {
+        level = 0.0;
+        _bgImage.image =  [UIImage imageNamed:@"volume_show_1.png"];
+        _rotateImage.image = [UIImage imageNamed:@"volume_normat.png"];
+        _currentLevel = level;
+    }else if (level > (_MainLevel - 1 + 0.5)) {
+        level = _MainLevel;
+        _currentLevel = level;
+        
+        _bgImage.image =  [UIImage imageNamed:@"volume_show_3.png"];
+        //            _rotateImage.image = [UIImage imageNamed:@"volume_selected.png"];
+    }else{
+        _currentLevel = level;
+        
+        _bgImage.image =  [UIImage imageNamed:@"volume_show_2.png"];
+        //            _rotateImage.image = [UIImage imageNamed:@"volume_selected.png"];
+    }
+    //        self.MainLevelLabel.text = [NSString stringWithFormat:@"%d",(int)level];
+    
+    CGFloat progressValue = level/_MainLevel;
+    
+    if (progressValue < 0.02) {
+        progressValue = 0.0;
+    }
+    if (progressValue > 0.99) {
+        progressValue = 1.0;
+    }
+    [self setProgressNoNetwork:progressValue];
+    
+    [_rotateImage setTransform:CGAffineTransformRotate([_rotateImage transform],(MainStopAngle * level/_MainLevel - MainCurrentAngle) * (M_PI/180.0))];
+    MainCurrentAngle = MainStopAngle * level/_MainLevel;
+    if (self.valueChange) {
+        self.valueChange(level);
+    }
+    
+}
 //因为设置频率时，最大值时不能调整频率所以特意增加一个方法
 -(void)setCrossLevel:(CGFloat)level {
     if (level < 1) {
@@ -485,6 +522,53 @@
     })
 }
 
+- (void)setProgressNoNetwork:(CGFloat)progress {
+    if (isNotFirst) {
+        if (_progress != 0) {
+            _rotateImage.image = [UIImage imageNamed:@"volume_selected.png"];
+        }
+        _fillColor = [UIColor greenColor];
+        [self drowProgress];
+    }
+    BOOL isNotFirstCopy = isNotFirst;
+    //    NSLog(@"isNotFirstCopy = %d",isNotFirstCopy);
+    
+    isNotFirst = YES;
+    
+    _progress = progress;
+    [self setProgressAnimation:YES];
+    
+    
+    
+    self.changLongTimes++;
+    long long a = self.changLongTimes;
+    MPWeakSelf(self)
+    CSQ_DISPATCH_AFTER(2.0,^{
+        //        NSLog(@"++++++++++a = %lld weakself == %lld",a,weakself.changLongTimes);
+        if (a == self.changLongTimes) {
+            weakself.fillColor = [UIColor whiteColor];
+            [weakself drowProgress];
+            [weakself createAnimation];
+            [weakself circleAnimation];
+            //            NSLog(@"++++++++++CSQ_DISPATCH_AFTER ");
+            weakself.rotateImage.image = [UIImage imageNamed:@"volume_normat.png"];
+            if (self.valueChangeEnd) {
+                self.valueChangeEnd();
+            }
+        }
+    })
+    
+//    CSQ_DISPATCH_AFTER(0.2,^{
+//        if (a == self.changLongTimes) {
+//            if (isNotFirstCopy) {
+//                //                NSLog(@"isNotFirstCopy CSQ_DISPATCH_AFTER= %d",isNotFirstCopy);
+//                if (self.sendData) {
+//                    self.sendData();
+//                }
+//            }
+//        }
+//    })
+}
 - (void)setProgressAnimation:(BOOL)animation {
 //    if (_progress == lastProgress) {
 //        return;

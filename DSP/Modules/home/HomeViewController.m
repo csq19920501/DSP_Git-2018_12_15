@@ -31,6 +31,8 @@
     CGFloat MainStartAngle;
     CGFloat MainStopAngle;
     CGFloat MainCurrentAngle;
+    long mainLevelCount;
+    long subLevelCount;
 }
 @property (weak, nonatomic) IBOutlet UIButton *modeBackButton;
 @property (weak, nonatomic) IBOutlet UIButton *tuneBackButton;
@@ -91,18 +93,72 @@
        [self refreshMainAndSUBlevel];
         [UIUtil hideProgressHUD];
         self.MuneButtom.selected = DeviceToolShare.mune;
+        KAddObserver(MainLevel,MainLevel,nil)
+        KAddObserver(SubLevel,SubLevel,nil)
+        KAddObserver(DSPMune,DSPMune,nil)
     })
     
 
 }
+-(void)DSPMune{
+    DISPATCH_ON_MAIN_THREAD(^{
+        self.MuneButtom.selected = DeviceToolShare.mune;
+    })
+}
+-(void)MainLevel{
+//    [self.MainLevelView setSendData:^(){
+//    }];
+//    mainLevelCount ++;
+    DISPATCH_ON_MAIN_THREAD(^{
+        [self.MainLevelView setLevelNoNetwork:DeviceToolShare.MainLevel];
+    })
+//    long main = mainLevelCount;
+//    CSQ_DISPATCH_AFTER(0.2, ^{
+//        if (main == self->mainLevelCount) {
+//            [self.MainLevelView setSendData:^(){
+//                SDLog(@"MainLevel接收到通知后恢复发送数据功能");
+//                [SocketManagerShare sendTipWithType:MainSoundLevle withCount:maxCount];
+//            }];
+//        }
+//    })
+}
+-(void)SubLevel{
+//    [self.SUBLevelView setSendData:^(){
+//    }];
+//    subLevelCount ++;
+     DISPATCH_ON_MAIN_THREAD(^{
+         [self.SUBLevelView setLevelNoNetwork:DeviceToolShare.SUBLevel];
+     })
+//    long sub = subLevelCount;
+//    CSQ_DISPATCH_AFTER(0.2, ^{
+//        if (sub == self->subLevelCount) {
+//            [self.SUBLevelView setSendData:^(){
+//                SDLog(@"接收到通知后恢复发送数据功能");
+//                [SocketManagerShare sendTipWithType:SUBSoundLevle withCount:maxCount];
+//            }];
+//        }
+//
+//    })
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
+    mainLevelCount = 0;
+    subLevelCount = 0;
     // Do any additional setup after loading the view from its nib.
 //    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(mainRefreshSucces) name:MainRefreshNotificaion object:nil];
     DeviceToolShare.deviceType = BH_A180A;
-    
     KAddObserver(mainRefreshSucces,MainRefreshNotificaion,nil)
     KAddObserver(LinkSuccessNotificaion,LinkSuccessNotificaion,nil)
+    
+//    [[NSNotificationCenter defaultCenter]addObserverForName:MainLevel object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+//
+//                 }];
+    
+//    [[NSNotificationCenter defaultCenter]addObserverForName:SubLevel object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+//
+//
+//    }];
+    
     
     [self setBottomButtonAndCSQProgress];
     
@@ -150,23 +206,23 @@
     }
      self.MuneButtom.selected = DeviceToolShare.mune;
     
-    [self.SUBLevelView setSendData:^(){
-    }];
+//    [self.SUBLevelView setSendData:^(){
+//    }];
     if (DeviceToolShare.SUBLevel != self.SUBLevelView.currentLevel) {
-        [self.SUBLevelView setLevel:DeviceToolShare.SUBLevel];
+        [self.SUBLevelView setLevelNoNetwork:DeviceToolShare.SUBLevel];
     }
 
-    CSQ_DISPATCH_AFTER(0.5, ^{
-        [self.SUBLevelView setSendData:^(){
-            [SocketManagerShare sendTipWithType:SUBSoundLevle withCount:0];
-            for (hornDataModel *hornModel in DeviceToolShare.hornDataArray) {
-                if (hornModel.outCh == 8) {
-                    hornModel.CHLevelFloat = DeviceToolShare.SUBLevel;
-                    //Nslog(@"%f = slider",hornModel.CHLevelFloat);
-                }
-            }
-        }];
-    })
+//    CSQ_DISPATCH_AFTER(0.5, ^{
+//        [self.SUBLevelView setSendData:^(){
+//            [SocketManagerShare sendTipWithType:SUBSoundLevle withCount:maxCount];
+//            for (hornDataModel *hornModel in DeviceToolShare.hornDataArray) {
+//                if (hornModel.outCh == 8) {
+//                    hornModel.CHLevelFloat = DeviceToolShare.SUBLevel;
+//                    //Nslog(@"%f = slider",hornModel.CHLevelFloat);
+//                }
+//            }
+//        }];
+//    })
     self.navigationController.interactivePopGestureRecognizer.enabled = YES;
 }
 -(void)setBottomButtonAndCSQProgress{
@@ -196,7 +252,6 @@
                         }
                     }
                 }
-                
 
                             photoTableviewC * photoTableview = [[photoTableviewC alloc]initWithType:clickCellType];
                             [photoTableview showInView:[AppData theTopView]];
@@ -327,7 +382,7 @@
     [self.MainLevelView setValueChangeEnd:^(){
         self.MainLevelLabel.textColor = [UIColor whiteColor];
     }];
-    [self.MainLevelView setLevel:DeviceToolShare.MainLevel];
+    [self.MainLevelView setLevelNoNetwork:DeviceToolShare.MainLevel];
     
     
     self.SUBLevelView.MainLevel = 120;
@@ -343,23 +398,24 @@
     [self.SUBLevelView setValueChangeEnd:^(){
         self.SUBLevelLabel.textColor = [UIColor whiteColor];
     }];
-    [self.SUBLevelView setLevel:DeviceToolShare.SUBLevel];
+    [self.SUBLevelView setLevelNoNetwork:DeviceToolShare.SUBLevel];
     
-    CSQ_DISPATCH_AFTER(0.5, ^{
+//    CSQ_DISPATCH_AFTER(0.5, ^{
         [self.MainLevelView setSendData:^(){
             [SocketManagerShare sendTipWithType:MainSoundLevle withCount:0];
         }];
         //转移到viewwillappear
-//        [self.SUBLevelView setSendData:^(){
-//            [SocketManagerShare sendTipWithType:SUBSoundLevle withCount:0];
-//
-//            for (hornDataModel *hornModel in DeviceToolShare.hornDataArray) {
-//                if (hornModel.outCh == 8) {
-//                    hornModel.CHLevelFloat = DeviceToolShare.SUBLevel;
-//                }
-//            }
-//        }];
-    })
+        [self.SUBLevelView setSendData:^(){
+            [SocketManagerShare sendTipWithType:SUBSoundLevle withCount:0];
+
+            for (hornDataModel *hornModel in DeviceToolShare.hornDataArray) {
+                if (hornModel.outCh == 8) {
+                    hornModel.CHLevelFloat = DeviceToolShare.SUBLevel;
+                }
+            }
+        }];
+//    })
+    
 }
 -(void)gotoAdvanced{
     CYTabBarController *AdvancedTarbar = [[CYTabBarController alloc]init];

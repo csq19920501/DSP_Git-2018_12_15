@@ -169,11 +169,11 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 
 #ifdef DEBUG
-//#   define SDLog(fmt, ...) {NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);}
+#   define SDLog(fmt, ...) {NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);}
 //#   define SDLog  NSLog
 #   define SDELog(err) {if(err) DLog(@"%@", err)}
 //#   define SocLog NSLog
-#   define SDLog(...)
+//#   define SDLog(...)
 //#   define SDELog(err)
 #else
 

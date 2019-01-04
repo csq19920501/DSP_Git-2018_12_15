@@ -63,7 +63,6 @@
 //    SocketManagerShare.ChDelayNeedRefresh = YES;
 //    SocketManagerShare.CrossoverNeedRefresh = YES;
     SocketManagerShare.AckCurUiIdParameterNeedSecond = NO;
-    
     [[NSNotificationCenter defaultCenter ]removeObserver:self];
     SDLog(@"移除通知111");
 }
@@ -81,6 +80,53 @@
         self.VCBottomConstraint.constant = kTabBarHeight;
         self.naviBarHeight.constant = kTopHeight;
     }
+//    MPWeakSelf(self)
+//    [[NSNotificationCenter defaultCenter]addObserverForName:@"CHLEVEL" object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+//        NSDictionary *dcit = note.userInfo;
+//        int num = [dcit[@"address"] intValue];
+//        for (ShowCarView  *carView in self.CarScrView.subviews) {
+//            if ([carView.upTypeLabel.text containsString:[NSString stringWithFormat:@"CH%d",num]]) {
+//                [carView.upProgressView setSendData:^(){
+//
+//                }];
+//                for ( hornDataModel *objc1  in DeviceToolShare.hornDataArray ) {
+//                    if (objc1.outCh == num) {
+//                        SDLog(@"接收数据处理%d",num);
+//                        [carView.upProgressView setLevel:objc1.CHLevelFloat];
+//                        CSQ_DISPATCH_AFTER(0.3, ^{
+//                            [carView.upProgressView setSendData:^(){
+//                                [weakself sendTipWithModel:objc1 WithCount:0];
+//                                if (objc1.outCh == 8) {
+//                                    DeviceToolShare.SUBLevel = objc1.CHLevelFloat;
+//                                }
+//                            }];
+//
+//                        })
+//                    }
+//                }
+//            }else if ([carView.downTypeLabel.text containsString:[NSString stringWithFormat:@"CH%d",num]]) {
+//                [carView.downProgressView setSendData:^(){
+//
+//                }];
+//                for ( hornDataModel *objc1  in DeviceToolShare.hornDataArray ) {
+//                    if (objc1.outCh == num) {
+//                        [carView.downProgressView setLevel:objc1.CHLevelFloat];
+//                        SDLog(@"接收数据处理%d",num);
+//                        CSQ_DISPATCH_AFTER(0.3, ^{
+//                            [carView.downProgressView setSendData:^(){
+//                                [weakself sendTipWithModel:objc1 WithCount:0];
+//                                if (objc1.outCh == 8) {
+//                                    DeviceToolShare.SUBLevel = objc1.CHLevelFloat;
+//                                }
+//                            }];
+//
+//                        })
+//                    }
+//                }
+//            }
+//        }
+//    }];
+    
     KAddObserver(RemoveAllNotification, RemoveAllNotification, nil)
     KAddObserver(ChevelRefreshNotificaion, ChevelRefreshNotificaion, nil)
     if (SocketManagerShare.ChlevelNeedRefresh && SocketManagerShare.isCurrentWIFI) {
@@ -250,7 +296,7 @@
                             
 //                            suiJiFaSong([self sendTipWithModel:upDeviceHornModel WithCount:maxCount];)
                         }];
-                        [carView.upProgressView setLevel:upDeviceHornModel.CHLevelFloat];
+                        [carView.upProgressView setLevelNoNetwork:upDeviceHornModel.CHLevelFloat];
                         
                                 [carView.downProgressView setMainLevel:120];
                                 [carView.downProgressView drawProgress];
@@ -291,7 +337,7 @@
                             
 //                            suiJiFaSong([self sendTipWithModel:downDeviceHornModel WithCount:maxCount];)
                         }];
-                        [carView.downProgressView setLevel:downDeviceHornModel.CHLevelFloat];
+                        [carView.downProgressView setLevelNoNetwork:downDeviceHornModel.CHLevelFloat];
                         carView.hiddentype = upHidden;
                     }))
                 }
@@ -341,7 +387,7 @@
                     carView.upLevelLabel.textColor = [UIColor greenColor];
 //                    suiJiFaSong([self sendTipWithModel:upDeviceHornModel WithCount:maxCount];)
                 }];
-                [carView.upProgressView setLevel:upDeviceHornModel.CHLevelFloat];
+                [carView.upProgressView setLevelNoNetwork:upDeviceHornModel.CHLevelFloat];
                 
                 [carView.downProgressView setMainLevel:Level120];
                 [carView.downProgressView drawProgress];
@@ -363,7 +409,7 @@
                     
 //                    suiJiFaSong([self sendTipWithModel:downDeviceHornModel WithCount:maxCount];)
                 }];
-                [carView.downProgressView setLevel:downDeviceHornModel.CHLevelFloat];
+                [carView.downProgressView setLevelNoNetwork:downDeviceHornModel.CHLevelFloat];
                 }))
             }
 

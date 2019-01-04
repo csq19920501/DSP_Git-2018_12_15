@@ -642,6 +642,7 @@ static SocketManager *_sharedInstance;
                 SDLog(@"地址00 =%@ ",[self hexadecimalString:data]);
                 if (!self.MainSoundLevleNeedSecond ) {
                     DeviceToolShare.MainLevel = data1;
+                     [[NSNotificationCenter defaultCenter]postNotificationName:MainLevel object:nil];
                 }else{
                     self.MainSoundLevleNeedSecond = NO;
                 }
@@ -652,6 +653,7 @@ static SocketManager *_sharedInstance;
                     SDLog(@"data1 = %d",data1);
                     
                     DeviceToolShare.mune =  data1 == 1?YES:NO;
+                    [[NSNotificationCenter defaultCenter]postNotificationName:DSPMune object:nil];
                 }else{
                     self.MainMuteNeedSecond = NO;
                 }
@@ -660,6 +662,7 @@ static SocketManager *_sharedInstance;
                 SDLog(@"地址02 =%@ ",[self hexadecimalString:data]);
                 if (!self.SUBSoundLevleNeedSecond ) {
                     DeviceToolShare.SUBLevel = data1;
+                    [[NSNotificationCenter defaultCenter]postNotificationName:SubLevel object:nil];
                 }else{
                     self.SUBSoundLevleNeedSecond = NO;
                 }
@@ -694,14 +697,19 @@ static SocketManager *_sharedInstance;
                     if (data0 == 0) {
                         SDLog(@"DeviceToolShare.inputLevel1 = %d",data1);
                         DeviceToolShare.inputLevel1 = data1;
+                         [[NSNotificationCenter defaultCenter]postNotificationName:InputLevel1 object:nil];
+                    
                     }else if(data0 == 1){
                         DeviceToolShare.inputLevel2 = data1;
+                        [[NSNotificationCenter defaultCenter]postNotificationName:InputLevel2 object:nil];
                          SDLog(@"DeviceToolShare.inputLevel2 = %d",data1);
                     }else if(data0 == 2){
                         DeviceToolShare.inputLevel3 = data1;
+                         [[NSNotificationCenter defaultCenter]postNotificationName:InputLevel3 object:nil];
                          SDLog(@"DeviceToolShare.inputLevel3 = %d",data1);
                     }else if(data0 == 3){
                         DeviceToolShare.inputLevel4 = data1;
+                        [[NSNotificationCenter defaultCenter]postNotificationName:InputLevel4 object:nil];
                          SDLog(@"DeviceToolShare.inputLevel4 = %d",data1);
                     }
                 }else{
@@ -1079,6 +1087,7 @@ static SocketManager *_sharedInstance;
                         if (model.outCh == CH1) {
                             model.CHLevelFloat = data1;
                             SDLog(@"CHLevelFloat111 = %d",data1);
+                            [[NSNotificationCenter defaultCenter]postNotificationName:@"CHLEVEL" object:@{@"address":@1}];
                         }
                     }
                 }else{
@@ -1093,6 +1102,7 @@ static SocketManager *_sharedInstance;
                         if (model.outCh == CH2) {
                             model.CHLevelFloat = data1;
                             SDLog(@"CHLevelFloat222 = %d",data1);
+                            [[NSNotificationCenter defaultCenter]postNotificationName:@"CHLEVEL" object:@{@"address":@2}];
                         }
                     }
                 }else{
@@ -1107,6 +1117,7 @@ static SocketManager *_sharedInstance;
                         if (model.outCh == CH3) {
                             model.CHLevelFloat = data1;
                             SDLog(@"CHLevelFloat333 = %d",data1);
+                            [[NSNotificationCenter defaultCenter]postNotificationName:@"CHLEVEL" object:@{@"address":@3}];
                         }
                     }
                 }else{
@@ -1120,6 +1131,7 @@ static SocketManager *_sharedInstance;
                         if (model.outCh == CH4) {
                             model.CHLevelFloat = data1;
                             SDLog(@"CHLevelFloat444 = %d",data1);
+                            [[NSNotificationCenter defaultCenter]postNotificationName:@"CHLEVEL" object:@{@"address":@4}];
                         }
                     }
                 }else{
@@ -1133,6 +1145,7 @@ static SocketManager *_sharedInstance;
                         if (model.outCh == CH5) {
                             model.CHLevelFloat = data1;
                             SDLog(@"CHLevelFloat555 = %d",data1);
+                            [[NSNotificationCenter defaultCenter]postNotificationName:@"CHLEVEL" object:@{@"address":@5}];
                         }
                     }
                 }else{
@@ -1146,6 +1159,7 @@ static SocketManager *_sharedInstance;
                         if (model.outCh == CH6) {
                             model.CHLevelFloat = data1;
                             SDLog(@"CHLevelFloat666 = %d",data1);
+                            [[NSNotificationCenter defaultCenter]postNotificationName:@"CHLEVEL" object:@{@"address":@6}];
                         }
                     }
                 }else{
@@ -1159,6 +1173,7 @@ static SocketManager *_sharedInstance;
                         if (model.outCh == CH7) {
                             model.CHLevelFloat = data1;
                             SDLog(@"CHLevelFloat777 = %d",data1);
+                            [[NSNotificationCenter defaultCenter]postNotificationName:@"CHLEVEL" object:@{@"address":@7}];
                         }
                     }
                 }else{
@@ -1173,6 +1188,7 @@ static SocketManager *_sharedInstance;
                         if (model.outCh == CH8) {
                             model.CHLevelFloat = data1;
                             SDLog(@"CHLevelFloat888 = %d",data1);
+                            [[NSNotificationCenter defaultCenter]postNotificationName:@"CHLEVEL" object:@{@"address":@8}];
                         }
                     }
                 }else{

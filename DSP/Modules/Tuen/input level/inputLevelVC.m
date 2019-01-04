@@ -33,11 +33,47 @@
 
 @implementation inputLevelVC
 - (IBAction)backClick:(id)sender {
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+//    [[NSNotificationCenter defaultCenter]addObserverForName:InputLevel1 object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+//        [self.ana1_2 setSendData:^(){
+//        }];
+//        [self.ana1_2 setLevel:DeviceToolShare.inputLevel1];
+//        [self.ana1_2 setSendData:^(){
+//            [SocketManagerShare sendTwoDataTipWithType:InputLevle withCount:0 withData0Int:0 withData1Int:DeviceToolShare.inputLevel1];
+//        }];
+//    }];
+//    [[NSNotificationCenter defaultCenter]addObserverForName:InputLevel2 object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+//        [self.ana3_4 setSendData:^(){
+//        }];
+//        [self.ana3_4 setLevel:DeviceToolShare.inputLevel2];
+//        [self.ana3_4 setSendData:^(){
+//            [SocketManagerShare sendTwoDataTipWithType:InputLevle withCount:0 withData0Int:1 withData1Int:DeviceToolShare.inputLevel2];
+//        }];
+//    }];
+//    [[NSNotificationCenter defaultCenter]addObserverForName:InputLevel3 object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+//        [self.ana5_6 setSendData:^(){
+//        }];
+//        [self.ana5_6 setLevel:DeviceToolShare.inputLevel3];
+//        [self.ana5_6 setSendData:^(){
+//            [SocketManagerShare sendTwoDataTipWithType:InputLevle withCount:0 withData0Int:2 withData1Int:DeviceToolShare.inputLevel3];
+//        }];
+//    }];
+//    [[NSNotificationCenter defaultCenter]addObserverForName:InputLevel4 object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+//        [self.digR_L setSendData:^(){
+//        }];
+//        [self.digR_L setLevel:DeviceToolShare.inputLevel4];
+//        [self.digR_L setSendData:^(){
+//            [SocketManagerShare sendTwoDataTipWithType:InputLevle withCount:0 withData0Int:3 withData1Int:DeviceToolShare.inputLevel4];
+//        }];
+//    }];
+    
+    
     if (isIphoneX) {
 //        self.VCBottomConstraint.constant = 35.;
         self.naviBarHeight.constant = kTopHeight;
@@ -89,8 +125,6 @@
             DeviceToolShare.inputLevel3 = level;
             self.levle3.textColor = [UIColor greenColor];
             suiJiFaSong([SocketManagerShare sendTwoDataTipWithType:InputLevle withCount:maxCount withData0Int:2 withData1Int:DeviceToolShare.inputLevel3];)
-            
-          
         }];
         [self.ana5_6 setValueChangeEnd:^(){
             self.levle3.textColor = [UIColor whiteColor];
