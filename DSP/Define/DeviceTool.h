@@ -43,7 +43,13 @@ typedef NS_ENUM(NSInteger, DeviceType){
     BH_A180 = 0,
     BH_A180A = 1,
 };
-
+typedef NS_ENUM(NSInteger, DengColor){
+    DC_green = 0,
+    DC_red ,
+    DC_blue ,
+    DC_orange,
+    DC_white,
+};
 #define DeviceToolShare [DeviceTool shareInstacne]
 
 @interface DeviceTool : NSObject
@@ -102,5 +108,19 @@ typedef NS_ENUM(NSInteger, DeviceType){
 
 //inputSettingSpdif  model
 @property(nonatomic,strong)id spdifInputModel;
+
+@property(nonatomic,assign)DengColor colorMain;
+@property(nonatomic,assign)DengColor colorSub;
+@property(nonatomic,assign)DengColor colorMemoryA;
+@property(nonatomic,assign)DengColor colorMemoryB;
+//@property(nonatomic,copy)NSString* ch1Input;  //abalog input
+//@property(nonatomic,copy)NSString* ch2Input;  //abalog input
+//@property(nonatomic,copy)NSString* ch3Input;  //abalog input
+//@property(nonatomic,copy)NSString* ch4Input;  //abalog input
+//@property(nonatomic,copy)NSString* ch5Input;  //abalog input
+//@property(nonatomic,copy)NSString* ch6Input;  //abalog input
+//
+//@property(nonatomic,copy)NSString* digitalL;  //digital input
+//@property(nonatomic,copy)NSString* digitalR;
 
 @end

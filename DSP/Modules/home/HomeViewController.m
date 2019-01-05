@@ -431,8 +431,8 @@
     [AdvancedTarbar addChildController:nav2 title:@"CH Delay" imageName:@"ch delay_normat.png"  selectedImageName:@"ch delay_selected.png"];
     [AdvancedTarbar addChildController:nav3 title:@"Crossover" imageName:@"crossover_normat.png"  selectedImageName:@"crossover_selected.png"];
     [AdvancedTarbar addChildController:nav4 title:@"EQ" imageName:@"eq_normat.png"  selectedImageName:@"eq_selected.png"];
-//    [AdvancedTarbar addChildController:nav5 title:@"RTA" imageName:@"rtarta_normat.png"  selectedImageName:@"rta_selected.png"];
-    [AdvancedTarbar addCenterController:nil bulge:YES title:@"RTA" imageName:@"rtarta_normat.png" selectedImageName:@"rta_selected.png"];
+
+//    [AdvancedTarbar addCenterController:nil bulge:YES title:@"RTA" imageName:@"rtarta_normat.png" selectedImageName:@"rta_selected.png"];
     [self.navigationController pushViewController:AdvancedTarbar animated:YES];
     self.navigationController.interactivePopGestureRecognizer.enabled = NO;
 //    [self presentViewController:AdvancedTarbar animated:NO completion:nil];

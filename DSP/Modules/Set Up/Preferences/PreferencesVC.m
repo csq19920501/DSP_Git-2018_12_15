@@ -33,6 +33,51 @@
                 colorBut.selected = NO;
             }
             but.selected = YES;
+            switch (j) {
+                case 0:
+                    {
+                        DeviceToolShare.colorMain = tag - 501;
+                        NSMutableString *tipStr = [NSMutableString string];
+                        [tipStr appendFormat:@"00%@",colorMainAdr];
+                        [tipStr appendFormat:@"%@",[SocketManager stringWithHexNumber:DeviceToolShare.colorMain]];
+                        [SocketManagerShare seneTipWithType:colorMainType WithStr:tipStr Count:0];
+                    }
+                    break;
+                case 1:
+                {
+                    DeviceToolShare.colorSub = tag - 511;
+                    
+                    NSMutableString *tipStr = [NSMutableString string];
+                    [tipStr appendFormat:@"00%@",colorSubAdr];
+                    [tipStr appendFormat:@"%@",[SocketManager stringWithHexNumber:DeviceToolShare.colorSub]];
+                    [SocketManagerShare seneTipWithType:colorSubType WithStr:tipStr Count:0];
+                }
+                    break;
+                case 2:
+                {
+                    DeviceToolShare.colorMemoryA = tag - 521;
+                    NSMutableString *tipStr = [NSMutableString string];
+                    [tipStr appendFormat:@"00%@",colorMemoryAAdr];
+                    [tipStr appendFormat:@"%@",[SocketManager stringWithHexNumber:DeviceToolShare.colorMemoryA]];
+                    [SocketManagerShare seneTipWithType:colorMemoryAType WithStr:tipStr Count:0];
+                }
+                    break;
+                case 3:
+                {
+                    DeviceToolShare.colorMemoryB = tag - 531;
+                    
+                    NSMutableString *tipStr = [NSMutableString string];
+                    [tipStr appendFormat:@"00%@",colorMemoryBAdr];
+                    [tipStr appendFormat:@"%@",[SocketManager stringWithHexNumber:DeviceToolShare.colorMemoryB]];
+                    [SocketManagerShare seneTipWithType:colorMemoryBType WithStr:tipStr Count:0];
+                }
+                    break;
+                    
+                default:
+                    break;
+            }
+            
+            
         }
     }
     
@@ -177,6 +222,17 @@
         UIButton *extrnalButton = (UIButton *)[self.view viewWithTag:204];
         extrnalButton.selected = YES;
     }
+    
+    UIButton *colorButton = (UIButton *)[self.view viewWithTag:DeviceToolShare.colorMain + 501];
+    colorButton.selected = YES;
+    UIButton *colorButton2 = (UIButton *)[self.view viewWithTag:DeviceToolShare.colorSub + 511];
+    colorButton2.selected = YES;
+    UIButton *colorButton3 = (UIButton *)[self.view viewWithTag:DeviceToolShare.colorMemoryA + 521];
+    colorButton3.selected = YES;
+    UIButton *colorButton4 = (UIButton *)[self.view viewWithTag:DeviceToolShare.colorMemoryB + 531];
+    colorButton4.selected = YES;
+    
+    
     
     self.appVersion.text = [NSString stringWithFormat:@"App Version: %@",appMPVersion];
     self.mcuVersion.text = [NSString stringWithFormat:@"Mcu Version: test%ld.%ld",DeviceToolShare.mcuVersion/10,DeviceToolShare.mcuVersion%10];

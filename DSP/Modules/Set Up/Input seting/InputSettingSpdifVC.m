@@ -403,21 +403,26 @@
     self.coverShowCarView.hidden = YES;
 }
 -(void)sendPersentTip{
-    if (DeviceToolShare.DspMode == ANALOG) {
-        long data0 = pow(2,self.seleHornModel.outCh - 1);
-        NSMutableString *tipStr = [NSMutableString string];
-        [tipStr appendFormat:@"00%@",InputAnalogPercenAdr];
-        [tipStr appendString:[SocketManager stringWithHexNumber:data0]];
-        [tipStr appendFormat:@"%@%@%@%@%@%@",[SocketManager stringWithHexNumber:self.seleHornModel.ch1Input.integerValue],[SocketManager stringWithHexNumber:self.seleHornModel.ch2Input.integerValue],[SocketManager stringWithHexNumber:self.seleHornModel.ch3Input.integerValue],[SocketManager stringWithHexNumber:self.seleHornModel.ch4Input.integerValue],[SocketManager stringWithHexNumber:self.seleHornModel.ch5Input.integerValue],[SocketManager stringWithHexNumber:self.seleHornModel.ch6Input.integerValue]];
-        [SocketManagerShare seneTipWithType:InputAnalogPercen WithStr:tipStr Count:0];
-    }else{
-        long data0 = pow(2,self.seleHornModel.outCh - 1);
-        NSMutableString *tipStr = [NSMutableString string];
-        [tipStr appendFormat:@"00%@",InputDigitalPercenAdr];
-        [tipStr appendString:[SocketManager stringWithHexNumber:data0]];
-        [tipStr appendFormat:@"%@%@",[SocketManager stringWithHexNumber:self.seleHornModel.digitalL.integerValue],[SocketManager stringWithHexNumber:self.seleHornModel.digitalR.integerValue]];
-        [SocketManagerShare seneTipWithType:InputDigitalPercen WithStr:tipStr Count:0];
-    }
+    NSMutableString *tipStr = [NSMutableString string];
+    [tipStr appendFormat:@"00%@",spdifInputAdr];
+    [tipStr appendFormat:@"%@%@%@%@%@%@",[SocketManager stringWithHexNumber:self.seleHornModel.ch1Input.integerValue],[SocketManager stringWithHexNumber:self.seleHornModel.ch2Input.integerValue],[SocketManager stringWithHexNumber:self.seleHornModel.ch3Input.integerValue],[SocketManager stringWithHexNumber:self.seleHornModel.ch4Input.integerValue],[SocketManager stringWithHexNumber:self.seleHornModel.digitalL.integerValue],[SocketManager stringWithHexNumber:self.seleHornModel.digitalR.integerValue]];
+    [SocketManagerShare seneTipWithType:spdifInputType WithStr:tipStr Count:0];
+    
+//    if (DeviceToolShare.DspMode == ANALOG) {
+////        long data0 = pow(2,self.seleHornModel.outCh - 1);
+//        NSMutableString *tipStr = [NSMutableString string];
+//        [tipStr appendFormat:@"00%@",spdifInputAdr];
+////        [tipStr appendString:[SocketManager stringWithHexNumber:data0]];
+//        [tipStr appendFormat:@"%@%@%@%@%@%@",[SocketManager stringWithHexNumber:self.seleHornModel.ch1Input.integerValue],[SocketManager stringWithHexNumber:self.seleHornModel.ch2Input.integerValue],[SocketManager stringWithHexNumber:self.seleHornModel.ch3Input.integerValue],[SocketManager stringWithHexNumber:self.seleHornModel.ch4Input.integerValue],[SocketManager stringWithHexNumber:self.seleHornModel.digitalL.integerValue],[SocketManager stringWithHexNumber:self.seleHornModel.digitalR.integerValue]];
+//        [SocketManagerShare seneTipWithType:spdifInputType WithStr:tipStr Count:0];
+//    }else{
+//        long data0 = pow(2,self.seleHornModel.outCh - 1);
+//        NSMutableString *tipStr = [NSMutableString string];
+//        [tipStr appendFormat:@"00%@",InputDigitalPercenAdr];
+//        [tipStr appendString:[SocketManager stringWithHexNumber:data0]];
+//        [tipStr appendFormat:@"%@%@",[SocketManager stringWithHexNumber:self.seleHornModel.digitalL.integerValue],[SocketManager stringWithHexNumber:self.seleHornModel.digitalR.integerValue]];
+//        [SocketManagerShare seneTipWithType:InputDigitalPercen WithStr:tipStr Count:0];
+//    }
 }
 - (IBAction)setBack:(id)sender {
     if (textArray.count > 1) {

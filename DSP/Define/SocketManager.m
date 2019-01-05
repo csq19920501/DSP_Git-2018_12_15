@@ -75,6 +75,10 @@
 @property(nonatomic,assign)BOOL ResetSelectCrossoverNeedSecond;
 @property(nonatomic,assign)BOOL McuVersionNeedSecond;
 @property(nonatomic,assign)BOOL SpdifInputNeedSecond;
+@property(nonatomic,assign)BOOL colorMainNeedSecond;
+@property(nonatomic,assign)BOOL colorSubNeedSecond;
+@property(nonatomic,assign)BOOL colorMemoryANeedSecond;
+@property(nonatomic,assign)BOOL colorMemoryBNeedSecond;
 //@property(nonatomic,assign)BOOL CrossoverHiQNeedSecond;
 //@property(nonatomic,assign)BOOL CrossoverHiGainNeedSecond;
 //@property(nonatomic,assign)BOOL CrossoverLoQNeedSecond;
@@ -223,6 +227,30 @@ static SocketManager *_sharedInstance;
 #define SenTipWithStr(X_type) X_type = YES;CSQ_DISPATCH_AFTER(afterRepeatTime, ^{if (X_type) {if (count < maxCount) {[self seneTipWithType:mcuType WithStr:str Count:count+1];}}})
 -(void)seneTipWithType:(McuType)mcuType WithStr:(NSString*)str Count:(int)count{
     switch (mcuType) {
+        case colorMainType:
+        {
+            [SocketManagerShare sendDataWithStr:str];
+            SenTipWithStr(self.colorMainNeedSecond)
+        }
+            break;
+        case colorSubType:
+        {
+            [SocketManagerShare sendDataWithStr:str];
+            SenTipWithStr(self.colorSubNeedSecond)
+        }
+            break;
+        case colorMemoryAType:
+        {
+            [SocketManagerShare sendDataWithStr:str];
+            SenTipWithStr(self.colorMemoryANeedSecond)
+        }
+            break;
+        case colorMemoryBType:
+        {
+            [SocketManagerShare sendDataWithStr:str];
+            SenTipWithStr(self.colorMemoryBNeedSecond)
+        }
+            break;
         case SendSpeakerAssign:
         {
             [SocketManagerShare sendDataWithStr:str];
@@ -251,7 +279,6 @@ static SocketManager *_sharedInstance;
         {
             [SocketManagerShare sendDataWithStr:str];
             SenTipWithStr(self.InputDigitalPercenNeedSecond)
-            
         }
             break;
         case spdifInputType:
@@ -1749,6 +1776,42 @@ static SocketManager *_sharedInstance;
                     DeviceToolShare.spdifInputModel = spdifModel;
                 }else{
                     self.SpdifInputNeedSecond = NO;
+                }
+            }else if (DataAdr == 0x34) {
+                if (!self.colorMainNeedSecond ) {
+                    NSString *byte5Str = [dataStrAll substringWithRange:NSMakeRange(10, 2)];
+                    NSInteger data0 = [self numberWithHexString:byte5Str];
+
+                    DeviceToolShare.colorMain = data0 -1;
+                }else{
+                    self.colorMainNeedSecond = NO;
+                }
+            }else if (DataAdr == 0x35) {
+                if (!self.colorSubNeedSecond ) {
+                    NSString *byte5Str = [dataStrAll substringWithRange:NSMakeRange(10, 2)];
+                    NSInteger data0 = [self numberWithHexString:byte5Str];
+                    
+                    DeviceToolShare.colorSub = data0 -1;
+                }else{
+                    self.colorSubNeedSecond = NO;
+                }
+            }else if (DataAdr == 0x36) {
+                if (!self.colorMemoryANeedSecond ) {
+                    NSString *byte5Str = [dataStrAll substringWithRange:NSMakeRange(10, 2)];
+                    NSInteger data0 = [self numberWithHexString:byte5Str];
+                    
+                    DeviceToolShare.colorMemoryA = data0 -1;
+                }else{
+                    self.colorMemoryANeedSecond = NO;
+                }
+            }else if (DataAdr == 0x37) {
+                if (!self.colorMemoryBNeedSecond ) {
+                    NSString *byte5Str = [dataStrAll substringWithRange:NSMakeRange(10, 2)];
+                    NSInteger data0 = [self numberWithHexString:byte5Str];
+                    
+                    DeviceToolShare.colorMemoryB = data0 -1;
+                }else{
+                    self.colorMemoryBNeedSecond = NO;
                 }
             }
             

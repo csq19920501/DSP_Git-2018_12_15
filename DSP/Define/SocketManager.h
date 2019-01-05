@@ -87,6 +87,10 @@ static NSString *const DSPMune = @"DSPMune";
 //MCU 发送 记忆app Ineq退出通道
 #define cheqMerrorAdr @"32"
 #define spdifInputAdr @"33"
+#define colorMainAdr @"34"
+#define colorSubAdr @"35"
+#define colorMemoryAAdr @"36"
+#define colorMemoryBAdr @"37"
 typedef NS_ENUM(NSInteger,McuType) {
     MainSoundLevle = 0,
     SUBSoundLevle ,
@@ -129,6 +133,10 @@ typedef NS_ENUM(NSInteger,McuType) {
     Reset_selectCrossover,
     mcuVersionType,
     spdifInputType,
+    colorMainType,
+    colorSubType,
+    colorMemoryAType,
+    colorMemoryBType,
 };
 
 @interface SocketManager : NSObject
