@@ -326,6 +326,7 @@
     NSString *butTag = nil;
     switch (self.selectArea) {
         case selectAreaFL:
+        case selectAreaFR:
         {
             if (csqAudiotype == woofer) {
                 butTag = @"201";
@@ -392,77 +393,78 @@
             }
         }
             break;
-        case selectAreaFR:
-            {
-                if (csqAudiotype == woofer) {
-                    butTag = @"201";
-                    
-                }
-                else  if (csqAudiotype == midRange) {
-                    butTag = @"202";
-                    
-                }
-                else if (csqAudiotype == tweeter) {
-                    butTag = @"203";
-                    
-                }
-                else if (csqAudiotype == coax) {
-                    butTag = @"204";
-                    
-                }
-                else if (csqAudiotype == twoWay) {
-                    butTag = @"205";
-                    
-                }
-                int b = [butTag intValue] + 50;
-                BOOL isCloude = NO;
-                for (NSString *str in _selectButtonArray) {
-                    if ([str isEqualToString:[NSString stringWithFormat:@"%d",b]]) {
-                        isCloude = YES;
-                    }
-                }
-                if (!isCloude) {
-                    [_selectButtonArray addObject:[NSString stringWithFormat:@"%d",b]];
-                }
-         
-                
-                if (self.connectF) {
-                    if (csqAudiotype == woofer) {
-                        butTag = @"201";
-                        
-                    }
-                    else  if (csqAudiotype == midRange) {
-                        butTag = @"202";
-                        
-                    }
-                    else if (csqAudiotype == tweeter) {
-                        butTag = @"203";
-                        
-                    }
-                    else if (csqAudiotype == coax) {
-                        butTag = @"204";
-                        
-                    }
-                    else if (csqAudiotype == twoWay) {
-                        butTag = @"205";
-                        
-                    }
-                    BOOL isCloude = NO;
-                    for (NSString *str in _selectButtonArray) {
-                        if ([str isEqualToString:butTag]) {
-                            isCloude = YES;
-                        }
-                    }
-                    if (!isCloude) {
-                        [_selectButtonArray addObject:butTag];
-                    }
-                }
-            }
-            if (self.setUseHornWithArray) {
-                _setUseHornWithArray(_selectButtonArray,selectAreaFR);
-            }
-            break;
+//        case selectAreaFR:
+//            {
+//                if (csqAudiotype == woofer) {
+//                    butTag = @"201";
+//
+//                }
+//                else  if (csqAudiotype == midRange) {
+//                    butTag = @"202";
+//
+//                }
+//                else if (csqAudiotype == tweeter) {
+//                    butTag = @"203";
+//
+//                }
+//                else if (csqAudiotype == coax) {
+//                    butTag = @"204";
+//
+//                }
+//                else if (csqAudiotype == twoWay) {
+//                    butTag = @"205";
+//
+//                }
+//                int b = [butTag intValue] + 50;
+//                BOOL isCloude = NO;
+//                for (NSString *str in _selectButtonArray) {
+//                    if ([str isEqualToString:[NSString stringWithFormat:@"%d",b]]) {
+//                        isCloude = YES;
+//                    }
+//                }
+//                if (!isCloude) {
+//                    [_selectButtonArray addObject:[NSString stringWithFormat:@"%d",b]];
+//                }
+//
+//
+//                if (self.connectF) {
+//                    if (csqAudiotype == woofer) {
+//                        butTag = @"201";
+//
+//                    }
+//                    else  if (csqAudiotype == midRange) {
+//                        butTag = @"202";
+//
+//                    }
+//                    else if (csqAudiotype == tweeter) {
+//                        butTag = @"203";
+//
+//                    }
+//                    else if (csqAudiotype == coax) {
+//                        butTag = @"204";
+//
+//                    }
+//                    else if (csqAudiotype == twoWay) {
+//                        butTag = @"205";
+//
+//                    }
+//                    BOOL isCloude = NO;
+//                    for (NSString *str in _selectButtonArray) {
+//                        if ([str isEqualToString:butTag]) {
+//                            isCloude = YES;
+//                        }
+//                    }
+//                    if (!isCloude) {
+//                        [_selectButtonArray addObject:butTag];
+//                    }
+//                }
+//            }
+//            if (self.setUseHornWithArray) {
+//                _setUseHornWithArray(_selectButtonArray,selectAreaFR);
+//            }
+//            break;
         case selectAreaRL:
+        case  selectAreaRR:
         {
             if (csqAudiotype == twoWay) {
                 butTag = @"206";
@@ -523,65 +525,65 @@
             }
         }
             break;
-        case selectAreaRR:
-        {
-            if (csqAudiotype == twoWay) {
-                butTag = @"206";
-                
-                
-            }else if (csqAudiotype == coax) {
-                butTag = @"207";
-               
-            }else if (csqAudiotype == tweeter) {
-                butTag = @"193";
-            }else if (csqAudiotype == midRange) {
-                butTag = @"192";
-            }else if (csqAudiotype == woofer) {
-                butTag = @"191";
-            }
-           
-            int b = [butTag intValue] + 50;
-            BOOL isCloude = NO;
-            for (NSString *str in _selectButtonArray) {
-                if ([str isEqualToString:[NSString stringWithFormat:@"%d",b]]) {
-                    isCloude = YES;
-                }
-            }
-            if (!isCloude) {
-                [_selectButtonArray addObject:[NSString stringWithFormat:@"%d",b]];
-            }
-            
-            if (self.connectR) {
-                if (csqAudiotype == twoWay) {
-                    butTag = @"206";
-                   
-                    
-                }else if (csqAudiotype == coax) {
-                    butTag = @"207";
-                   
-                }else if (csqAudiotype == tweeter) {
-                    butTag = @"193";
-                }else if (csqAudiotype == midRange) {
-                    butTag = @"192";
-                }else if (csqAudiotype == woofer) {
-                    butTag = @"191";
-                }
-                
-                BOOL isCloude = NO;
-                for (NSString *str in _selectButtonArray) {
-                    if ([str isEqualToString:butTag]) {
-                        isCloude = YES;
-                    }
-                }
-                if (!isCloude) {
-                    [_selectButtonArray addObject:butTag];
-                }
-            }
-            if (self.setUseHornWithArray) {
-                _setUseHornWithArray(_selectButtonArray,selectAreaRR);
-            }
-        }
-            break;
+//        case selectAreaRR:
+//        {
+//            if (csqAudiotype == twoWay) {
+//                butTag = @"206";
+//
+//
+//            }else if (csqAudiotype == coax) {
+//                butTag = @"207";
+//
+//            }else if (csqAudiotype == tweeter) {
+//                butTag = @"193";
+//            }else if (csqAudiotype == midRange) {
+//                butTag = @"192";
+//            }else if (csqAudiotype == woofer) {
+//                butTag = @"191";
+//            }
+//
+//            int b = [butTag intValue] + 50;
+//            BOOL isCloude = NO;
+//            for (NSString *str in _selectButtonArray) {
+//                if ([str isEqualToString:[NSString stringWithFormat:@"%d",b]]) {
+//                    isCloude = YES;
+//                }
+//            }
+//            if (!isCloude) {
+//                [_selectButtonArray addObject:[NSString stringWithFormat:@"%d",b]];
+//            }
+//
+//            if (self.connectR) {
+//                if (csqAudiotype == twoWay) {
+//                    butTag = @"206";
+//
+//
+//                }else if (csqAudiotype == coax) {
+//                    butTag = @"207";
+//
+//                }else if (csqAudiotype == tweeter) {
+//                    butTag = @"193";
+//                }else if (csqAudiotype == midRange) {
+//                    butTag = @"192";
+//                }else if (csqAudiotype == woofer) {
+//                    butTag = @"191";
+//                }
+//
+//                BOOL isCloude = NO;
+//                for (NSString *str in _selectButtonArray) {
+//                    if ([str isEqualToString:butTag]) {
+//                        isCloude = YES;
+//                    }
+//                }
+//                if (!isCloude) {
+//                    [_selectButtonArray addObject:butTag];
+//                }
+//            }
+//            if (self.setUseHornWithArray) {
+//                _setUseHornWithArray(_selectButtonArray,selectAreaRR);
+//            }
+//        }
+//            break;
         case selectSoo:
         {
             int sub_count = 0;

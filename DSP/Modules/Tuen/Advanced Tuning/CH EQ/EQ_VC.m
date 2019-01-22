@@ -795,8 +795,11 @@ typedef NS_ENUM(NSInteger,CHEQSelectType) {
         DeviceToolShare.seleHornModel = DeviceToolShare.ineqDataArray[0];
     }
     
-    if (DeviceToolShare.eqSeleHornDataArray.count == 0) {
+    if (DeviceToolShare.eqSeleHornDataArray.count < 2) {
         if (DeviceToolShare.hornDataArray.count != 0) {
+            if (DeviceToolShare.hornDataArray.count == 0) {
+                [DeviceToolShare.eqSeleHornDataArray addObject:DeviceToolShare.hornDataArray[0]];
+            }
             [DeviceToolShare.eqSeleHornDataArray addObject:DeviceToolShare.hornDataArray[0]];
             self.seleHornModel = DeviceToolShare.eqSeleHornDataArray[0];
          //添加默认关联horn---------

@@ -26,6 +26,19 @@
         return;
     }
     NSInteger tag = but.tag;
+    
+//    int a = tag%10;
+//    BOOL isSelect = NO;
+//    for (int i = 0; i < 4; i++) {
+//        int b =  500 + 10 * i + a;
+//        UIButton *colorBut = (UIButton *)[self.view viewWithTag:b];
+//        if (colorBut.selected) {
+//            isSelect = YES;
+//        }
+//    }
+//    if (isSelect) {
+//        return;
+//    }
     for (int j = 0; j < 4; j++) {
         if(tag >= 501 + j * 10 && tag <= 505 + j * 10){
             for (int i = 501 + j * 10; i <= 505 + j * 10; i++) {
@@ -39,7 +52,7 @@
                         DeviceToolShare.colorMain = tag - 501;
                         NSMutableString *tipStr = [NSMutableString string];
                         [tipStr appendFormat:@"00%@",colorMainAdr];
-                        [tipStr appendFormat:@"%@",[SocketManager stringWithHexNumber:DeviceToolShare.colorMain]];
+                        [tipStr appendFormat:@"%@",[SocketManager stringWithHexNumber:DeviceToolShare.colorMain + 1]];
                         [SocketManagerShare seneTipWithType:colorMainType WithStr:tipStr Count:0];
                     }
                     break;
@@ -49,7 +62,7 @@
                     
                     NSMutableString *tipStr = [NSMutableString string];
                     [tipStr appendFormat:@"00%@",colorSubAdr];
-                    [tipStr appendFormat:@"%@",[SocketManager stringWithHexNumber:DeviceToolShare.colorSub]];
+                    [tipStr appendFormat:@"%@",[SocketManager stringWithHexNumber:DeviceToolShare.colorSub + 1]];
                     [SocketManagerShare seneTipWithType:colorSubType WithStr:tipStr Count:0];
                 }
                     break;
@@ -58,7 +71,7 @@
                     DeviceToolShare.colorMemoryA = tag - 521;
                     NSMutableString *tipStr = [NSMutableString string];
                     [tipStr appendFormat:@"00%@",colorMemoryAAdr];
-                    [tipStr appendFormat:@"%@",[SocketManager stringWithHexNumber:DeviceToolShare.colorMemoryA]];
+                    [tipStr appendFormat:@"%@",[SocketManager stringWithHexNumber:DeviceToolShare.colorMemoryA + 1]];
                     [SocketManagerShare seneTipWithType:colorMemoryAType WithStr:tipStr Count:0];
                 }
                     break;
@@ -68,7 +81,7 @@
                     
                     NSMutableString *tipStr = [NSMutableString string];
                     [tipStr appendFormat:@"00%@",colorMemoryBAdr];
-                    [tipStr appendFormat:@"%@",[SocketManager stringWithHexNumber:DeviceToolShare.colorMemoryB]];
+                    [tipStr appendFormat:@"%@",[SocketManager stringWithHexNumber:DeviceToolShare.colorMemoryB + 1]];
                     [SocketManagerShare seneTipWithType:colorMemoryBType WithStr:tipStr Count:0];
                 }
                     break;
@@ -94,10 +107,12 @@
                 UIButton *extrnalButton2 = (UIButton *)[self.view viewWithTag:201];
                 extrnalButton2.selected = NO;
                 DeviceToolShare.ExternalRemodeControl = YES;
+                [self changeColorButEnable];
                 if (self.clickButton) {
                     self.clickButton(External, YES);
                 }
                 [SocketManagerShare sendTipWithType:ExtControl withCount:0];
+                
             }
             break;
         case 201:
@@ -107,6 +122,7 @@
             UIButton *extrnalButton2 = (UIButton *)[self.view viewWithTag:201];
             extrnalButton2.selected = YES;
             DeviceToolShare.ExternalRemodeControl = NO;
+            [self changeColorButEnable];
             if (self.clickButton) {
                 self.clickButton(External,  NO);
             }
@@ -171,6 +187,7 @@
             UIButton *extrnalButton2 = (UIButton *)[self.view viewWithTag:204];
             extrnalButton2.selected = NO;
             DeviceToolShare.SpdifOutBool = YES;
+            [SocketManagerShare sendTipWithType:spdifOutType withCount:0];
         }break;
         case 204:{
             UIButton *extrnalButton = (UIButton *)[self.view viewWithTag:104];
@@ -178,6 +195,7 @@
             UIButton *extrnalButton2 = (UIButton *)[self.view viewWithTag:204];
             extrnalButton2.selected = YES;
             DeviceToolShare.SpdifOutBool = NO;
+            [SocketManagerShare sendTipWithType:spdifOutType withCount:0];
         }break;
         default:
             break;
@@ -193,6 +211,10 @@
     }
     if (DeviceToolShare.deviceType == BH_A180) {
         _spdifOutHeight.constant = 0;
+        UIButton *but1 = (UIButton *)[self.view viewWithTag:104];
+        but1.enabled = NO;
+        UIButton *but2 = (UIButton *)[self.view viewWithTag:204];
+        but2.enabled = NO;
     }
     if (DeviceToolShare.ExternalRemodeControl) {
         UIButton *extrnalButton = (UIButton *)[self.view viewWithTag:101];
@@ -233,11 +255,23 @@
     colorButton4.selected = YES;
     
     
+    [self changeColorButEnable];
+    
+    
     
     self.appVersion.text = [NSString stringWithFormat:@"App Version: %@",appMPVersion];
     self.mcuVersion.text = [NSString stringWithFormat:@"Mcu Version: test%ld.%ld",DeviceToolShare.mcuVersion/10,DeviceToolShare.mcuVersion%10];
+    
 }
-
+-(void)changeColorButEnable{
+   
+        for (int j = 0; j < 4; j++) {
+            for (int i = 1; i <= 5; i++) {
+                UIButton *colBut = (UIButton *)[self.view viewWithTag:500 + j * 10 + i];
+                colBut.enabled = DeviceToolShare.ExternalRemodeControl;
+            }
+        }
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

@@ -79,6 +79,7 @@
 @property(nonatomic,assign)BOOL colorSubNeedSecond;
 @property(nonatomic,assign)BOOL colorMemoryANeedSecond;
 @property(nonatomic,assign)BOOL colorMemoryBNeedSecond;
+@property(nonatomic,assign)BOOL spdifOutNeedSecond;
 //@property(nonatomic,assign)BOOL CrossoverHiQNeedSecond;
 //@property(nonatomic,assign)BOOL CrossoverHiGainNeedSecond;
 //@property(nonatomic,assign)BOOL CrossoverLoQNeedSecond;
@@ -533,6 +534,12 @@ static SocketManager *_sharedInstance;
 }
 -(void)sendTipWithType:(McuType)mcuType withCount:(int)count {
     switch (mcuType) {
+        case spdifOutType:
+        {
+            [SocketManagerShare sendDataWithStr:[NSString stringWithFormat:@"00%@%@%@",spdifAdr,[SocketManager stringWithHexNumber:(NSInteger)DeviceToolShare.deviceType],[SocketManager stringWithHexNumber:(NSInteger)DeviceToolShare.SpdifOutBool]]];
+            AfrerIfNeedRepeat(self.spdifOutNeedSecond)
+        }
+            break;
         case MainSoundLevle:
         {
             [SocketManagerShare sendDataWithStr:[NSString stringWithFormat:@"00%@00%@",MainSoundAdr,[SocketManager stringWithHexNumber:(NSInteger)DeviceToolShare.MainLevel]]];
@@ -1813,8 +1820,28 @@ static SocketManager *_sharedInstance;
                 }else{
                     self.colorMemoryBNeedSecond = NO;
                 }
+            }else if (DataAdr == 0x38) {
+                
+                if (!self.spdifOutNeedSecond) {
+                    NSString *byte5Str = [dataStrAll substringWithRange:NSMakeRange(10, 2)];
+                    NSInteger data0 = [self numberWithHexString:byte5Str];
+                    
+                    NSString *byte6Str = [dataStrAll substringWithRange:NSMakeRange(12, 2)];
+                    NSInteger data1 = [self numberWithHexString:byte6Str];
+                    
+                    DeviceToolShare.deviceType = data0;
+                    SDLog("DeviceToolShare.deviceType = %d",DeviceToolShare.deviceType);
+                    if (data1 == 0) {
+                        DeviceToolShare.SpdifOutBool = NO;
+                    }else{
+                        DeviceToolShare.SpdifOutBool = YES;
+                    }
+                    SDLog("DeviceToolShare.SpdifOutBool = %d",DeviceToolShare.SpdifOutBool);
+
+                }else{
+                    self.spdifOutNeedSecond = NO;
+                }
             }
-            
             }
         
             break;

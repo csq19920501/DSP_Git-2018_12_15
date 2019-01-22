@@ -100,7 +100,6 @@ typedef NS_ENUM(NSInteger, DengColor){
 @property(nonatomic,assign)INEQ_connectType crossoverF_connectType;
 @property(nonatomic,assign)INEQ_connectType crossoverR_connectType;
 
-
 @property(nonatomic,assign)INEQ_connectType analog1_2_connectType; //INEQ记忆关联类型
 @property(nonatomic,assign)INEQ_connectType analog3_4_connectType;
 @property(nonatomic,assign)INEQ_connectType analog5_6_connectType;

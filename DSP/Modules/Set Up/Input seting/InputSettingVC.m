@@ -124,18 +124,12 @@
             }else{
                 self.seleHornModel.ch2Input = [NSString stringWithFormat:@"%d",0];
             }
-           
-            
-            
             
             if (_ch3Button.selected) {
                 self.seleHornModel.ch3Input = [NSString stringWithFormat:@"%d",count];
             }else{
                 self.seleHornModel.ch3Input = [NSString stringWithFormat:@"%d",0];
             }
-           
-            
-            
             
             if (_ch4Button.selected) {
                 self.seleHornModel.ch4Input = [NSString stringWithFormat:@"%d",count];
@@ -143,22 +137,17 @@
                 self.seleHornModel.ch4Input = [NSString stringWithFormat:@"%d",0];
             }
             
-            
             if (_ch5Button.selected) {
                 self.seleHornModel.ch5Input = [NSString stringWithFormat:@"%d",count];
             }else{
                 self.seleHornModel.ch5Input = [NSString stringWithFormat:@"%d",0];
             }
-           
-            
-            
-            
+
             if (_ch6Button.selected) {
                 self.seleHornModel.ch6Input = [NSString stringWithFormat:@"%d",count];
             }else{
                 self.seleHornModel.ch6Input = [NSString stringWithFormat:@"%d",0];
             }
-           
         }
 
         UITextField * tf = (UITextField*)[self.view viewWithTag:1001];

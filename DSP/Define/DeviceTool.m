@@ -37,6 +37,10 @@ static DeviceTool *_deviceTool;
             
             _deviceTool.eqF_isConnect = YES;
             _deviceTool.eqR_isConnect = YES;
+            _deviceTool.crossoverF_connectType = 1;
+            _deviceTool.crossoverR_connectType = 1;
+            _deviceTool.eqF_connectType = 1;
+            _deviceTool.eqR_connectType = 1;
             _deviceTool.crossoverF_isConnect = YES;
             _deviceTool.crossoverR_isConnect = YES;
 //            _deviceTool.deviceType = BH_A180A;

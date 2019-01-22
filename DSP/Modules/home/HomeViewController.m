@@ -146,7 +146,7 @@
     subLevelCount = 0;
     // Do any additional setup after loading the view from its nib.
 //    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(mainRefreshSucces) name:MainRefreshNotificaion object:nil];
-    DeviceToolShare.deviceType = BH_A180A;
+//    DeviceToolShare.deviceType = BH_A180A;
     KAddObserver(mainRefreshSucces,MainRefreshNotificaion,nil)
     KAddObserver(LinkSuccessNotificaion,LinkSuccessNotificaion,nil)
     
@@ -228,7 +228,7 @@
 -(void)setBottomButtonAndCSQProgress{
     DISPATCH_ON_MAIN_THREAD((^{
         NSArray *buttomArray = @[self.modeBackButton,_tuneBackButton,_connectBackButton,_stttupBackButton];
-        NSArray *imageArray = @[@"mode_normat",@"tuen_normat",@"connect_normat",@"setup_normat"];
+        NSArray *imageArray = @[@"mode_normat",@"tuen_normat",@"connect_normatHome",@"setup_normat"];
         NSArray *seleImageArr = @[@"mode_selected",@"tuen_selected",@"connect_selected",@"setup_selected"];
         NSArray *titleArray = @[@"MODE",@"TUNING",@"CONNECT",@"SETUP"];
         for (UIButton *backButton in buttomArray) {

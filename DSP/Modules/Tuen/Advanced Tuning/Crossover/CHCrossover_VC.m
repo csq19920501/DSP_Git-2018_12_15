@@ -279,22 +279,24 @@
 -(void)refreshViews{
 
     DISPATCH_ON_MAIN_THREAD((^{
-        
+         SDLog(@"DeviceToolShare.crossoverSeleHornDataArray = %d",DeviceToolShare.crossoverSeleHornDataArray.count);
+        SDLog(@"DeviceToolShare.crossoverSeleHornDataArray  DeviceToolShare.crossoverF_connectType = %d",DeviceToolShare.crossoverF_connectType);
         if (DeviceToolShare.crossoverSeleHornDataArray.count == 0) {
             if (DeviceToolShare.hornDataArray.count != 0) {
                 [DeviceToolShare.crossoverSeleHornDataArray addObject:DeviceToolShare.hornDataArray[0]];
                 self.seleHornModel = DeviceToolShare.crossoverSeleHornDataArray[0];
-                
+                SDLog(@"DeviceToolShare.crossoverSeleHornDataArray self.seleHornModel= %d",self.seleHornModel.hornType.integerValue);
                 //添加默认关联horn---------
                 if (self.seleHornModel.hornType.integerValue>=255) {
                     for (hornDataModel *model in DeviceToolShare.hornDataArray) {
                         if (model.hornType.integerValue == self.seleHornModel.hornType.integerValue - 50) {
-                           
-                            
+
                             if (DeviceToolShare.crossoverR_connectType == INEQ_connectType_top) {
+                                SDLog(@"DeviceToolShare.crossoverSeleHornDataArray  添加1");
                                 [DeviceToolShare.crossoverSeleHornDataArray insertObject:model atIndex:0];
                                 self.seleHornModel = DeviceToolShare.crossoverSeleHornDataArray[0];
                             }else if(DeviceToolShare.crossoverR_connectType == INEQ_connectType_bottom){
+                                SDLog(@"DeviceToolShare.crossoverSeleHornDataArray  添加2");
                                 [DeviceToolShare.crossoverSeleHornDataArray addObject:model];
                             }
                         }
@@ -302,9 +304,12 @@
                 }else if (self.seleHornModel.hornType.integerValue<=207){
                     for (hornDataModel *model in DeviceToolShare.hornDataArray) {
                         if (model.hornType.integerValue == self.seleHornModel.hornType.integerValue + 50) {
+                            
                             if (DeviceToolShare.crossoverF_connectType == INEQ_connectType_top) {
+                                SDLog(@"DeviceToolShare.crossoverSeleHornDataArray  添加3");
                                 [DeviceToolShare.crossoverSeleHornDataArray addObject:model];
                             }else if(DeviceToolShare.crossoverF_connectType == INEQ_connectType_bottom){
+                                SDLog(@"DeviceToolShare.crossoverSeleHornDataArray  添加4");
                                 [DeviceToolShare.crossoverSeleHornDataArray insertObject:model atIndex:0];
                                 self.seleHornModel = DeviceToolShare.crossoverSeleHornDataArray[0];
                             }
@@ -316,9 +321,47 @@
                 self.seleHornModel = [[hornDataModel alloc]init];
             }
         }else if(DeviceToolShare.crossoverSeleHornDataArray.count >= 1){
-            
+            if (DeviceToolShare.crossoverSeleHornDataArray.count == 1) {
+                if (DeviceToolShare.hornDataArray.count >= 2) {
+                    self.seleHornModel = DeviceToolShare.crossoverSeleHornDataArray[0];
+                    //添加默认关联horn---------
+                    if (self.seleHornModel.hornType.integerValue >= 255) {
+                        
+                        for (hornDataModel *model in DeviceToolShare.hornDataArray) {
+                            if (model.hornType.integerValue == self.seleHornModel.hornType.integerValue - 50) {
+                                
+                                if (DeviceToolShare.crossoverR_connectType == INEQ_connectType_top) {
+                                    SDLog(@"DeviceToolShare.crossoverSeleHornDataArray  添加5");
+                                    [DeviceToolShare.crossoverSeleHornDataArray insertObject:model atIndex:0];
+                                    self.seleHornModel = DeviceToolShare.crossoverSeleHornDataArray[0];
+                                }else if(DeviceToolShare.crossoverR_connectType == INEQ_connectType_bottom){
+                                    SDLog(@"DeviceToolShare.crossoverSeleHornDataArray  添加6");
+                                    [DeviceToolShare.crossoverSeleHornDataArray addObject:model];
+                                }
+                            }
+                        }
+                    }else if (self.seleHornModel.hornType.integerValue<=207){
+                        
+                        for (hornDataModel *model in DeviceToolShare.hornDataArray) {
+                            if (model.hornType.integerValue == self.seleHornModel.hornType.integerValue + 50) {
+                                if (DeviceToolShare.crossoverF_connectType == INEQ_connectType_top) {
+                                    SDLog(@"DeviceToolShare.crossoverSeleHornDataArray  添加7");
+                                    [DeviceToolShare.crossoverSeleHornDataArray addObject:model];
+                                }else if(DeviceToolShare.crossoverF_connectType == INEQ_connectType_bottom){
+                                    [DeviceToolShare.crossoverSeleHornDataArray insertObject:model atIndex:0];
+                                    SDLog(@"DeviceToolShare.crossoverSeleHornDataArray  添加8");
+                                    self.seleHornModel = DeviceToolShare.crossoverSeleHornDataArray[0];
+                                }
+                            }
+                        }
+                    }
+                    //-------------
+                }
+            }
             self.seleHornModel = DeviceToolShare.crossoverSeleHornDataArray[0];
         }
+        SDLog(@"DeviceToolShare.crossoverSeleHornDataArray = %d",DeviceToolShare.crossoverSeleHornDataArray.count);
+        
         
         NSString *titleStr;
         if (DeviceToolShare.crossoverSeleHornDataArray.count == 2) {

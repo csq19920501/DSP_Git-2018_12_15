@@ -140,8 +140,7 @@ static Output_SetingVC *_instance;
             model.outCh = CH4;
             Ch4L = @"05";
             Ch4R = @"01";
-        }
-        else if ([model.hornType isEqualToString:@"251"]) {
+        }else if ([model.hornType isEqualToString:@"251"]) {
             model.outCh = CH4;
             Ch4L = @"03";
             Ch4R = @"01";
@@ -155,7 +154,6 @@ static Output_SetingVC *_instance;
                   || [model.hornType isEqualToString:@"212"]
                   || [model.hornType isEqualToString:@"213"]) {
             model.outCh = CH7;
-            
             if ([model.hornType isEqualToString:@"209"]) {
                 Ch7L = @"01";
                 Ch7R = @"04";
@@ -172,8 +170,6 @@ static Output_SetingVC *_instance;
                 Ch7L = @"06";
                 Ch7R = @"06";
             }
-            
-            
         }else{
             if (outCH_count == 0) {
                 model.outCh = CH1;

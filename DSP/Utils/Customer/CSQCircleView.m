@@ -77,7 +77,6 @@
 #pragma mark - 默认数据
 - (void)initData {
     _zeroLevel = 0.0;
- 
     _MainLevel = (_MainLevel == 0.0 || _MainLevel == 30.0)?30.0:_MainLevel;
     _startAngle = 120;
     _endAngle = 420;

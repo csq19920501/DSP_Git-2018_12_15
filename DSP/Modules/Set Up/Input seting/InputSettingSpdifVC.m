@@ -45,17 +45,19 @@
 
 @implementation InputSettingSpdifVC
 - (IBAction)changeDSPmodeCLick:(id)sender {
+    MPWeakSelf(self)
+     NSArray *inputLevelArr = @[weakself.seleHornModel.ch1Input,weakself.seleHornModel.ch2Input,weakself.seleHornModel.ch3Input,weakself.seleHornModel.ch4Input,weakself.seleHornModel.ch5Input,weakself.seleHornModel.ch6Input,weakself.seleHornModel.digitalL,weakself.seleHornModel.digitalR,];
     if ([sender isEqual:_anaButton]) {
-        DeviceToolShare.DspMode = ANALOG;
-        [SocketManagerShare sendTipWithType:InputSource withCount:0];
+//        DeviceToolShare.DspMode = ANALOG;
+//        [SocketManagerShare sendTipWithType:InputSource withCount:0];
         _anaButton.selected = YES;
         _digitalButton.selected = NO;
         
         for (int i = 1001; i <= 1008; i++) {
-            UITextField * tf = (UITextField*)[self.view viewWithTag:i];
+//            UITextField * tf = (UITextField*)[self.view viewWithTag:i];
             UIButton *but = (UIButton *)[self.view viewWithTag:i + 8000];
             if (i <= 1006) {
-                if ([tf.text intValue] == 0) {
+                if ([inputLevelArr[i-1001] isEqualToString:@"0"]) {
                     but.selected = NO;
                 }else{
                     but.selected = YES;
@@ -66,16 +68,16 @@
             }
         }
     }else{
-        DeviceToolShare.DspMode = SPDIF;
-        [SocketManagerShare sendTipWithType:InputSource withCount:0];
+//        DeviceToolShare.DspMode = SPDIF;
+//        [SocketManagerShare sendTipWithType:InputSource withCount:0];
         _anaButton.selected = NO;
         _digitalButton.selected = YES;
         
         for (int i = 1001; i <= 1008; i++) {
-            UITextField * tf = (UITextField*)[self.view viewWithTag:i];
+//            UITextField * tf = (UITextField*)[self.view viewWithTag:i];
             UIButton *but = (UIButton *)[self.view viewWithTag:i + 8000];
             if (i > 1006) {
-                if ([tf.text intValue] == 0) {
+                if ([inputLevelArr[i-1001] isEqualToString:@"0"]) {
                     but.selected = NO;
                 }else{
                     but.selected = YES;
@@ -86,6 +88,7 @@
             }
         }
     }
+    [self changeTFcolor];
 }
 
 - (IBAction)analogClick:(id)sender {
@@ -93,137 +96,205 @@
 
     if (_anaButton.selected) {
         but.selected = !but.selected;
-        int count = 0;
-        for (int i = 1001; i <= 1006; i++) {
-            UIButton *button = (UIButton *)[self.view viewWithTag:i + 8000];
-            if (button.selected) {
-                count++;
-            }
-        }
-        SDLog(@"count == %d",count);
-        if (count == 0) {
-            self.seleHornModel.ch1Input = @"0";
-            self.seleHornModel.ch2Input = @"0";
-            self.seleHornModel.ch3Input = @"0";
-            self.seleHornModel.ch4Input = @"0";
-            self.seleHornModel.ch5Input = @"0";
-            self.seleHornModel.ch6Input = @"0";
-        }else{
-            count = 100/count;
-            if (_ch1Button.selected) {
-                self.seleHornModel.ch1Input = [NSString stringWithFormat:@"%d",count];
-            }else{
-                self.seleHornModel.ch1Input = [NSString stringWithFormat:@"%d",0];
-            }
-           
-            
-            
-            
-            if (_ch2Button.selected) {
-                self.seleHornModel.ch2Input = [NSString stringWithFormat:@"%d",count];
-            }else{
-                self.seleHornModel.ch2Input = [NSString stringWithFormat:@"%d",0];
-            }
-           
-            
-            
-            
-            if (_ch3Button.selected) {
-                self.seleHornModel.ch3Input = [NSString stringWithFormat:@"%d",count];
-            }else{
-                self.seleHornModel.ch3Input = [NSString stringWithFormat:@"%d",0];
-            }
-           
-            
-            
-            
-            if (_ch4Button.selected) {
-                self.seleHornModel.ch4Input = [NSString stringWithFormat:@"%d",count];
-            }else{
-                self.seleHornModel.ch4Input = [NSString stringWithFormat:@"%d",0];
-            }
-            
-            
-            if (_ch5Button.selected) {
-                self.seleHornModel.ch5Input = [NSString stringWithFormat:@"%d",count];
-            }else{
-                self.seleHornModel.ch5Input = [NSString stringWithFormat:@"%d",0];
-            }
-           
-            
-            
-            
-            if (_ch6Button.selected) {
-                self.seleHornModel.ch6Input = [NSString stringWithFormat:@"%d",count];
-            }else{
-                self.seleHornModel.ch6Input = [NSString stringWithFormat:@"%d",0];
-            }
-           
-        }
-
-        UITextField * tf = (UITextField*)[self.view viewWithTag:1001];
-        tf.text = self.seleHornModel.ch1Input;
-        UITextField * tf2 = (UITextField*)[self.view viewWithTag:1002];
-        tf2.text = self.seleHornModel.ch2Input;
-        UITextField * tf3 = (UITextField*)[self.view viewWithTag:1003];
-        tf3.text = self.seleHornModel.ch3Input;
-        UITextField * tf4 = (UITextField*)[self.view viewWithTag:1004];
-        tf4.text = self.seleHornModel.ch4Input;
-        UITextField * tf5 = (UITextField*)[self.view viewWithTag:1005];
-        tf5.text = self.seleHornModel.ch5Input;
-        UITextField * tf6 = (UITextField*)[self.view viewWithTag:1006];
-        tf6.text = self.seleHornModel.ch6Input;
         
-        NSMutableArray *textArr = [NSMutableArray array];
-        for (int i = 1001; i <= 1008; i++) {
-            UITextField * tf = (UITextField*)[self.view viewWithTag:i];
-            [textArr addObject:tf.text];
+        if (but.selected) {
+            if (but.tag == 9001 || but.tag == 9002) {
+                UIButton *button = (UIButton *)[self.view viewWithTag:9003];
+                button.selected = NO;
+                UIButton *button2 = (UIButton *)[self.view viewWithTag:9004];
+                button2.selected = NO;
+                
+                if (but.tag == 9001) {
+                    self.seleHornModel.ch1Input = @"100";
+                }else if (but.tag == 9002) {
+                    self.seleHornModel.ch2Input = @"100";
+                }
+                self.seleHornModel.ch3Input = @"0";
+                self.seleHornModel.ch4Input = @"0";
+            }else if (but.tag == 9003 || but.tag == 9004) {
+                UIButton *button = (UIButton *)[self.view viewWithTag:9001];
+                button.selected = NO;
+                UIButton *button2 = (UIButton *)[self.view viewWithTag:9002];
+                button2.selected = NO;
+                
+                if (but.tag == 9003) {
+                    self.seleHornModel.ch3Input = @"100";
+                }else if (but.tag == 9004) {
+                    self.seleHornModel.ch4Input = @"100";
+                }
+                self.seleHornModel.ch1Input = @"0";
+                self.seleHornModel.ch2Input = @"0";
+            }
+        }else{
+            if (but.tag == 9001) {
+                self.seleHornModel.ch1Input = @"0";
+            }else if (but.tag == 9002) {
+                self.seleHornModel.ch2Input = @"0";
+            }else if (but.tag == 9003) {
+                self.seleHornModel.ch3Input = @"0";
+            }else if (but.tag == 9004) {
+                self.seleHornModel.ch4Input = @"0";
+            }
         }
-        [textArray addObject:textArr];
+//        int count = 0;
+//        for (int i = 1001; i <= 1006; i++) {
+//            UIButton *button = (UIButton *)[self.view viewWithTag:i + 8000];
+//            if (button.selected) {
+//                count++;
+//            }
+//        }
+//        SDLog(@"count == %d",count);
+//        if (count == 0) {
+//            self.seleHornModel.ch1Input = @"0";
+//            self.seleHornModel.ch2Input = @"0";
+//            self.seleHornModel.ch3Input = @"0";
+//            self.seleHornModel.ch4Input = @"0";
+//            self.seleHornModel.ch5Input = @"0";
+//            self.seleHornModel.ch6Input = @"0";
+//        }else{
+//            count = 100/count;
+//            if (_ch1Button.selected) {
+//                self.seleHornModel.ch1Input = [NSString stringWithFormat:@"%d",count];
+//            }else{
+//                self.seleHornModel.ch1Input = [NSString stringWithFormat:@"%d",0];
+//            }
+//
+//
+//
+//
+//            if (_ch2Button.selected) {
+//                self.seleHornModel.ch2Input = [NSString stringWithFormat:@"%d",count];
+//            }else{
+//                self.seleHornModel.ch2Input = [NSString stringWithFormat:@"%d",0];
+//            }
+//
+//
+//
+//
+//            if (_ch3Button.selected) {
+//                self.seleHornModel.ch3Input = [NSString stringWithFormat:@"%d",count];
+//            }else{
+//                self.seleHornModel.ch3Input = [NSString stringWithFormat:@"%d",0];
+//            }
+//
+//
+//
+//
+//            if (_ch4Button.selected) {
+//                self.seleHornModel.ch4Input = [NSString stringWithFormat:@"%d",count];
+//            }else{
+//                self.seleHornModel.ch4Input = [NSString stringWithFormat:@"%d",0];
+//            }
+//
+//
+//            if (_ch5Button.selected) {
+//                self.seleHornModel.ch5Input = [NSString stringWithFormat:@"%d",count];
+//            }else{
+//                self.seleHornModel.ch5Input = [NSString stringWithFormat:@"%d",0];
+//            }
+//
+//
+//
+//
+//            if (_ch6Button.selected) {
+//                self.seleHornModel.ch6Input = [NSString stringWithFormat:@"%d",count];
+//            }else{
+//                self.seleHornModel.ch6Input = [NSString stringWithFormat:@"%d",0];
+//            }
+//
+//        }
+
+//        UITextField * tf = (UITextField*)[self.view viewWithTag:1001];
+//        tf.text = self.seleHornModel.ch1Input;
+//        UITextField * tf2 = (UITextField*)[self.view viewWithTag:1002];
+//        tf2.text = self.seleHornModel.ch2Input;
+//        UITextField * tf3 = (UITextField*)[self.view viewWithTag:1003];
+//        tf3.text = self.seleHornModel.ch3Input;
+//        UITextField * tf4 = (UITextField*)[self.view viewWithTag:1004];
+//        tf4.text = self.seleHornModel.ch4Input;
+//        UITextField * tf5 = (UITextField*)[self.view viewWithTag:1005];
+//        tf5.text = self.seleHornModel.ch5Input;
+//        UITextField * tf6 = (UITextField*)[self.view viewWithTag:1006];
+//        tf6.text = self.seleHornModel.ch6Input;
+//
+//        NSMutableArray *textArr = [NSMutableArray array];
+//        for (int i = 1001; i <= 1008; i++) {
+//            UITextField * tf = (UITextField*)[self.view viewWithTag:i];
+//            [textArr addObject:tf.text];
+//        }
+//        [textArray addObject:textArr];
+        [self changeTFcolor];
         [self sendPersentTip];
+    }
+}
+-(void)changeTFcolor{
+    for (int i = 1001; i <= 1008; i++) {
+        UITextField * tf = (UITextField*)[self.view viewWithTag:i];
+        UIButton *button = (UIButton *)[self.view viewWithTag:i + 8000];
+        if (button.selected) {
+            tf.textColor = [UIColor greenColor];
+        }else{
+            tf.textColor = [UIColor whiteColor];
+        }
     }
 }
 - (IBAction)digitalClick:(id)sender {
     UIButton *but = (UIButton *)sender;
     if (_digitalButton.selected) {
         but.selected = !but.selected;
-        int count = 0;
-        for (int i = 1007; i <= 1008; i++) {
-            UIButton *button = (UIButton *)[self.view viewWithTag:i + 8000];
-            if (button.selected) {
-                count++;
+        
+        if (but.selected) {
+            if (but.tag == 9007) {
+                self.seleHornModel.digitalL = @"100";
+            }else if (but.tag == 9008) {
+                self.seleHornModel.digitalR = @"100";
             }
-        }
-        SDLog(@"count == %d",count);
-        if (count == 0) {
-            self.seleHornModel.digitalL = @"0";
-            self.seleHornModel.digitalR = @"0";
         }else{
-            count = 100/count;
-            if (_digitalLButton.selected) {
-                self.seleHornModel.digitalL = [NSString stringWithFormat:@"%d",count];
-            }else{
-                self.seleHornModel.digitalL = [NSString stringWithFormat:@"%d",0];
-            }
-           
-            if (_digitialRButton.selected) {
-                self.seleHornModel.digitalR = [NSString stringWithFormat:@"%d",count];
-            }else{
-                self.seleHornModel.digitalR = [NSString stringWithFormat:@"%d",0];
+            if (but.tag == 9007) {
+                self.seleHornModel.digitalL = @"0";
+            }else if (but.tag == 9008) {
+                self.seleHornModel.digitalR = @"0";
             }
         }
         
-        UITextField * tf = (UITextField*)[self.view viewWithTag:1007];
-        tf.text = self.seleHornModel.digitalL;
-        UITextField * tf2 = (UITextField*)[self.view viewWithTag:1008];
-        tf2.text = self.seleHornModel.digitalR;
-        
-        NSMutableArray *textArr = [NSMutableArray array];
-        for (int i = 1001; i <= 1008; i++) {
-            UITextField * tf = (UITextField*)[self.view viewWithTag:i];
-            [textArr addObject:tf.text];
-        }
-        [textArray addObject:textArr];
+//        int count = 0;
+//        for (int i = 1007; i <= 1008; i++) {
+//            UIButton *button = (UIButton *)[self.view viewWithTag:i + 8000];
+//            if (button.selected) {
+//                count++;
+//            }
+//        }
+//        SDLog(@"count == %d",count);
+//        if (count == 0) {
+//            self.seleHornModel.digitalL = @"0";
+//            self.seleHornModel.digitalR = @"0";
+//        }else{
+//            count = 100/count;
+//            if (_digitalLButton.selected) {
+//                self.seleHornModel.digitalL = [NSString stringWithFormat:@"%d",count];
+//            }else{
+//                self.seleHornModel.digitalL = [NSString stringWithFormat:@"%d",0];
+//            }
+//
+//            if (_digitialRButton.selected) {
+//                self.seleHornModel.digitalR = [NSString stringWithFormat:@"%d",count];
+//            }else{
+//                self.seleHornModel.digitalR = [NSString stringWithFormat:@"%d",0];
+//            }
+//        }
+//
+//        UITextField * tf = (UITextField*)[self.view viewWithTag:1007];
+//        tf.text = self.seleHornModel.digitalL;
+//        UITextField * tf2 = (UITextField*)[self.view viewWithTag:1008];
+//        tf2.text = self.seleHornModel.digitalR;
+//
+//        NSMutableArray *textArr = [NSMutableArray array];
+//        for (int i = 1001; i <= 1008; i++) {
+//            UITextField * tf = (UITextField*)[self.view viewWithTag:i];
+//            [textArr addObject:tf.text];
+//        }
+//        [textArray addObject:textArr];
+        [self changeTFcolor];
         [self sendPersentTip];
     }
     
@@ -247,7 +318,7 @@
         self.VCBottomConstraint.constant = 35.;
     }
     
-    MPWeakSelf(self)
+//    MPWeakSelf(self)
     DISPATCH_ON_MAIN_THREAD((^{
         self.topBackView.hidden = YES;
         self.topBackView.layer.masksToBounds = YES;
@@ -261,7 +332,7 @@
         self.customerCar.R_connectButton.hidden = YES;
         [self.customerCar inputSettingViewWith:self.selectCarArray];
 
-        if (DeviceToolShare.spdifInputModel) {
+        if (DeviceToolShare.spdifInputModel  && SocketManagerShare.isCurrentWIFI) {
             [self demoSeleModle:9];
         }else{
             if (!kArrayIsEmpty(DeviceToolShare.hornDataArray)) {
@@ -272,62 +343,62 @@
         
         
         
-        [self.customerCar setHornClick:^(int tag){
-            weakself.topBackView.hidden = NO;
-            SDLog(@"tag = %d",tag);
-            for (hornDataModel *model in DeviceToolShare.hornDataArray) {
-                if ([model.hornType isEqualToString:[NSString stringWithFormat:@"%d",tag]]) {
-                    SDLog(@"customerCar 找到seleHornmodel");
-                    weakself.seleHornModel = model;
-                }
-            }
-            
-            NSArray *inputLevelArr = @[weakself.seleHornModel.ch1Input,weakself.seleHornModel.ch2Input,weakself.seleHornModel.ch3Input,weakself.seleHornModel.ch4Input,weakself.seleHornModel.ch5Input,weakself.seleHornModel.ch6Input,weakself.seleHornModel.digitalL,weakself.seleHornModel.digitalR,];
-            
-            NSMutableArray *textArr = [NSMutableArray array];
-            for (int i = 1001; i <= 1008; i++) {
-                UITextField * tf = (UITextField*)[weakself.view viewWithTag:i];
-                tf.text = inputLevelArr[i - 1001];
-                [textArr addObject:tf.text];
-                
-                UIButton *but = (UIButton *)[weakself.view viewWithTag:i + 8000];
-                if (DeviceToolShare.DspMode == ANALOG) {
-                    weakself.anaButton.selected = YES;
-                    weakself.digitalButton.selected = NO;
-                    if (i <= 1006) {
-                        if ([tf.text intValue] == 0) {
-                            but.selected = NO;
-                        }else{
-                            but.selected = YES;
-                        }
-                    }
-                    else{
-                        but.selected = NO;
-                    }
-                }
-                else{
-                    weakself.anaButton.selected = NO;
-                    weakself.digitalButton.selected = YES;
-                    if (i > 1006) {
-                        if ([tf.text intValue] == 0) {
-                            but.selected = NO;
-                        }else{
-                            but.selected = YES;
-                        }
-                    }
-                    else{
-                        but.selected = NO;
-                    }
-                }
-            }
-            [self->textArray addObject:textArr];
-            //            weakself.coverShowCarView.hidden = NO;
-            
-            NSString *titleStr = [CustomerCar changeTagToHorn:[NSString stringWithFormat:@"%d",tag]];
-            
-            
-            weakself.right2Label.text = [NSString stringWithFormat:@"%@ CH%d",titleStr,(int)weakself.seleHornModel.outCh];
-        }];
+//        [self.customerCar setHornClick:^(int tag){
+//            weakself.topBackView.hidden = NO;
+//            SDLog(@"tag = %d",tag);
+//            for (hornDataModel *model in DeviceToolShare.hornDataArray) {
+//                if ([model.hornType isEqualToString:[NSString stringWithFormat:@"%d",tag]]) {
+//                    SDLog(@"customerCar 找到seleHornmodel");
+//                    weakself.seleHornModel = model;
+//                }
+//            }
+//
+//            NSArray *inputLevelArr = @[weakself.seleHornModel.ch1Input,weakself.seleHornModel.ch2Input,weakself.seleHornModel.ch3Input,weakself.seleHornModel.ch4Input,weakself.seleHornModel.ch5Input,weakself.seleHornModel.ch6Input,weakself.seleHornModel.digitalL,weakself.seleHornModel.digitalR,];
+//
+//            NSMutableArray *textArr = [NSMutableArray array];
+//            for (int i = 1001; i <= 1008; i++) {
+//                UITextField * tf = (UITextField*)[weakself.view viewWithTag:i];
+//                tf.text = inputLevelArr[i - 1001];
+//                [textArr addObject:tf.text];
+//
+//                UIButton *but = (UIButton *)[weakself.view viewWithTag:i + 8000];
+//                if (DeviceToolShare.DspMode == ANALOG) {
+//                    weakself.anaButton.selected = YES;
+//                    weakself.digitalButton.selected = NO;
+//                    if (i <= 1006) {
+//                        if ([tf.text intValue] == 0) {
+//                            but.selected = NO;
+//                        }else{
+//                            but.selected = YES;
+//                        }
+//                    }
+//                    else{
+//                        but.selected = NO;
+//                    }
+//                }
+//                else{
+//                    weakself.anaButton.selected = NO;
+//                    weakself.digitalButton.selected = YES;
+//                    if (i > 1006) {
+//                        if ([tf.text intValue] == 0) {
+//                            but.selected = NO;
+//                        }else{
+//                            but.selected = YES;
+//                        }
+//                    }
+//                    else{
+//                        but.selected = NO;
+//                    }
+//                }
+//            }
+//            [self->textArray addObject:textArr];
+//            //            weakself.coverShowCarView.hidden = NO;
+//
+//            NSString *titleStr = [CustomerCar changeTagToHorn:[NSString stringWithFormat:@"%d",tag]];
+//
+//
+//            weakself.right2Label.text = [NSString stringWithFormat:@"%@ CH%d",titleStr,(int)weakself.seleHornModel.outCh];
+//        }];
 
     }))
 }
@@ -345,24 +416,22 @@
             }
         }
     }
-    
-    
 //    weakself.seleHornModel = DeviceToolShare.spdifInputModel;
     
     NSArray *inputLevelArr = @[weakself.seleHornModel.ch1Input,weakself.seleHornModel.ch2Input,weakself.seleHornModel.ch3Input,weakself.seleHornModel.ch4Input,weakself.seleHornModel.ch5Input,weakself.seleHornModel.ch6Input,weakself.seleHornModel.digitalL,weakself.seleHornModel.digitalR,];
     
-    NSMutableArray *textArr = [NSMutableArray array];
+//    NSMutableArray *textArr = [NSMutableArray array];
     for (int i = 1001; i <= 1008; i++) {
-        UITextField * tf = (UITextField*)[weakself.view viewWithTag:i];
-        tf.text = inputLevelArr[i - 1001];
-        [textArr addObject:tf.text];
+//        UITextField * tf = (UITextField*)[weakself.view viewWithTag:i];
+//        tf.text = inputLevelArr[i - 1001];
+//        [textArr addObject:tf.text];
         
         UIButton *but = (UIButton *)[weakself.view viewWithTag:i + 8000];
         if (DeviceToolShare.DspMode == ANALOG) {
             weakself.anaButton.selected = YES;
             weakself.digitalButton.selected = NO;
             if (i <= 1006) {
-                if ([tf.text intValue] == 0) {
+                if ([inputLevelArr[i - 1001] isEqualToString:@"0"]) {
                     but.selected = NO;
                 }else{
                     but.selected = YES;
@@ -376,7 +445,7 @@
             weakself.anaButton.selected = NO;
             weakself.digitalButton.selected = YES;
             if (i > 1006) {
-                if ([tf.text intValue] == 0) {
+                if ([inputLevelArr[i - 1001] isEqualToString:@"0"]) {
                     but.selected = NO;
                 }else{
                     but.selected = YES;
@@ -387,13 +456,11 @@
             }
         }
     }
-    [self->textArray addObject:textArr];
+//    [self->textArray addObject:textArr];
     //            weakself.coverShowCarView.hidden = NO;
-    
     NSString *titleStr = [CustomerCar changeTagToHorn:[NSString stringWithFormat:@"%d",tag]];
-    
-    
     weakself.right2Label.text = [NSString stringWithFormat:@"%@ CH%d",titleStr,(int)weakself.seleHornModel.outCh];
+    [self changeTFcolor];
 }
 - (IBAction)setNext:(id)sender {
 //    [self sendPersentTip];
@@ -405,7 +472,12 @@
 -(void)sendPersentTip{
     NSMutableString *tipStr = [NSMutableString string];
     [tipStr appendFormat:@"00%@",spdifInputAdr];
-    [tipStr appendFormat:@"%@%@%@%@%@%@",[SocketManager stringWithHexNumber:self.seleHornModel.ch1Input.integerValue],[SocketManager stringWithHexNumber:self.seleHornModel.ch2Input.integerValue],[SocketManager stringWithHexNumber:self.seleHornModel.ch3Input.integerValue],[SocketManager stringWithHexNumber:self.seleHornModel.ch4Input.integerValue],[SocketManager stringWithHexNumber:self.seleHornModel.digitalL.integerValue],[SocketManager stringWithHexNumber:self.seleHornModel.digitalR.integerValue]];
+    
+    if (_anaButton.selected) {
+        [tipStr appendFormat:@"%@%@%@%@%@%@",[SocketManager stringWithHexNumber:self.seleHornModel.ch1Input.integerValue],[SocketManager stringWithHexNumber:self.seleHornModel.ch2Input.integerValue],[SocketManager stringWithHexNumber:self.seleHornModel.ch3Input.integerValue],[SocketManager stringWithHexNumber:self.seleHornModel.ch4Input.integerValue],[SocketManager stringWithHexNumber:0],[SocketManager stringWithHexNumber:0]];
+    }else{
+        [tipStr appendFormat:@"%@%@%@%@%@%@",[SocketManager stringWithHexNumber:0],[SocketManager stringWithHexNumber:0],[SocketManager stringWithHexNumber:0],[SocketManager stringWithHexNumber:0],[SocketManager stringWithHexNumber:self.seleHornModel.digitalL.integerValue],[SocketManager stringWithHexNumber:self.seleHornModel.digitalR.integerValue]];
+    }
     [SocketManagerShare seneTipWithType:spdifInputType WithStr:tipStr Count:0];
     
 //    if (DeviceToolShare.DspMode == ANALOG) {

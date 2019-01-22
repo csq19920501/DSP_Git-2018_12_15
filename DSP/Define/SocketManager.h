@@ -91,6 +91,7 @@ static NSString *const DSPMune = @"DSPMune";
 #define colorSubAdr @"35"
 #define colorMemoryAAdr @"36"
 #define colorMemoryBAdr @"37"
+#define spdifAdr @"38"
 typedef NS_ENUM(NSInteger,McuType) {
     MainSoundLevle = 0,
     SUBSoundLevle ,
@@ -137,6 +138,7 @@ typedef NS_ENUM(NSInteger,McuType) {
     colorSubType,
     colorMemoryAType,
     colorMemoryBType,
+    spdifOutType,
 };
 
 @interface SocketManager : NSObject

@@ -124,14 +124,20 @@
                 </label>
                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fp0-PP-k53">
                     <rect key="frame" x="20" y="215" width="280" height="352"/>
+                    <subviews>
+                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wvJ-pc-8IM">
+                            <rect key="frame" x="0.0" y="0.0" width="280" height="352"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
+                    </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstAttribute="leading" secondItem="wvJ-pc-8IM" secondAttribute="leading" id="25f-qn-uU9"/>
                         <constraint firstAttribute="width" secondItem="fp0-PP-k53" secondAttribute="height" multiplier="448:563" id="UGM-cM-Qia"/>
+                        <constraint firstAttribute="trailing" secondItem="wvJ-pc-8IM" secondAttribute="trailing" id="g5u-09-1z3"/>
+                        <constraint firstAttribute="bottom" secondItem="wvJ-pc-8IM" secondAttribute="bottom" id="gqg-PV-Yel"/>
+                        <constraint firstAttribute="top" secondItem="wvJ-pc-8IM" secondAttribute="top" id="yRr-rA-VD9"/>
                     </constraints>
-                </view>
-                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wvJ-pc-8IM">
-                    <rect key="frame" x="20" y="215" width="280" height="352"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SDs-Mo-3C9">
                     <rect key="frame" x="10" y="69" width="300" height="216.5"/>
@@ -172,7 +178,7 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <textField opaque="NO" tag="1001" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2Ly-Yt-alj">
+                        <textField opaque="NO" tag="1001" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="L" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2Ly-Yt-alj">
                             <rect key="frame" x="75" y="41.5" width="55" height="20"/>
                             <color key="backgroundColor" red="0.070588235294117646" green="0.082352941176470587" blue="0.086274509803921567" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
@@ -186,7 +192,7 @@
                                 <outlet property="delegate" destination="-1" id="kV8-mr-Gw8"/>
                             </connections>
                         </textField>
-                        <label opaque="NO" userInteractionEnabled="NO" tag="801" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E8H-lI-ZCO">
+                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" tag="801" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E8H-lI-ZCO">
                             <rect key="frame" x="116" y="42" width="14" height="20.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -198,7 +204,7 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <textField opaque="NO" tag="1002" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4Vv-hU-LfJ">
+                        <textField opaque="NO" tag="1002" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="R" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4Vv-hU-LfJ">
                             <rect key="frame" x="75" y="71.5" width="55" height="20"/>
                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -208,7 +214,7 @@
                                 <outlet property="delegate" destination="-1" id="Bos-oT-s9F"/>
                             </connections>
                         </textField>
-                        <label opaque="NO" userInteractionEnabled="NO" tag="802" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gj9-l0-Hsv">
+                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" tag="802" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gj9-l0-Hsv">
                             <rect key="frame" x="116" y="71" width="14" height="20.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -220,7 +226,7 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <textField opaque="NO" tag="1003" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CfE-rb-4oV">
+                        <textField opaque="NO" tag="1003" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="L" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CfE-rb-4oV">
                             <rect key="frame" x="75" y="100" width="55" height="20"/>
                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -230,7 +236,7 @@
                                 <outlet property="delegate" destination="-1" id="re9-QC-GPJ"/>
                             </connections>
                         </textField>
-                        <label opaque="NO" userInteractionEnabled="NO" tag="803" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zhz-d6-gEq">
+                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" tag="803" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zhz-d6-gEq">
                             <rect key="frame" x="116" y="100" width="14" height="20"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -242,7 +248,7 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <textField opaque="NO" tag="1004" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wLW-XJ-fM2">
+                        <textField opaque="NO" tag="1004" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="R" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wLW-XJ-fM2">
                             <rect key="frame" x="75" y="129" width="55" height="20"/>
                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -252,7 +258,7 @@
                                 <outlet property="delegate" destination="-1" id="JbI-nZ-Vhb"/>
                             </connections>
                         </textField>
-                        <label opaque="NO" userInteractionEnabled="NO" tag="804" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Elh-Qd-neK">
+                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" tag="804" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Elh-Qd-neK">
                             <rect key="frame" x="116" y="129" width="14" height="20.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -411,7 +417,7 @@
                                 <action selector="analogClick:" destination="-1" eventType="touchUpInside" id="xee-Hr-WBU"/>
                             </connections>
                         </button>
-                        <textField opaque="NO" tag="1008" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HkN-18-MbC">
+                        <textField opaque="NO" tag="1008" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="R" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HkN-18-MbC">
                             <rect key="frame" x="217.5" y="71.5" width="55" height="20"/>
                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -421,7 +427,7 @@
                                 <outlet property="delegate" destination="-1" id="taG-Qm-0OE"/>
                             </connections>
                         </textField>
-                        <label opaque="NO" userInteractionEnabled="NO" tag="804" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0TO-uK-1bp">
+                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" tag="804" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0TO-uK-1bp">
                             <rect key="frame" x="258.5" y="71" width="14" height="20.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -440,7 +446,7 @@
                                 <action selector="digitalClick:" destination="-1" eventType="touchUpInside" id="rjk-X4-X5G"/>
                             </connections>
                         </button>
-                        <textField opaque="NO" tag="1007" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0ch-IR-trk">
+                        <textField opaque="NO" tag="1007" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="L" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0ch-IR-trk">
                             <rect key="frame" x="217.5" y="41.5" width="55" height="20"/>
                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -450,7 +456,7 @@
                                 <outlet property="delegate" destination="-1" id="NX5-Lc-rwf"/>
                             </connections>
                         </textField>
-                        <label opaque="NO" userInteractionEnabled="NO" tag="804" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YOV-Tj-iK2">
+                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" tag="804" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YOV-Tj-iK2">
                             <rect key="frame" x="258.5" y="41" width="14" height="20.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -651,7 +657,6 @@
                 <constraint firstItem="3vR-72-Qvx" firstAttribute="bottom" secondItem="zpN-nO-fuY" secondAttribute="bottom" id="3F6-3i-Hau"/>
                 <constraint firstItem="Rdu-JB-lmv" firstAttribute="leading" secondItem="uQ8-IM-yw2" secondAttribute="leading" id="3f5-j1-SIE"/>
                 <constraint firstItem="4v0-nV-mNd" firstAttribute="bottom" secondItem="zpN-nO-fuY" secondAttribute="bottom" id="68g-Te-p0Z"/>
-                <constraint firstItem="fp0-PP-k53" firstAttribute="bottom" secondItem="wvJ-pc-8IM" secondAttribute="bottom" id="7NX-Fh-EIn"/>
                 <constraint firstItem="SDs-Mo-3C9" firstAttribute="leading" secondItem="zQc-D7-VJJ" secondAttribute="leading" constant="10" id="A3y-qH-eRu"/>
                 <constraint firstItem="fp0-PP-k53" firstAttribute="leading" secondItem="zQc-D7-VJJ" secondAttribute="leading" constant="20" id="AGu-md-vzG"/>
                 <constraint firstItem="Rdu-JB-lmv" firstAttribute="centerY" secondItem="UCs-er-KIt" secondAttribute="centerY" id="BMl-bG-ZYD"/>
@@ -662,7 +667,6 @@
                 <constraint firstItem="elY-od-wvl" firstAttribute="leading" secondItem="zQc-D7-VJJ" secondAttribute="leading" id="Gwt-5G-tYa"/>
                 <constraint firstItem="elY-od-wvl" firstAttribute="bottom" secondItem="zpN-nO-fuY" secondAttribute="bottom" id="HYL-L6-WJl"/>
                 <constraint firstItem="YwP-cz-Ns9" firstAttribute="centerY" secondItem="UCs-er-KIt" secondAttribute="centerY" id="Iey-zM-aGH"/>
-                <constraint firstItem="fp0-PP-k53" firstAttribute="trailing" secondItem="wvJ-pc-8IM" secondAttribute="trailing" id="Ip2-p2-yJ7"/>
                 <constraint firstItem="eZm-9w-feo" firstAttribute="leading" secondItem="zQc-D7-VJJ" secondAttribute="leading" id="PrV-gk-6AM"/>
                 <constraint firstItem="smF-9I-jy1" firstAttribute="leading" secondItem="zQc-D7-VJJ" secondAttribute="leading" id="Qc9-WB-Xjk"/>
                 <constraint firstItem="68p-Qa-VOG" firstAttribute="top" secondItem="fp0-PP-k53" secondAttribute="bottom" id="Qgo-Uu-WRV"/>
@@ -679,10 +683,8 @@
                 <constraint firstAttribute="trailing" secondItem="zpN-nO-fuY" secondAttribute="trailing" id="fDE-Gk-mXP"/>
                 <constraint firstItem="zpN-nO-fuY" firstAttribute="leading" secondItem="zQc-D7-VJJ" secondAttribute="leading" id="l0m-fx-xaL"/>
                 <constraint firstAttribute="trailing" secondItem="fp0-PP-k53" secondAttribute="trailing" constant="20" id="lJw-vv-t8Q"/>
-                <constraint firstItem="fp0-PP-k53" firstAttribute="leading" secondItem="wvJ-pc-8IM" secondAttribute="leading" id="mbt-aY-YR4"/>
                 <constraint firstAttribute="bottom" secondItem="68p-Qa-VOG" secondAttribute="bottom" id="mkj-lr-n1a"/>
                 <constraint firstAttribute="trailing" secondItem="SDs-Mo-3C9" secondAttribute="trailing" constant="10" id="mox-bv-vLG"/>
-                <constraint firstItem="fp0-PP-k53" firstAttribute="top" secondItem="wvJ-pc-8IM" secondAttribute="top" id="oqp-gs-pqz"/>
                 <constraint firstItem="UCs-er-KIt" firstAttribute="leading" secondItem="zQc-D7-VJJ" secondAttribute="leading" constant="16" id="qOP-zb-Vmo"/>
                 <constraint firstAttribute="bottom" secondItem="smF-9I-jy1" secondAttribute="bottom" id="rWS-Q6-ysS"/>
                 <constraint firstItem="smF-9I-jy1" firstAttribute="top" secondItem="zpN-nO-fuY" secondAttribute="bottom" id="vdD-k8-UER"/>
